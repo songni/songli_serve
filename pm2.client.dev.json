@@ -2,7 +2,7 @@
 	"apps": [
 		{
 			"name": "serve-dev",
-			"cwd": "/root/git/songni/client/server",
+			"cwd": "/root/git/songni/songli_serve/server",
 			"script": "app.js",
 			"log_date_format": "YYYY-MM-DD HH:mm Z",
 			"ignore_watch": [
