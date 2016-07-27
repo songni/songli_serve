@@ -1,0 +1,7 @@
+<nav class="gift-sidebar hidden-print affix-top" ng-controller="MenuCtrl" style="margin-top:39px;">
+  <ul class="nav sidenav">
+    <li ng-repeat="menu in menus" ng-class="{active: isActive(menu.link)}">
+      <a ui-sref="{{menu.link}}">{{menu.title}}</a>
+    </li>
+  </ul>
+</nav>

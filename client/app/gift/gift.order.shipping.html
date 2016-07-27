@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">{{order.status.shipping?'修改快递单号':'发货确认'}}</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-xs-3 control-label">快递公司</label>
+      <div class="col-xs-8">
+        <select class="form-control" ng-model="order.express.company" ng-options="com.name for com in express.companies">
+          <option value="">请选择</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-3 control-label">快递单号</label>
+      <div class="col-xs-8">
+        <input type="text" class="form-control" ng-model="order.express.no" placeholder="请输入快递单号">
+      </div>
+    </div>
+    <div class="form-group has-warning">
+        <p class="help-block text-center">填写完整的快递信息后,点击<kbd>发货</kbd>将会通过您的微信公众号给客户发送一条通知</p>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+  <button type="button" class="btn btn-primary" ng-click="shipping()">发货</button>
+</div>

@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-body text-right">
+    <div style="margin-right:25px;">
+      <a ui-sref="merchant" class="btn btn-primary btn-sm" ui-sref-opts="{reload:true}" ng-if="merchant.id">查看</a> 
+      <a ui-sref="merchant.post" class="btn btn-primary btn-sm" ng-if="!merchant.id">申请</a>
+      <a ui-sref="merchant.edit" class="btn btn-primary btn-sm" ng-if="merchant.id">编辑</a>
+      <a ui-sref="merchant.upload" class="btn btn-primary btn-sm" ng-if="!isVerify&&merchant.id">上传资质文件</a>
+    </div>
+  </div>
+  <div ui-view="">
+    <div ng-include="'app/merchant/info.html'"></div>
+  </div>
+</div>

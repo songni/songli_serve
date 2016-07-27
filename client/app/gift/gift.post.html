@@ -1,0 +1,83 @@
+<p class="gift-post-title"><i class="fa fa-gift"></i> <span>填写礼物详情</span></p>
+
+<form name="giftForm" ng-submit="post()" class="form-horizontal" novalidate>
+  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.name'].$valid && submitted,
+                                      'has-error' : giftForm['gift.name'].$invalid && submitted }">
+    <label for="gift.name" class="control-label control-label-cust">礼物标题</label>
+    <div class="col-xs-11">
+      <input type="text" name="gift.name" ng-model="gift.info.name" class="form-control" placeholder="输入礼物标题" ng-maxlength="500" required>
+      <p ng-show="giftForm['gift.name'].$error.required && submitted" class="help-block">
+      礼物标题必须填写.
+      </p>
+      <p ng-show="giftForm['gift.name'].$error.maxlength" class="help-block">最多15个字.</p>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.lead'].$valid && submitted,
+                                      'has-error' : giftForm['gift.lead'].$invalid && submitted }">
+    <label for="gift.lead" class="control-label control-label-cust">副标题 </label>
+    <div class="col-xs-11">
+      <textarea name="gift.lead" ng-model="gift.info.lead" class="form-control" rows="3" placeholder="输入礼物简介"></textarea>
+      <p ng-show="giftForm['gift.lead'].$error.required && submitted" class="help-block">
+      礼物副标题必须填写.
+      </p>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.price'].$valid && submitted,
+                                      'has-error' : giftForm['gift.price'].$invalid && submitted }">
+    <label for="gift.price" class="control-label control-label-cust">礼物单价</label>
+    <div class="col-xs-11">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
+        <input type="text" name="gift.price" ng-model="gift.info.price" class="form-control" placeholder="输入礼物价格" required>
+      </div>
+      <p ng-show="giftForm['gift.price'].$error.required && submitted" class="help-block">
+      礼物价格必须填写.
+      </p>
+    </div>
+  </div>
+  <ng-form name="giftCoverForm">
+  <div class="form-group" ng-class="{ 'has-success': uploadFile && submitted,
+                                      'has-error' : !uploadFile && submitted }">
+    <label for="gift.cover" class="control-label control-label-cust">礼物封面</label>
+    <div class="col-xs-11">
+      <div class="pull-left preview-image">
+        <img ng-src="{{previewImage}}" ng-if="previewImage"  width="80px" height="80px">
+        <img ng-src="{{'http://' + config.imgUri + gift.info.cover}}" ng-if="gift.info.cover&&!previewImage" width="80px" height="80px">
+        <img holder="holder.js/100px80?text=暂无封面&bg=b5b6b6&fg=ffffff" class="img-responsive center-block" ng-if="!gift.info.cover && !previewImage" width="80px" height="80px">
+      </div>
+      <div class="upload-file pull-left">
+        <file-field class="btn btn-primary" ng-model="uploadFile" preview="previewImage">选择图片</file-field>
+        <span class="jy">建议尺寸446px * 446px </span>
+      </div>
+    </div>
+  </div>
+  </ng-form>
+  <!--
+  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.poetry'].$valid && submitted,
+                                      'has-error' : giftForm['gift.poetry'].$invalid && submitted }">
+    <label for="gift.poetry" class="col-xs-1 control-label">诗词</label>
+    <div class="col-xs-11">
+      <textarea name="gift.poetry" ng-model="gift.info.poetry" class="form-control" rows="3" placeholder="输入诗词"></textarea>
+      <p ng-show="giftForm['gift.poetry'].$error.required && submitted" class="help-block">
+      礼物名称必须填写.
+      </p>
+    </div>
+  </div>
+  -->
+  <div class="form-group"  ng-class="{'has-success': giftForm['gift.detail'].$valid && submitted,
+                                      'has-error' : giftForm['gift.detail'].$invalid && submitted }">
+    <label for="gift.detail" class="hidden-xs control-label control-label-cust">礼物详情</label>
+    <div class="col-xs-11">
+      <textarea type="text" name="gift.detail" class="form-control" placeholder="输入礼物详情"
+            ng-model="gift.info.detail"
+            ui-tinymce="tinymceOptions" 
+            required></textarea>
+      <p ng-show="giftForm['gift.detail'].$error.required && submitted" class="help-block">礼物详情必须填写.</p>
+    </div>
+  </div>
+  <div class="form-group" style="background-color:transparent;">
+    <div class="col-xs-3">
+      <button type="submit" class="btn btn-primary btn-block" style="margin-left:-15px;">发布礼物</button>
+    </div>
+  </div>
+</form>

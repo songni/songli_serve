@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+  <div class="panel-body text-right">
+    <div class="btn-group btn-danger btn-group-sm">
+      <label class="btn" ng-model="status.online" btn-radio="''">全部</label>
+      <label class="btn" ng-model="status.online" btn-radio="true">上架</label>
+      <label class="btn" ng-model="status.online" btn-radio="false">下架</label>
+    </div>
+    <div class="btn-group btn-group-sm" ng-if="false">
+      <div class="btn-group btn-group-sm" dropdown>
+        <button type="button" class="btn btn-warning dropdown-toggle" dropdown-toggle>
+          显示({{pagi.itemsPerPage}})条 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="page in itemsPerPageArr"><a href="#" ng-click="chgPerPage()">{{page}}条</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<table class="table table-condensed" id="exportable">
+  <thead>
+    <tr>
+      <th width="42%">盒子名称</th>
+      <th>价格</th>
+      <th>发布时间</th>
+      <th>订单数</th>
+      <th>发货数</th>
+      <th>二维码</th>
+      <th>编辑</th>
+      <th>下架</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat = "gift in gifts">
+      <td class="word-break">{{gift.info.name}}</td>
+      <td style="background:#f7f7f7">{{gift.info.price | currency}}</td>
+      <td>{{gift.time.add | amCalendar}}</td>
+      <td style="background:#f7f7f7">{{gift.num.pay}}</td>
+      <td>{{gift.num.delivery}}</td>
+      <td style="background:#f7f7f7" align="center"><a class="btn btn-primary btn-xs" ui-sref="gift.detail.qrcode({id:gift.id})">二维码</a></td>
+      <td align="center">
+        <a class="btn btn-success btn-xs" ui-sref="gift.detail.edit({id:gift.id})">编辑</a>
+      </td>
+      <td style="background:#f7f7f7" align="center">
+        <button class="btn btn-warning btn-xs" ng-click="offShelf()" ng-if="gift.status.online === true">下架</button>
+        <span ng-if="gift.status.online === false">已下架</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  <div class="panel-body text-right">
+    <pagination boundary-links="true" total-items="pagi.totalItems" ng-model="pagi.currentPage" items-per-page="pagi.itemsPerPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+  </div>
+</div>

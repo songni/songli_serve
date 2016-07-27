@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-body text-right">
+    <button class="btn btn-danger btn-sm" ng-click="saveMenu()">保存</button>
+    <button class="btn btn-danger btn-sm" ng-click="setMenu()">设置</button>
+  </div>
+  <div class="row">
+    <div class="col-xs-7">
+      <textarea class="form-control" ng-model="menu" msd-elastic></textarea>
+    </div>
+    <div class="col-xs-5">
+       <div class="thumbnail">
+          <img holder="holder.js/100px380?text=菜单预览&bg=F3F2F2&fg=ffffff" class="img-responsive center-block">
+          <div class="text-center">
+              <div class="btn-group btn-group-justified dropup">
+                <div class="btn-group" ng-repeat="menu in menus.button">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <a href="{{menu.type}}:{{menu.key || menu.url}}">{{menu.name}}</a>
+                    <span class="caret" ng-if="menu.sub_button"></span>
+                  </button>
+                  <ul class="dropdown-menu" ng-if="menu.sub_button">
+                    <li ng-repeat="submenu in menu.sub_button">
+                      <a href="{{submenu.type}}:{{submenu.key || submenu.url}}">{{submenu.name}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>      
+    </div>
+  </div>
+</div>

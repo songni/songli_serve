@@ -1,0 +1,14 @@
+<form name="replyForm" ng-submit="post()" class="form-horizontal" novalidate>
+  <div class="form-group"  ng-class="{'has-success': replyForm['gift.detail'].$valid && submitted,
+                                      'has-error' : replyForm['gift.detail'].$invalid && submitted }">
+      <textarea type="text" name="add_friend_autoreply_info.content" class="form-control" placeholder="输入关注自动回复内容"
+            ng-model="reply.content.add_friend_autoreply_info.content"
+            required msd-elastic></textarea>
+      <p ng-show="replyForm['add_friend_autoreply_info.content'].$error.required && submitted" class="help-block">自动回复内容必须填写.</p>
+  </div>
+  <div class="form-group" style="background-color:transparent;">
+    <div class="col-xs-3">
+      <button type="submit" class="btn btn-primary btn-block" style="margin-left:-15px;">保存</button>
+    </div>
+  </div>
+</form>

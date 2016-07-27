@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+  <h3 class="modal-title">下载声音卡</h3>
+</div>
+<div class="modal-body">
+  <qrcode data="{{url}}" version="5" error-correction-level="M" size="200" download="{{saveas}}"></qrcode>
+</div>
+<div class="modal-footer">
+  点击二维码下载
+</div>

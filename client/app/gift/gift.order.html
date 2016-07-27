@@ -1,0 +1,106 @@
+<div ui-view class="panel panel-default gift-order">
+  <div class="panel-body">
+    <!-- in v2, v1's toolbar is refactored -->
+    <!-- https://github.com/arrking/songni/issues/84 -->
+    <!-- <div class="btn-group btn-group-sm btn-danger" ng-if="env === 'dev'">
+      <label class="btn" ng-model="status.pay" btn-radio="''">全部(测试用)</label>
+      <label class="btn" ng-model="status.pay" btn-radio="true">已付</label>
+      <label class="btn" ng-model="status.pay" btn-radio="false">未付</label>
+    </div>
+
+    <div class="btn-group btn-group-sm btn-danger">
+      <label class="btn" ng-model="status.shipping" btn-radio="''">全部</label>
+      <label class="btn" ng-model="status.shipping" btn-radio="true">已发货</label>
+      <label class="btn" ng-model="status.shipping" btn-radio="false">未发货</label>
+    </div>  -->
+    <!--button type="button" class="btn btn-primary btn-sm" ng-click="exportCards()" style="margin-left:10px;">下载声音卡</button-->
+    <div class="row">
+
+    <!-- #TODO https://github.com/arrking/songni/issues/102 
+    提供搜索功能-->
+   <!--    <div class="col-lg-6">
+        <div class="form-inline">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="输入订单号 买家等">
+            <button type="submit" class="btn btn-primary btn-outline btn-sm">搜索</button>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-lg-6"></div>
+      <div class="col-lg-6 text-right">
+        <div class="btn-group" dropdown is-open="status.isopen">
+          <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="disabled">
+            下载当前页 <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="item in itemsPerPageArr"><a ng-click="chgPerPage(item)">每页 {{item}} 条</a></li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportCards()" style="margin-left:10px;">声音卡</button>
+        <button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportOrders()" style="margin-left:10px;">导出订单</button>
+        <!--button type="button" class="btn btn-primary btn-outline btn-sm" ng-csv="giftorders" csv-header="['序列号','订单时间','送方','收货人','收货地址','电话','礼物']" filename="order.csv" field-separator="," decimal-separator="local" lazy-load=true add-bom=true charset="GB2312" style="margin-left:10px;">订单</button-->
+        <!--button type="button" class="btn btn-primary btn-sm" ng-print print-element-id="exportable" style="margin-left:10px;">打印</button-->
+      </div>
+    </div>
+  </div>
+  <table class="table table-condensed" id="exportable">
+    <thead>
+      <tr>
+        <th width="100">序列号</th>
+        <th width="80">买家</th>
+        <th width="150">所购商品</th>
+        <th width="150">下单时间</th>
+        <th width="85">实付金额</th>
+        <th width="85">购买数量</th>
+        <th width="100">发货状态</th>
+        <th class="hidden-print">订单状态 </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="order in orders" ng-init="giftorders[$index]={
+          serial:'['+order.serial+']',
+          time:(order.time.add | date : 'yyyy-MM-dd  hh:mm'),
+          nickname:order.sender.info.nickname,
+          name:order.receiver.consignee,
+          address:order.receiver.address,
+          telephone:order.receiver.telephone,
+          gift:order.gift.info.name
+        };">
+        <td>
+        <a style="color:#a241f7;cursor:pointer;" ui-sref="gift.order.detail({id:order.id})">
+        {{order.serial}} </a>
+        </td>
+        <td>{{order.sender.info.nickname}}</td>
+        <td>
+          <a style="color:#a241f7;cursor:pointer;" ui-sref="gift.detail.qrcode({id:order.gift.id})">
+          {{order.gift.info.name}}</a>
+        </td>
+        <td>{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</td>
+        <td>￥ {{order.gift.info.price}}</td>
+        <td align="center">{{order.capacity}}</td>
+        <!--td style="background:#f7f7f7">
+                    <p class="hidden-print">{{order.receiver.address | limitTo:15}}{{order.receiver.address.length > 15 ? '...' : ''}}</p>
+                    <p class="visible-print-block">{{order.receiver.address}}</p>
+                </td-->
+        <td align="center">
+          <div>已发货 {{countShipping(order)}}</div>
+          <button ui-sref="gift.order.detail({id:order.id})" class="btn btn-primary btn-xs">待发货 {{order.receivers.length-countShipping(order)}}</button>
+        </td>
+        <td ng-if="false" class="hidden-print"><span ng-class="{'bg-danger':order.status.pay}">{{order.status.pay?'已付':'未付'}}</span></td>
+        <!--td align="center" class="hidden-print">
+          <button class="btn btn-primary btn-xs" ng-click="exportCard()">下载</button>
+          <button class="btn btn-primary btn-xs" ng-click="wxQrcodeModel()" ng-if="env === 'dev'">微信二维码</button>
+          <a href="http://{{wxUser.appid}}.{{clientUri}}/gift/listen/{{order.id}}" target="_blank" class="btn btn-primary btn-xs" ng-if="env === 'dev'">试听</a>
+        </td-->
+        <td align="center" class="hidden-print">
+         <!-- <div>{{order.status.pay?'已付款':'待支付'}}</div>--> <!--see issue #133-->
+          <button class="btn btn-default btn-xs" ui-sref="gift.order.detail({id:order.id})">查看</button>
+          <!--button class="btn btn-primary btn-xs" ng-click="shippingModel()" ng-if="!order.status.shipping">发货</button-->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="panel-body text-right">
+    <pagination boundary-links="true" total-items="pagi.totalItems" ng-model="pagi.currentPage" items-per-page="pagi.itemsPerPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+  </div>
+</div>

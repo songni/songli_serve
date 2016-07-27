@@ -1,0 +1,63 @@
+<form class="form-horizontal" name="form" ng-submit="post(form)" novalidate>
+  <div class="form-group" ng-class="{ 'has-success': form['pay.mch_id'].$valid && submitted,
+                                      'has-error' : form['pay.mch_id'].$invalid && submitted }">
+    <label for="pay.mch_id" class="col-xs-2 control-label">商户号</label>
+    <div class="col-xs-10">
+      <input type="text" class="form-control" ng-model="pay.mch_id" name="pay.mch_id" placeholder="请输入微信支付分配的商户号" required>
+      <p ng-show="form['pay.mch_id'].$error.required && submitted" class="help-block">
+      商户号必须填写.
+      </p>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-success': form['pay.key'].$valid && submitted,
+                                      'has-error' : form['pay.key'].$invalid && submitted }">
+    <label for="pay.key" class="col-xs-2 control-label">API密钥</label>
+    <div class="col-xs-10">
+      <input type="text" class="form-control" name="pay.key" ng-model="pay.key" placeholder="请输入API签名密钥" required>
+      <span class="help-block" ng-if="!submitted"><span class="text-danger">安全考虑，设置后将不再显示！</span></span>
+      <p ng-show="form['pay.key'].$error.required && submitted" class="help-block">
+      API签名密钥必须填写.
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+  	<label for="pay.file" class="col-xs-2 control-label">API证书</label>
+  	<div class="col-xs-10">
+      <!--<input type="file" class="form-control" name="pfx"/>-->
+      <file-field class="btn btn-primary" ng-model="uploadFile">选择API证书</file-field>
+			<span class="help-block"><span class="text-danger">下载包里的.p12文件</span></span>
+  	</div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-2">
+      <button type="submit" class="btn btn-primary btn-block">保存</button>
+    </div>
+  </div>
+</form>
+
+<div class="row" style="margin-top:100px;">
+  <div class="col-xs-offset-2 col-xs-10">
+    <h5>详细微信支付设置请参考:</h5>
+    <ol>
+	    <li>微信支付|商户平台: <a href="http://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=3_1" target="_blank">设置支付账户</a></li>
+	    <li>
+        公众号: <a href="http://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3" target="_blank">支付开发步骤</a>
+        <ul>
+          <li>支付授权目录: {{wxUser.appid}}.{{clientUri}}/wepay/</li>
+        </ul>
+      </li>
+      <li>
+      	公众号: <a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.AD.A5.E9.AA.A4.E4.B8.80.EF.BC.9A.E7.BB.91.E5.AE.9A.E5.9F.9F.E5.90.8D" target="_blank">设置JS接口安全域名</a>
+        <ul>
+          <li>域名: {{wxUser.appid}}.{{clientUri}}</li>
+        </ul>
+      </li>
+      <li>
+	      公众号: <a href="http://jingyan.baidu.com/article/20095761b8a15dcb0721b4dd.html" target="_blank">设置业务域名</a>
+        <ul>
+          <li>域名: {{wxUser.appid}}.{{clientUri}}</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>

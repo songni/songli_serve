@@ -1,0 +1,22 @@
+{
+	"apps": [
+		{
+			"name": "serve-dev",
+			"cwd": "/root/git/songni/client/server",
+			"script": "app.js",
+			"log_date_format": "YYYY-MM-DD HH:mm Z",
+			"ignore_watch": [
+				"[\\/\\\\]\\./",
+				"node_modules",
+				"data",
+				".git"
+			],
+			"merge_logs": true,
+			"env": {
+				"NODE_ENV": "development",
+				"NODE_DEBUG": "request",
+				"args": ["--ignore-watch=\.git|node_modules"]
+			}
+		}
+	]
+}

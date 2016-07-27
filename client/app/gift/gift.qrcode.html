@@ -1,0 +1,29 @@
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="url" class="col-xs-2 control-label">地址</label>
+    <div class="col-xs-10">
+      <div class="input-group">
+        <input type="text" name="url" class="form-control" ng-model="url">
+        <span class="input-group-btn">
+          <button type="button" clip-copy="getTextToCopy()" clip-click="doSomething()" class="btn btn-default">复制</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="text-center" style="margin-top:50px">
+    <qrcode version="8" error-correction-level="H" size="200" data="{{text}}"></qrcode>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">{{commodity.info.name}}</div>
+      <div class="panel-body" style="padding:0;">
+        <iframe ng-src="{{url}}" width="100%" height="517px" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="auto" allowtransparency="yes"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+

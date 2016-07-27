@@ -1,0 +1,58 @@
+<div ui-view class="panel panel-default gift-order">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th width="300">订单号：{{order.serial}}</th>
+        <th width="200">买方：{{order.sender.name}}</th>
+        <th class="text-right" width="180">下单时间：{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <img style="width:130px;height:130px;float:left;" ng-src="{{order.gift.info.cover ? 'http://' + config.imgUri + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
+          <div style="padding:8px;padding-left:140px;font-size:14px;line-height:18px;">
+            <div style="height:60px;"><a style="color:#a241f7;cursor:pointer;">{{order.gift.info.name}}</a></div>
+            <div>礼物单价：￥ {{order.gift.info.price}}</div>
+            <div>购买数量： {{order.capacity}}</div>
+            <div>实付金额：￥ {{order.gift.info.price * order.capacity}}</div>
+          </div>
+        </td>
+        <td>
+          <qrcode data="{{order.url}}" version="5" error-correction-level="M" size="100" download="来自{{order.sender.name}}的礼物"></qrcode>
+          <button ng-click="exportCard()" class="btn btn-primary">下载语音码</button>
+        </td>
+        <td align="center">
+          <div style="margin-bottom:20px;font-size:16px">
+            <span>已发货 <strong style="font-size:20px;margin:0 10px">{{order.shipping}}</strong></span>
+            <span style="color:#90c132">待发货 <strong style="font-size:20px;margin:0 10px">{{order.receivers.length - order.shipping}}</strong></span></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th width="100">收货人姓名</th>
+        <th width="200">地址</th>
+        <th width="100">电话</th>
+        <th width="100">时间</th>
+        <th class="text-center" width="90">交易状态</th>
+        <th class="text-center" width="90">发货管理</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in order.receivers">
+        <td>{{item.consignee || item.name}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.telephone}}</td>
+        <td>{{item.fillinDate | date : 'yyyy.MM.dd hh:mm'}}</td>
+        <td align="center">{{item.status.shipping?'已发货':'待发货'}}</td>
+        <td align="center">
+          <span ng-if="item.status.shipping">已发货</span>
+          <button ng-if="!item.status.shipping" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">发货</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

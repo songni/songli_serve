@@ -1,0 +1,76 @@
+<form class="form-horizontal" role="form">
+  <div class="form-group" ng-if="!isVerify">
+    <label class="col-sm-2 control-label">资质文件</label>
+    <div class="col-sm-10">
+      <p class="form-control-static"><a ui-sref="merchant.upload" class="btn btn-primary btn-sm">请上传资质文件</a></p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">名称</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">{{merchant.info.name}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">地址</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">{{merchant.info.address}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">介绍</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">{{merchant.info.detail}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">联系人</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">{{merchant.info.linkman}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">联系电话</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">{{merchant.info.telephone}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">状态</label>
+    <div class="col-sm-10">
+      <p class="form-control-static text-danger">{{wxUser.verify?'申批':'未审批'}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">前台地址</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">
+      <a href="http://{{wxUser.appid}}.{{cfgClientUri}}" target="_blank">
+      http://{{wxUser.appid}}.{{cfgClientUri}}
+      </a>
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">我的礼物地址</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">
+      <a href="http://{{wxUser.appid}}.{{cfgClientUri}}/gift/my" target="_blank">
+      http://{{wxUser.appid}}.{{cfgClientUri}}/order/list
+      </a>
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+  	<div class="col-sm-10 col-sm-offset-2">
+			<div class="row">
+				<div class="col-xs-6 col-md-3" ng-repeat="file in merchant.files">
+					<a href="" class="thumbnail">
+						<img ng-src="http://p1.ifindu.cn/crop/w_180/h_170{{file}}">
+					</a>
+				</div>
+			</div>
+  	</div>
+  </div>
+</form>
+
