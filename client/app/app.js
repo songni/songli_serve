@@ -26,7 +26,6 @@ if (auth_code) {
   req.send(null);
   token = JSON.parse(req.responseText).token;
 }
-console.warn('22')
 
 var hostname = window.location.hostname.split('.');
 var env = hostname[0];
