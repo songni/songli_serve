@@ -5,8 +5,7 @@ angular.module('serveApp')
     $scope.wechat = function(){
       RestWecom.get()
       .then(function(link) {
-        console.warn(link);
-        // location.href = link.link;
+        location.href = link.link;
       })
     }
     if($scope.wxUser){

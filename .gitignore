@@ -9,8 +9,8 @@
 /node_modules
 /dist
 .idea
-/public/js
-/public/.DS_Store
+/public
 **/.DS_Store
 .DS_Store?
 .DS_Store
+/client/bower_components
