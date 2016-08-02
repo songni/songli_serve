@@ -60,7 +60,7 @@ angular.module('serveApp', [
   //$breadcrumbProvider.setOptions({templateUrl: 'app/breadcrumb/breadcrumb.html'});
 
   tinyMCE.baseURL = '/bower_components/tinymce-dist';
-}).run(function($rootScope, $location, $cookieStore, $log, $state, Restangular, RestWecom, Alert) {
+}).run(function($rootScope, $location, $cookieStore, $log, $state, $window, Restangular, RestWecom, Alert) {
   $rootScope.$on("$stateChangeError", console.log.bind(console));
   $rootScope.env = hostname[0];
   Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
@@ -96,12 +96,15 @@ angular.module('serveApp', [
   Restangular.setDefaultHeaders(headers);
   if (token) $cookieStore.put('token', token);
   if ($cookieStore.get('token')) {
+    console.warn($cookieStore.get('token'))
     headers.Authorization = $cookieStore.get('token');
     Restangular.setDefaultHeaders(headers);
     RestWecom.one('auth').one('info').get().then(function(wxUser) {
+      if(!wxUser.pay_config){
+        $state.go('bambu.contact');
+      }
       $rootScope.wxUser = wxUser;
       $rootScope.isVerify = wxUser.verify;
-      //$rootScope.$apply();
     });
   }
   $rootScope.$on('$stateChangeStart', function(event, next) {

@@ -34,7 +34,7 @@
     <div ui-view="" ng-if="!wxUser" class="gift-home"></div>
     <div class="container gift-container" ng-if="wxUser">
       <div class="row" style="margin-top:30px;">
-        <div class="col-xs-3" ng-include="'components/sidebar.html'" style="padding-right:0;"></div>
+        <div ng-if="wxUser.pay_config" class="col-xs-3" ng-include="'components/sidebar.html'" style="padding-right:0;"></div>
         <div class="col-xs-9" style="padding-left:0;">
           <span ncy-breadcrumb></span>
           <div  ui-view="" class="main"></div>
@@ -87,7 +87,12 @@
       <script src="app/album/album.controller.js"></script>
       <script src="app/album/album.js"></script>
       <script src="app/album/album.service.js"></script>
+      <script src="app/bambu/bambu.controller.js"></script>
+      <script src="app/bambu/bambu.js"></script>
       <script src="app/breadcrumb/breadcrumb.js"></script>
+      <script src="app/document/document.controller.js"></script>
+      <script src="app/document/document.js"></script>
+      <script src="app/document/document.service.js"></script>
       <script src="app/gift/gift.controller.js"></script>
       <script src="app/gift/gift.js"></script>
       <script src="app/gift/gift.service.js"></script>
@@ -98,6 +103,7 @@
       <script src="app/merchant/merchant.controller.js"></script>
       <script src="app/merchant/merchant.js"></script>
       <script src="app/merchant/merchant.service.js"></script>
+      <script src="app/phone/phone.directive.js"></script>
       <script src="app/wechat/wechat.controller.js"></script>
       <script src="app/wechat/wechat.js"></script>
       <script src="app/wechat/wechat.service.js"></script>

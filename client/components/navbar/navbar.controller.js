@@ -3,17 +3,8 @@
 angular.module('serveApp')
   .controller('NavbarCtrl', function ($scope, $location) {
     $scope.menu = [{
-      'title': '商家信息',
-      'link': 'merchant'
-    },{
       'title': '设置支付',
-      'link': 'wechat.pay'
-    },{
-      'title': '微信菜单',
-      'link': 'wechat.menu'
-    },{
-      'title': '关注回复',
-      'link': 'wechat.autoreply'
+      'link': 'bambu.config.pay'
     },{
       'title': '退出',
       'link': 'logout'

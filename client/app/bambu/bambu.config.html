@@ -1,0 +1,24 @@
+<div  ui-view="">
+<div class="row">
+  <dic class="col-xs-10 col-xs-offset-1">
+    <div class="well">
+      <h3 class="well-h3 mywell-h3">完成系统配置，打通91拼团与微信服务号</h3>
+      <div class="djktdiv">
+			<img ng-src="{{appConfig.uriImg+'/serve/imgs/gantanhao.png'}}" />
+			<span style="color: #898989;">配置前请确保您的微信公众号为<span style="color: #459ae9;">已认证微信服务号，并已开通微信支付</span></span>
+			<a target="_blank" style="color: #898989;" href="http://kf.qq.com/faq/120911VrYVrA130805byM32u.html">如何开通?</a>
+	  </div>
+    <ul class="bambu_step bambu_step1">
+      <li>实现每笔交易额走商户自己的微支付账户，直接到账；</li>
+      <li>实现消费者完成支付后自动关注微信服务号，为商家积累粉丝；</li>
+      <li>消费者可在微信端实时跟进订单状态，查看火爆拼团，我的团等；</li>
+      <li>不与其他任何微信第三方应用冲突，配置完成后有10个免费试用订单；</li>
+      <li>我们的客服人员将电话联系您，如有问题91客服会为您解答；</li>
+    </ul>
+    <div>
+      <a ui-sref="bambu.config.pay" class="btn mybnt">下一步</a>
+    </div>
+  </div>
+</div>
+</div>
+
