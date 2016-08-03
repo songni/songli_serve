@@ -20,10 +20,8 @@
     </div>
   </div>
   <div class="form-group"
-    ng-class="{ 'has-success': form['info.address'].$valid && submitted,
-                                      'has-error' : form['info.address'].$invalid && submitted}"
-    ng-if="false"
-                                      >
+    ng-class="{ 'has-success': form['info.address'].$valid && submitted, 'has-error' : form['info.address'].$invalid && submitted}"
+    ng-if="false">
     <label for="info.address" class="col-xs-2 hidden-xs control-label ">地 址</label>
     <div class="col-xs-10">
       <input type="text" name="info.address" class="form-control input-lg test" placeholder="输入商家地址"

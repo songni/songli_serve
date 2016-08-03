@@ -192,7 +192,7 @@ angular.module('serveApp')
             alert('复制成功！');
         };
     })
-    .controller('GiftOrderCtrl', function($state, $scope, $rootScope, $log, $modal, RestOrderGift, RestExp, Alert) {
+    .controller('GiftOrderCtrl', function($state, $scope, $rootScope, $log, $uibModal, RestOrderGift, RestExp, Alert) {
         $rootScope.title = '订单管理';
         $rootScope.ico = 'list-alt';
         $scope.giftorders = [];
@@ -246,7 +246,7 @@ angular.module('serveApp')
             var orderId = this.order.id;
             var sender = this.order.sender.info.nickname;
             var receiver = this.order.receiver.name;
-            $modal.open({
+            $uibModal.open({
                 templateUrl: 'app/gift/gift.order.qrcode.html',
                 controller: 'GiftOrderQrcodeCtrl',
                 size: 'sm',
@@ -265,7 +265,7 @@ angular.module('serveApp')
             var orderId = this.order.id;
             var sender = this.order.sender.info.nickname;
             var receiver = this.order.receiver.name;
-            $modal.open({
+            $uibModal.open({
                 templateUrl: 'app/gift/gift.order.wx.qrcode.html',
                 controller: 'GiftWxOrderQrcodeCtrl',
                 size: 'sm',
@@ -279,7 +279,7 @@ angular.module('serveApp')
         };
         $scope.detailModel = function() {
             var order = this.order
-            $modal.open({
+            $uibModal.open({
                 animation: true,
                 templateUrl: 'app/gift/gift.order.detail.html',
                 controller: 'GiftOrderDetailCtrl',
@@ -357,7 +357,7 @@ angular.module('serveApp')
                 });
         };
     })
-    .controller('GiftOrderDetailCtrl', function($scope, $rootScope, $stateParams, $modal, order, RestOrderGift, Alert, $log) {
+    .controller('GiftOrderDetailCtrl', function($scope, $rootScope, $stateParams, $uibModal, order, RestOrderGift, Alert, $log) {
         $rootScope.title = '订单详情';
         $scope.order = order;
         $scope.order.shipping = 0;
@@ -386,7 +386,7 @@ angular.module('serveApp')
         };
 
         $scope.shippingModel = function(receiver) {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/gift/gift.order.shipping.html',
                 controller: 'GiftOrderShippingCtrl',

@@ -96,10 +96,11 @@ angular.module('serveApp', [
   Restangular.setDefaultHeaders(headers);
   if (token) $cookieStore.put('token', token);
   if ($cookieStore.get('token')) {
-    console.warn($cookieStore.get('token'))
     headers.Authorization = $cookieStore.get('token');
     Restangular.setDefaultHeaders(headers);
     RestWecom.one('auth').one('info').get().then(function(wxUser) {
+
+      console.warn(wxUser.plain());
       if(!wxUser.pay_config){
         $state.go('bambu.contact');
       }
