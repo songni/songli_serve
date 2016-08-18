@@ -3,8 +3,7 @@
 angular.module('serveApp')
     .config(function($stateProvider) {
         $stateProvider
-
-            .state('gift', {
+        .state('gift', {
             abstract: true,
             url: '/gift',
             //template: '<ui-view/>',

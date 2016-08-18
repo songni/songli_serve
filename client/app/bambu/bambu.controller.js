@@ -79,8 +79,6 @@ angular.module('serveApp')
   .controller('BambuConfigCtrl', function ($scope, $rootScope, $state, $uibModal, Restangular) {
     $rootScope.title = '公众号配置';
     Restangular.service('wechat/pay').one().get().then(function(pay){
-      //todo what is wchat pay
-      console.warn(angular.identity);
       $scope.pay = pay;
     });
     $scope.submitted = false;

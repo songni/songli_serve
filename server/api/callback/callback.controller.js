@@ -2,6 +2,7 @@
 
 var config = require('../../config/environment');
 var request = require('request');
+var path = require('path');
 var headers = {
       'X-API-From'　　: config.api.from,
       'X-Component'　: config.api.component
@@ -23,9 +24,11 @@ exports.component = function(req, res){
   });
 }
 exports.pubno = function(req, res){
+  let url = config.api.uri + '/callback/' + path.join(req.params.appid, "/pubno");
+  console.warn(url) 
   var options = {
-    url : config.api.uri + "/wechat/callback",
-    qs:req.query,
+    url: url,
+    qs: req.query,
     body: req.body,
   };
   console.log("callback.controller.js pubno req.params " + JSON.stringify(req.params));

@@ -35,6 +35,23 @@
       </p>
     </div>
   </div>
+  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.num.stock'].$valid && submitted,
+                                      'has-error' : giftForm['gift.num.stock'].$invalid && submitted }">
+    <label for="gift.num.stock" class="control-label control-label-cust">库存</label>
+    <div class="col-xs-11">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
+        <input type="number" ng-min="0" ng-max="9999999" name="gift.num.stock" ng-model="gift.num.stock" class="form-control" placeholder="输入礼物库存">
+      </div>
+      <p>0为不限制库存</p>
+      <p ng-show="giftForm['gift.num.stock'].$error.min && submitted" class="help-block">
+      库存必须大于0
+      </p>
+      <p ng-show="giftForm['gift.num.stock'].$error.max && submitted" class="help-block">
+      库存必须小于9999999
+      </p>
+    </div>
+  </div>
   <ng-form name="giftCoverForm">
   <div class="form-group" ng-class="{ 'has-success': uploadFile && submitted,
                                       'has-error' : !uploadFile && submitted }">

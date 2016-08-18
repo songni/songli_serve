@@ -33,16 +33,16 @@
     <header class="header" ng-include="'components/header.html'" ng-if="wxUser"></header>
     <div ui-view="" ng-if="!wxUser" class="gift-home"></div>
     <div class="container gift-container" ng-if="wxUser">
-      <div class="row" style="margin-top:30px;">
-        <div ng-if="wxUser.pay_config" class="col-xs-3" ng-include="'components/sidebar.html'" style="padding-right:0;"></div>
-        <div class="col-xs-9" style="padding-left:0;">
+      <div class="row">
+        <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>
+        <div class="col-xs-10 gift-cont" >
           <span ncy-breadcrumb></span>
           <div  ui-view="" class="main"></div>
         </div>
       </div>
     </div>
     <footer class="footer" ng-include="'components/footer.html'" ng-if="wxUser"></footer>
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" ng-if="alerts" ng-bind="alert.msg"></alert>
+    <uib-alert class="pt-alert" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close($index)">{{alert.msg}}</uib-alert>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -55,7 +55,7 @@
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
       <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
       <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/lodash/lodash.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/restangular/dist/restangular.js"></script>
       <script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
@@ -70,6 +70,7 @@
       <script src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
       <script src="bower_components/ng-clip/src/ngClip.js"></script>
       <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
+      <script src="bower_components/file-saver/FileSaver.js"></script>
       <script src="bower_components/angular-bootstrap-file-field/dist/angular-bootstrap-file-field.min.js"></script>
       <script src="bower_components/holderjs/holder.js"></script>
       <script src="bower_components/angular-holderjs/src/holder.js"></script>
@@ -87,6 +88,7 @@
       <script src="app/album/album.controller.js"></script>
       <script src="app/album/album.js"></script>
       <script src="app/album/album.service.js"></script>
+      <script src="app/app.constant.js"></script>
       <script src="app/bambu/bambu.controller.js"></script>
       <script src="app/bambu/bambu.js"></script>
       <script src="app/breadcrumb/breadcrumb.js"></script>
@@ -104,12 +106,19 @@
       <script src="app/merchant/merchant.js"></script>
       <script src="app/merchant/merchant.service.js"></script>
       <script src="app/phone/phone.directive.js"></script>
+      <script src="app/plans/plans.controller.js"></script>
+      <script src="app/plans/plans.js"></script>
+      <script src="app/plans/plans.service.js"></script>
+      <script src="app/suborder/suborder.controller.js"></script>
+      <script src="app/suborder/suborder.js"></script>
+      <script src="app/suborder/suborder.service.js"></script>
       <script src="app/wechat/wechat.controller.js"></script>
       <script src="app/wechat/wechat.js"></script>
       <script src="app/wechat/wechat.service.js"></script>
       <script src="components/alert/alert.service.js"></script>
       <script src="components/directives/ng-file.js"></script>
       <script src="components/directives/ng-print.js"></script>
+      <script src="components/directives/nosy-pagi.js"></script>
       <script src="components/directives/valid-file.js"></script>
       <script src="components/modal/modal.service.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>

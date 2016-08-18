@@ -516,8 +516,14 @@ module.exports = function (grunt) {
       sass: {
         options: {
           transform: function(filePath) {
-            filePath = filePath.replace('/client/app/', '');
-            filePath = filePath.replace('/client/components/', '');
+            console.warn(filePath);
+            if(filePath.match(/client\/app/)){
+              filePath = filePath.replace('/client/app/', '');  
+            }
+            if(filePath.match(/client\/components/)){
+              filePath = filePath.replace('/client/components/', '../components/');  
+            }
+            
             return '@import \'' + filePath + '\';';
           },
           starttag: '// injector',

@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <button class="close" ng-click="cancel()"><span>&times;</span></button>
+  <h4 class="modal-title">&nbsp;</h4>
+</div>
+<div class="modal-body">
+  <div class="thumbnail plan-thumbnail">
+  	<p class="saoma">使用微信支付</p><span class="saomaspan">{{plan.price | currency}}</span>
+    <img src="{{qrcode}}">
+    <div class="caption text-center blue">
+      <p class="bluep">请使用微信扫一扫</p>
+      <p class="bluep">扫描二维码完成支付</p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="cancel()">关闭</button>
+  <button type="button" class="btn btn-primary" ng-click="finishPay()">完成支付</button>
+</div>
+
+

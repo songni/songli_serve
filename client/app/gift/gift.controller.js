@@ -87,10 +87,10 @@ angular.module('serveApp')
             var fd = new FormData();
             fd.append("name", $scope.gift.info.name);
             fd.append("price", $scope.gift.info.price);
+            fd.append("stock", $scope.gift.num && $scope.gift.num.stock ? $scope.gift.num.stock : 0);
             fd.append("poetry", $scope.gift.info.poetry ? $scope.gift.info.poetry : '');
             fd.append("detail", $scope.gift.info.detail ? $scope.gift.info.detail : '');
             fd.append("lead", $scope.gift.info.lead ? $scope.gift.info.lead : '');
-            //fd.append("cover", $('input[type=file]')[0].files[0]);
             fd.append('cover', $scope.uploadFile);
             if ($stateParams.id)
                 $scope.gift.withHttpConfig({
@@ -127,32 +127,39 @@ angular.module('serveApp')
         $rootScope.title = '礼物列表';
         $rootScope.ico = 'list-alt';
         $scope.giftorders = [];
-        $scope.itemsPerPageArr = [10, 20, 50, 100, 200];
         $scope.chgPerPage = function() {
             $scope.pagi.itemsPerPage = this.page;
         };
 
         $scope.status = {
-            online: ''
+            online: '',
+            name: null
         };
+
+        $scope.findByName = function(){
+            $scope.pagi.name = $scope.status.name
+        }
 
         $scope.pagi = {
             totalItems: 0,
             currentPage: 1,
             maxSize: 5,
-            itemsPerPage: 10
+            itemsPerPage: 10,
+            name: null
         };
 
-        $scope.$watchCollection('[status.online,pagi.currentPage,pagi.itemsPerPage]', function(newVal) {
+        $scope.$watchCollection('[status.online,pagi.currentPage,pagi.itemsPerPage,pagi.name]', function(newVal) {
             RestGift.one('count').get({
-                online: newVal[0]
+                online: newVal[0],
+                name: newVal[3]
             }).then(function(count) {
                 $scope.pagi.totalItems = count;
             });
             RestGift.getList({
                     online: newVal[0],
                     page: newVal[1],
-                    limit: newVal[2]
+                    limit: newVal[2],
+                    name: newVal[3]
                 })
                 .then(function(gifts) {
                     $scope.gifts = gifts;
@@ -196,19 +203,62 @@ angular.module('serveApp')
         $rootScope.title = '订单管理';
         $rootScope.ico = 'list-alt';
         $scope.giftorders = [];
+        $scope.forms = {};
         $scope.itemsPerPageArr = [10, 20, 50, 100, 200];
         $scope.chgPerPage = function(size) {
             $scope.pagi.itemsPerPage = size;
         };
-
         $scope.clientUri = config.clientUri;
 
         $scope.status = {
             shipping: '',
             pay: true,
-            checked: false
+            checked: false,
+            startTime: null,
+            endTime: null,
+            startTimePopup: {
+                opened: false
+            },
+            endTimePopup: {
+                opened: false
+            },
+            order: '',
+            serial: ''
         };
 
+        $scope.altInputFormats = ['M!/d!/yyyy'];
+
+        $scope.openStarttimePopup = function() {
+            $scope.status.startTimePopup.opened = true;
+        };
+        $scope.openEndtimePopup = function() {
+            $scope.status.endTimePopup.opened = true;
+        };
+        $scope.searchByCondition = function(){
+            if ($scope.forms['orderForm'].$invalid) {
+                $scope.submitted = true;
+                return false;
+            }
+            if($scope.status.startTime && !$scope.status.endTime){
+                Alert.add('danger', '请填写结束时间');
+                return;
+            }
+            if($scope.status.endTime && !$scope.status.startTime){
+                Alert.add('danger', '请填写起始时间');
+                return;
+            }
+            if($scope.status.endTime && $scope.status.startTime){
+                if(!moment($scope.status.startTime).isBefore($scope.status.endTime)){
+                    Alert.add('danger', '起始时间必须小于结束时间');
+                    return;
+                }
+            }
+            $scope.pagi.startTime = $scope.status.startTime;
+            $scope.pagi.endTime = $scope.status.endTime;
+            $scope.pagi.order = $scope.status.order;
+            $scope.pagi.serial = $scope.status.serial;
+        }
+        
         $scope.pagi = {
             totalItems: 0,
             currentPage: 1,
@@ -224,11 +274,16 @@ angular.module('serveApp')
             return count;
         }
 
-        $scope.$watchCollection('[status.shipping,status.pay,pagi.currentPage,pagi.itemsPerPage]', function(newVal) {
+        $scope.$watchCollection('[status.shipping,status.pay,pagi.currentPage,pagi.itemsPerPage,pagi.startTime,pagi.endTime,pagi.order,status.finish, pagi.serial]', function(newVal) {
             $scope.giftorders = [];
             RestOrderGift.one('count').get({
                 shipping: newVal[0],
-                pay: newVal[1]
+                pay: newVal[1],
+                startTime: newVal[4],
+                endTime: newVal[5],
+                order: newVal[6],
+                finish: newVal[7],
+                serial: newVal[8]
             }).then(function(count) {
                 $scope.pagi.totalItems = count;
             });
@@ -236,7 +291,12 @@ angular.module('serveApp')
                     shipping: newVal[0],
                     pay: newVal[1],
                     page: newVal[2],
-                    limit: newVal[3]
+                    limit: newVal[3],
+                    startTime: newVal[4],
+                    endTime: newVal[5],
+                    order: newVal[6],
+                    finish: newVal[7],
+                    serial: newVal[8]
                 })
                 .then(function(orders) {
                     $scope.orders = orders;
@@ -426,28 +486,28 @@ angular.module('serveApp')
                 });
         };
     })
-    .controller('GiftOrderQrcodeCtrl', function($scope, $rootScope, $modalInstance, orderId, saveas) {
+    .controller('GiftOrderQrcodeCtrl', function($scope, $rootScope, $uibModalInstance, orderId, saveas) {
         $scope.url = 'http://' + $rootScope.wxUser.appid + '.' + config.clientUri + '/gift/listen/' + orderId;
         $scope.saveas = saveas;
         $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
     })
-    .controller('GiftWxOrderQrcodeCtrl', function($scope, $rootScope, $modalInstance, RestGift, orderId) {
+    .controller('GiftWxOrderQrcodeCtrl', function($scope, $rootScope, $uibModalInstance, RestGift, orderId) {
         RestGift.one('wx_qrcode').one(orderId).get().then(function(ticket) {
             $scope.qrcode_ticket = ticket;
         });
         $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
     })
-    .controller('GiftOrderShippingCtrl', function($scope, $modalInstance, Alert, RestOrderGift, order, companies, $log, receiver) {
+    .controller('GiftOrderShippingCtrl', function($scope, $uibModalInstance, Alert, RestOrderGift, order, companies, $log, receiver) {
         $scope.express = {
             companies: companies
         };
         $scope.order = order;
         $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
         $scope.shipping = function() {
             if (!receiver) {
@@ -467,7 +527,7 @@ angular.module('serveApp')
                     .then(function(data) {
                         // get the response
                         Alert.add('success', data.message);
-                        $modalInstance.close(true);
+                        $uibModalInstance.close(true);
                     }, function(err) {
                         // get an error
                         Alert.add('error', '设置失败！');

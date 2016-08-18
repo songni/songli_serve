@@ -1,0 +1,95 @@
+<div>
+	 <form class="form-horizontal" name="forms.suborderForm" ng-submit="searchByCondition()" novalidate>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error' : forms.suborderForm.starttime.$invalid && submitted}">
+            <label for="starttime" class="col-sm-4 control-label">起始</label>
+            <div class="col-md-8 input-group pull-left">
+              <input type="text" class="form-control"
+                name="starttime"
+                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
+                ng-model="status.startTime" is-open="status.startTimePopup.opened" 
+                close-text="Close" 
+                alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openStarttimePopup()">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error' : forms.suborderForm.endtime.$invalid && submitted}">
+            <label for="endtime" class="col-sm-4 control-label">至</label>
+            <div class="input-group col-md-8 pull-left">
+              <input type="text" class="form-control"
+                name="endtime"
+                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
+                ng-model="status.endTime" is-open="status.endTimePopup.opened" 
+                close-text="Close" 
+                alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openEndtimePopup()">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>  
+      </div> 
+
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">序列号</label>
+        <div class="col-md-4 input-group">
+          <input type="number" class="form-control" ng-model="status.serial" placeholder="输入序列号">
+        </div>
+      </div>
+    
+      <!--<div class="form-group">
+        <label for="" class="col-sm-2 control-label">订单号</label>
+        <div class="col-md-4 input-group">
+          <input type="text" class="form-control" ng-model="status.order" placeholder="输入订单号">
+        </div>
+      </div>-->
+      
+      <div class="form-group">
+        <div class="col-lg-12">
+          <button type="submit" class="btn btn-primary btn-outline btn-sm">搜索</button>
+        </div>
+      </div>
+
+    </form>
+
+	<nosy-pagi pagi="pagi"></nosy-pagi>
+
+	<div class="btn-group">
+		<label class="btn btn-primary" ng-model="status.shipping" uib-btn-radio="'all'">全部子订单</label>
+		<label class="btn btn-primary" ng-model="status.shipping" uib-btn-radio="'toshipping'">待发货</label>
+		<label class="btn btn-primary" ng-model="status.shipping" uib-btn-radio="'shipping'">已发货</label>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>子订单单号</th>
+				<th>商品</th>
+				<th>生成时间</th>
+				<th>收货人信息</th>
+				<th>发货管理</th>
+				<th>语音码</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="suborder in suborders">
+				<td>{{ suborder.id || suborder._id }}</td>
+				<td>{{ suborder.order.gift.info.name }}</td>
+				<td>{{ suborder.fillinDate | date: 'yyyy-MM-dd' }}</td>
+				<td>{{ suborder.consignee }}</td>
+				<td ng-if="!suborder.status.shipping"><input type="button" ng-click="shippingModel(suborder)" value="发货"/></td>
+        <td ng-if="suborder.status.shipping"><span>已发货</span></td>
+				<td><input type="button" ng-click="exportCard(suborder)" value="下载"/></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
