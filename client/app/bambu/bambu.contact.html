@@ -1,0 +1,112 @@
+<div class="row">
+  <dic class="col-xs-10 col-xs-offset-1">
+    <div class="well">
+
+<form class="form-horizontal wssjxx" name="form" ng-submit="post(form)" novalidate>
+  <div class="form-group myfgp" ng-class="{ 'has-success': form['info.name'].$valid && submitted,
+                                      'has-error' : form['info.name'].$invalid && submitted }">
+    <label for="info.name" class="col-xs-2 mw hidden-xs control-label">商家名称</label>
+    <div class="col-xs-10">
+      <input type="text" name="info.name" class="form-control input-lg test" placeholder="输入商家名称"
+            ng-model="merchant.info.name"
+            required
+            mongoose-error />
+      <p ng-show="form['info.name'].$error.required && form['info.name'].$pristine && submitted" class="help-block">
+      商家名称必须填写.
+      </p>
+      <p class="help-block" ng-show="form['info.name'].$error.mongoose">
+				{{ errors['info.name'] }}
+      </p>
+    </div>
+  </div>
+  <div class="form-group"
+    ng-class="{ 'has-success': form['info.address'].$valid && submitted, 'has-error' : form['info.address'].$invalid && submitted}"
+    ng-if="false">
+    <label for="info.address" class="col-xs-2 hidden-xs control-label ">地 址</label>
+    <div class="col-xs-10">
+      <input type="text" name="info.address" class="form-control input-lg test" placeholder="输入商家地址"
+            ng-model="merchant.info.address"
+            required
+            mongoose-error />
+      <p ng-show="form['info.address'].$error.required && form['info.address'].$pristine && submitted" class="help-block">商家地址必须填写.</p>
+      <p class="help-block" ng-show="form['info.address'].$error.mongoose">
+        {{ errors['info.address'] }}
+      </p>
+    </div>
+  </div>
+  <div class="form-group" style="padding-top: 10px;" ng-class="{ 'has-success': form['info.linkman'].$valid && submitted,
+                                      'has-error': form['info.linkman'].$invalid && submitted }">
+    <label for="info.linkman" class="col-xs-2 mw control-label">联系人</label>
+    <div class="col-xs-10">
+    <input type="text" name="info.linkman" class="form-control input-lg test"
+           placeholder="输入联系人姓名"
+           ng-model="merchant.info.linkman"
+           required/>
+    <p class="help-block" ng-show="form['info.linkman'].$error.required && submitted">
+      姓名必须填写
+    </p>
+      <p class="help-block" ng-show="form['info.linkman'].$error.mongoose">
+        {{ errors['info.linkman'] }}
+      </p>
+    </div>
+  </div>
+  <div class="form-group"style="padding-top: 10px;" ng-class="{ 'has-success': form['info.telephone'].$valid && submitted,
+                                      'has-error': form['info.telephone'].$invalid && submitted }">
+    <label for="info.telephone" class="col-xs-2 mw control-label">手机号</label>
+    <div class="col-xs-10">
+    <input type="text" name="info.telephone" class="form-control input-lg test"
+           placeholder="输入联系人手机号"
+           ng-model="merchant.info.telephone"
+           required
+           phone/>
+    <p class="help-block" ng-show="form['info.telephone'].$error.required && submitted">
+      手机号必须填写
+    </p>
+    <p class="help-block" ng-show="form['info.telephone'].$error.phone">
+      手机号格式不正确
+    </p>
+    <p class="help-block" ng-show="form['info.telephone'].$error.mongoose">
+      {{ errors['info.telephone'] }}
+    </p>
+    </div>
+  </div>
+  <div class="form-group"style="padding-top: 10px;" ng-class="{ 'has-success': form['info.phone'].$valid && submitted,
+                                      'has-error': form['info.phone'].$invalid && submitted }">
+    <label class="col-xs-2 mw control-label">座机/400</label>
+    <div class="col-xs-10">
+    <input type="text" name="info.phone" class="form-control input-lg test"
+           placeholder="输入商家电话，方便消费者联系"
+           ng-model="merchant.info.phone"/>
+      <p class="help-block" ng-show="form['info.phone'].$error.mongoose">
+        {{ errors['info.linkman'] }}
+      </p>
+    </div>
+  </div>
+  <div class="form-group"style="padding-top: 10px;" ng-class="{ 'has-success': aggrement === 'YES' && submitted,
+                                      'has-error': aggrement === 'NO' && submitted }" >
+    <label for="aggrement" class="control-label col-xs-2">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <div class="col-xs-8">
+      <div class="checkbox">
+        <label>
+         <div class="checker">
+           <span class="checked">
+            <input class="uniform" name="aggrement" type="checkbox" ng-model="aggrement" ng-true-value="'YES'" ng-false-value="'NO'">
+           </span>
+         </div><a class="mysyxy" href="" ng-click="agmMdl()">91拼团使用协议</a>
+        </label>
+      </div>
+      <p class="help-block" ng-show="aggrement === 'NO' && submitted">
+      请确认是否同意商户协议。
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-1">
+      <button class="btn btn-danger btn-lg btn-block mynext" type="submit" ng-disabled="form.$invalid || isUnchanged(merchant) || aggrement === 'NO'">
+        {{merchant.id?'下一步':'下一步'}}
+      </button>
+    </div>
+  </div>
+</form>
+
+</div></div></div>

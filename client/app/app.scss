@@ -29,18 +29,25 @@ body {
   background-color: transparent;
   border-color: transparent;
 }
-
+//菜单栏样式
+.container{
+    width: 1210px;
+}
+.gift-cont,.gift-menu{
+    padding: 0;
+}
 .gift-navbar .navbar-nav > li > a {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-
 .gift-navbar .navbar-nav > li > a {
   color: #ffffff;
 }
-
+.container{
+    width: 1210px;
+}
 .gift-container {
-  margin-top: 30px;
+  margin-top: 40px;
   min-height: 550px;
 }
 
@@ -62,29 +69,26 @@ body {
 
 .gift-sidebar .nav>li>a {
   display: block;
-  text-align: right;
-  padding: 20px 50px;
   font-size: 18px;
   font-weight: 500;
-  color: #939393;
-  background: #efefef;
-  margin-bottom: 10px;
+  color: #000000;
+  background: #DCDDDD;
+  margin-bottom: 8px;
+  padding: 15px 0 15px 30px;
 }
 
 .gift-sidebar .nav>li>a:focus,
 sidebar .nav>li>a:hover {
-  color: #000000;
-  background: #ffe3eb;
+  color: #FFFFFF;
+  background: #595757;
 }
 
 .gift-sidebar .nav>li.active>a {
-  color: #000000;
-  background: #ffe3eb;
+  color: #FFFFFF;
+  background: #595757;
 }
 
 .main {
-  border: 1px solid #ececec;
-  box-shadow: 1px 1px 3px #cbcbcd;
   padding: 10px;
   background: #ffffff;
 }
@@ -95,7 +99,9 @@ sidebar .nav>li>a:hover {
   background-color: transparent;
   margin-bottom: 0
 }
-
+.breadcrumb > .active{
+    color: #898989;
+}
 .panel-default {
   border-color: transparent;
 }
@@ -170,7 +176,9 @@ thead {
 // injector
 @import 'gift/gift.scss';
 @import 'main/main.scss';
-@import 'alert/alert.scss';
-@import 'directives/ng-print.scss';
-@import 'modal/modal.scss';
+@import 'plans/plans.scss';
+@import '../components/alert/alert.scss';
+@import '../components/directives/ng-print.scss';
+@import '../components/directives/nosy-pagi.scss';
+@import '../components/modal/modal.scss';
 // endinjector

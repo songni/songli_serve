@@ -1,5 +1,10 @@
 <div ui-view class="panel panel-default gift-order">
-  <div class="panel-body">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      查询订单
+    </h4>
+  </div>
+  <div class="panel-body" style="border: 1px solid #eee; border-top:none">
     <!-- in v2, v1's toolbar is refactored -->
     <!-- https://github.com/arrking/songni/issues/84 -->
     <!-- <div class="btn-group btn-group-sm btn-danger" ng-if="env === 'dev'">
@@ -14,45 +19,101 @@
       <label class="btn" ng-model="status.shipping" btn-radio="false">未发货</label>
     </div>  -->
     <!--button type="button" class="btn btn-primary btn-sm" ng-click="exportCards()" style="margin-left:10px;">下载声音卡</button-->
-    <div class="row">
-
-    <!-- #TODO https://github.com/arrking/songni/issues/102 
-    提供搜索功能-->
-   <!--    <div class="col-lg-6">
-        <div class="form-inline">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="输入订单号 买家等">
-            <button type="submit" class="btn btn-primary btn-outline btn-sm">搜索</button>
+    <form class="form-horizontal" name="forms.orderForm" ng-submit="searchByCondition()" novalidate>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error' : forms.orderForm.starttime.$invalid && submitted}">
+            <label for="starttime" class="col-sm-4 control-label">起始</label>
+            <div class="col-md-8 input-group pull-left">
+              <input type="text" class="form-control"
+                name="starttime"
+                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
+                ng-model="status.startTime" is-open="status.startTimePopup.opened" 
+                close-text="Close" 
+                alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openStarttimePopup()">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </div>
           </div>
         </div>
-      </div> -->
-      <div class="col-lg-6"></div>
-      <div class="col-lg-6 text-right">
-        <div class="btn-group" dropdown is-open="status.isopen">
-          <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="disabled">
-            下载当前页 <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="item in itemsPerPageArr"><a ng-click="chgPerPage(item)">每页 {{item}} 条</a></li>
-          </ul>
+        <div class="col-md-6">
+          <div class="form-group" ng-class="{ 'has-error' : forms.orderForm.endtime.$invalid && submitted}">
+            <label for="endtime" class="col-sm-4 control-label">至</label>
+            <div class="input-group col-md-8 pull-left">
+              <input type="text" class="form-control"
+                name="endtime"
+                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
+                ng-model="status.endTime" is-open="status.endTimePopup.opened" 
+                close-text="Close" 
+                alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openEndtimePopup()">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>  
+      </div> 
+
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">序列号</label>
+        <div class="col-md-4 input-group">
+          <input type="number" class="form-control" ng-model="status.serial" placeholder="输入序列号">
         </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">订单号</label>
+        <div class="col-md-4 input-group">
+          <input type="text" class="form-control" ng-model="status.order" placeholder="输入订单号">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-lg-12">
+          <button type="submit" class="btn btn-primary btn-outline btn-sm">搜索</button>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="from-group">
+      <div class="col-lg-12">
+        <div class="btn-group">
+          <div class="btn-group btn-danger btn-group-sm">
+            <label class="btn" ng-model="status.finish" uib-btn-radio="">全部订单</label>
+            <label class="btn" ng-model="status.finish" uib-btn-radio="false">待发货</label>
+            <label class="btn" ng-model="status.finish" uib-btn-radio="true">发货完成</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="from-group">
+      <nosy-pagi pagi="pagi"></nosy-pagi>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-right">
         <button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportCards()" style="margin-left:10px;">声音卡</button>
         <button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportOrders()" style="margin-left:10px;">导出订单</button>
-        <!--button type="button" class="btn btn-primary btn-outline btn-sm" ng-csv="giftorders" csv-header="['序列号','订单时间','送方','收货人','收货地址','电话','礼物']" filename="order.csv" field-separator="," decimal-separator="local" lazy-load=true add-bom=true charset="GB2312" style="margin-left:10px;">订单</button-->
-        <!--button type="button" class="btn btn-primary btn-sm" ng-print print-element-id="exportable" style="margin-left:10px;">打印</button-->
       </div>
     </div>
   </div>
   <table class="table table-condensed" id="exportable">
     <thead>
       <tr>
-        <th width="100">序列号</th>
-        <th width="80">买家</th>
-        <th width="150">所购商品</th>
-        <th width="150">下单时间</th>
-        <th width="85">实付金额</th>
-        <th width="85">购买数量</th>
-        <th width="100">发货状态</th>
+        <th>序列号</th>
+        <th>买家</th>
+        <th>所购商品</th>
+        <th>下单时间</th>
+        <th>实付金额</th>
+        <th>购买数量</th>
+        <th>发货状态</th>
         <th class="hidden-print">订单状态 </th>
       </tr>
     </thead>

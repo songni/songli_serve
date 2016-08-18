@@ -1,13 +1,18 @@
 'use strict';
 
 angular.module('serveApp')
-  .controller('MainCtrl', function ($scope,RestWecom,RestWechat) {
+  .controller('MainCtrl', function ($scope,$stateParams,RestWecom,RestWechat) {
     $scope.wechat = function(){
       RestWecom.get()
       .then(function(link) {
-        console.warn(link);
-        // location.href = link.link;
+        location.href = link.link;
       })
+    }
+    if($stateParams.auth_code){
+      RestWecom.one('auth').get({auth_code:$stateParams.auth_code}).then(function(data){
+        $cookieStore.put('token', data.token);
+        $window.location.href = $location.path();
+      });
     }
     if($scope.wxUser){
       RestWechat.one('qrcode').get({scene_id:1}).then(function(ticket){
@@ -24,4 +29,10 @@ angular.module('serveApp')
         load_qrcode = false;
       });
     }, true);
-  });
+  })
+  .controller('NullModalCtrl', function($scope,$state,$uibModalInstance){
+    $scope.cancel = function () {
+      $state.go('plans.center');
+      $uibModalInstance.dismiss('cancel');
+    };
+  })

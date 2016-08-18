@@ -1,0 +1,110 @@
+<table class="ytop">
+  <tr>
+    <td>
+      <div>
+        <div class="media-left media1">
+          <a href="#">
+            <img class="media-object" src="{{wxUser.head_img}}">
+          </a>
+        </div>
+        <div class="media-body mylht">
+       		<p class="plsj">{{wxUser.nick_name}}</p>
+        	<p class="pldd">截止目前，你已使用订单量为{{wxUser.num.pay}}，剩余可使用订单量<span class="ts">{{numbers-wxUser.num.pay}}</span></p>
+        	<!--需要加日期字段-->
+        	<p class="pldd">{{wxUser.expire | date:'yyyy年MM月dd日'}}到期</p>
+          <span ng-bind="numbers?'':'暂无购买记录'" ng-class="{'text-danger':po_ct_diff}">numbers</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<div class="well well-sm well-plan">
+	<div class="czzx">
+		<span class="czzxp"
+      ng-click="chooseCombo('order')"
+      ng-class="{active:pay.combo==='order'}">充值套餐</span>
+		<!--<span class="czzxp"
+      ng-click="chooseCombo('counselor')"
+      ng-class="{active:pay.combo==='counselor'}">增值服务</span>-->
+	</div>
+<form class="form-horizontal formh">
+	<!--选充值套餐显示-->
+  <div class="form-group myfp" ng-if="pay.combo==='order'">
+    <div class="mycolxs3" ng-repeat="plan in plans">
+      <div class="panel panel-plan mypel" ng-class="{'panel-danger':selected === $index}" ng-click="selPlan()">
+        <p class="ddsyl">{{plan.name}}</p>
+        <h3 class="h3">{{plan.price | currency}}</h3>
+      </div>
+    </div>
+  </div>
+  <!--选增值服务显示-->
+  <div class="zztc" ng-if="pay.combo==='counselor'">
+  	<img class="dgzxing1" ng-src="{{appConfig.uriImg+'/home/ymyimg/dgzximg1.png'}}" />
+  	<div class="zzfwdiv">
+  		<p>{{plan.name}}&nbsp;&nbsp;&nbsp;{{plan.price | currency}}</p>
+  		<img ng-src="{{appConfig.uriImg+'/home/ymyimg/dgzximg2.png'}}" />
+  	</div>
+
+  </div>
+  <div class="form-group myfp">
+    <ul class="zffsul">
+    	<li ng-click="choosePay('wepay')" ng-class="{myname:pay.type==='wepay'}">微信支付</li>
+    	<li ng-click="choosePay('alipay')" ng-class="{myname:pay.type==='alipay'}">支付宝转账</li>
+    	<li ng-click="choosePay('manpay')" ng-class="{myname:pay.type==='manpay'}">对公付款</li>
+    	<li style="width: 55%;"></li>
+    </ul>
+   		<!--微信付款-->
+   	<div class="wxdiv myydiv" ng-if="pay.type === 'wepay'">
+   		<img class="wxzfsm" ng-src="{{appConfig.uriImg+'/home/ymyimg/wxsmzf.png'}}" />
+   		<div class="zongsty">
+   			<div class="wxdiv1">
+   					<span>实际付款：</span>
+   					<span class="bigzi">{{plan.price | currency}}</span>
+   			</div>
+   			<div ng-click="payModal()" class="wxqrzf"><a href="#">确认支付</a></div>
+   			<a href="{{appConfig.uriImg}}/contract/91%E6%8B%BC%E5%9B%A2%E8%90%A5%E9%94%80%E9%A1%BE%E9%97%AE%E5%A2%9E%E9%95%BF%E6%9C%8D%E5%8A%A1%E5%8D%8F%E8%AE%AE.pdf" target="_blank" class="fwxy">《91拼团营销顾问增长服务协议》</a>
+   		</div>
+   	</div>
+    	<!--支付宝-->
+    <div class="zfbdiv myydiv" ng-if="pay.type === 'alipay'">
+    	<img class="zfbdivimg" ng-src="{{appConfig.uriImg+'/serve/imgs/alipay_ico.png'}}" style="width:120px;">
+    	<ul class="zfbdivul">
+    		<li>支付宝账号昵称</li>
+    		<li>账号</li>
+    	</ul>
+    	<ul class="zfbdivul1">
+    		<li>北京蜘蛛工社移动科技有限公司</li>
+    		<li>zzgs1803@163.com</li>
+    	</ul>
+    	<ul>
+    		<li class="dgp">支付宝转账完成后，请将以下两个信息：</li>
+    		<li class="dgp1">开通公众号名称； </li>
+    		<li class="dgp1">您的支付宝账号；</li>
+    		<li class="dgp2">发送到91客服微信：yuanwei9008</li>
+    	</ul>
+
+    </div>
+    	<!--对公汇款-->
+    <div class="dgzffsdiv myydiv"  ng-if="pay.type === 'manpay'">
+    	<ul class="dgzffsdivul">
+    		<li>账户名</li>
+    		<li>账号</li>
+    		<li>开户行</li>
+    	</ul>
+    	<ul class="dgyhname">
+    		<li>北京蜘蛛工社移动科技有限公司</li>
+    		<li>11001018800053011997</li>
+    		<li>建行和平里支行</li>
+    	</ul>
+    	<ul>
+    		<li class="dgp">完成汇款后，请将以下三个信息： </li>
+    		<li class="dgp1">开通公众号名称； </li>
+    		<li class="dgp1">个人姓名或公司名称；</li>
+    		<li class="dgp1">银行回单截图或凭证照片；</li>
+    		<li class="dgp2">发送到91客服微信：yuanwei9008</li>
+    	</ul>
+    </div>
+  </div>
+</form>
+</div>
