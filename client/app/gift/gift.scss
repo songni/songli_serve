@@ -23,12 +23,12 @@
   margin: 0;
 }
 
-.form-horizontal .form-group {
-  margin-left: 40px;
-  margin-right: 40px;
-  background-color: #f7f7f7;
-  padding: 10px 0;
-}
+//.form-horizontal .form-group {
+//margin-left: 40px;
+//margin-right: 40px;
+//background-color: #f7f7f7;
+//padding: 10px 0;
+//}
 
 .gift-post-title {
   margin: 20px 40px 25px;
@@ -39,52 +39,47 @@
 }
 
 .form-control {
-  //border-radius: 0;
-  //border: 0;
-}
-
-.input-group-addon {
-  //border-radius: 0;
-  //border: 0;
-}
-
-.form-control {
   box-shadow: none;
   height: 28px;
 }
 
 .control-label-cust {
-  width: 56px;
   float: left;
-  margin-left: 5px;
   text-align: center !important;
 }
-
-
 
 .form-control::-webkit-input-placeholder {
   color: #b5b5b6;
 }
 
 .preview-image {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: white;
   margin-right: 10px;
 }
 
 .preview-image img {
-  width: 80px;
+  width: 100px;
+  height: 100px !important;
 }
 
 .upload-file {
-  margin-top: 24px;
+  margin-top: 35px;
 }
-
-.upload-file .jy {
-  color: #b5b5b6;
+.upload-file span{
+    font-size: 12px !important;
+    color: #000000;
+    display: block;
 }
-
+.upload-file .btn-primary{
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+}
+.upload-file .btn-primary:hover{
+    background: #F7F8F8;
+    border: 1px solid #CCCCCC;
+}
 .btn-danger {
   background: #ffe3eb;
   color: #595757;
@@ -137,3 +132,359 @@
   word-break: break-all;
   white-space: normal;
 }
+
+//发布礼物页面样式
+
+.form-post .row{
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-post .col-xs-1,.form-post .col-xs-11,.form-post .col-xs-3{
+    padding-left: 0;
+    padding-right: 0;
+}
+.form-post .form-control{
+    border-radius: 0;
+}
+.form-post textarea{
+    resize: none;
+}
+.form-post .form-group{
+    margin-bottom: 0;
+}
+.gift-title{
+    background: #F7F8F8;
+    padding: 10px 0;
+}
+.gift-details{
+    padding-bottom: 35px;
+}
+.gift-title label{
+    font-weight: normal;
+    font-size: 14px;
+    color: #494545;
+    padding-left: 10px;
+}
+.gift-title .label-f{
+    padding-left: 20px;
+}
+.gift-title .label-k{
+    padding-left: 38px;
+}
+.gift-title .col-xs-11{
+    width: 89%;
+}
+.gift-title .input-group-addon{
+    background: #EFEFEF;
+    border-radius: 0;
+} 
+.gift-title .noteStock {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #B9B9BA;
+}
+.form-foot{
+    width: 20%;
+}
+.form-foot .btn-ground{
+    padding: 25px 0;
+    line-height: 0;
+    background: #516CFD;
+}
+.lunjy{
+    clear: both;
+    padding-top: 5px;
+    font-size: 13px;
+    color: #B9B9BA;
+}
+
+
+//商品管理页面样式
+.panel-search{
+    height: 65px;
+    background: #F7F8F8;
+    margin: -10px 0 30px 0;
+}
+.panel-search .col-xs-7{
+    margin-top: 16px;
+}
+.panel-search .s-input{
+    float: left;
+    width: 205px;
+    height: 32px;
+    font-size: 13px;
+    padding-left: 10px;
+    margin-left: 10px;
+    border: #DCDCDD solid 1px;
+}
+.panel-search .s-span{
+    float: left;
+    width: 38px;
+    height: 32px;
+    display: block;
+    background: #FFFFFF;
+    border: #DCDCDD solid 1px;
+    border-left: none;
+    text-align: center;
+    line-height: 32px;
+}
+.select{
+    text-align: right;
+    margin-top: 16px;
+    margin-right: -10px;
+}
+.select span:nth-child(1){
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+    color: #9F9F9F;
+}
+.select span:nth-child(2){
+    display: inline-block;
+    width: 70px;
+    font-size: 12px;
+    height: 32px;
+    border: 1px solid #DCDCDD;
+    border-right: none;
+    background: #FFFFFF;
+    line-height: 32px;
+}
+.panel-search .pagi-r .pagination{
+    display: none;
+}
+.pagi-r .pull-left{
+    float: right !important;
+    border: 1px solid #DCDCDD;
+    border-left: none;
+    height: 32px;
+}
+.pagi-r{
+    margin-top: 16px;
+}
+.pagi-r .pagi-per-page .btn-line.btn-metis-5{
+    color: #000000;
+    background-color: #FFFFFF;
+    border-color: none;
+}
+.pagi-r .btn-group.open .dropdown-toggle{
+    box-shadow: none;
+}
+.online .left1{
+    padding-left: 0;
+}
+.online1{margin-bottom: 75px;}
+.online1 .left{padding-left: 0;}
+.online .left .btn{
+    width: 73px;
+    border: 1px solid #E2E2E3;
+    border-radius: 0;
+    color: #000000;
+    max-height: 32px !important;
+}
+.online .right .btn{
+    border: 1px solid #E2E2E3;
+    color: #000000;
+    margin-left: 10px;
+}
+.online .btn-danger,.online1 .btn-primary,{
+    background: #F7F8F8;
+}
+.online .btn:active,.online .btn.active{
+    box-shadow: none;
+    background: #FFFFFF;
+}
+.online .right{
+    text-align: right;
+}
+.online .right .pull-left{
+    float: right !important;
+}
+
+.gift-list thead tr{
+    height: 48px;
+}
+.gift-list thead tr th{
+    border-bottom: 1px solid #EEEFEF;
+    line-height: 25px;
+    font-weight: normal;
+    font-size: 14px;
+}
+.gift-list tbody tr:nth-child(even){
+    background: #F7F8F8;
+}
+.gift-list tbody tr td:nth-child(1),.gift-list tbody tr td:nth-child(2),.gift-list tbody tr td:nth-child(3),.gift-list tbody tr td:nth-child(4),.gift-list tbody tr td:nth-child(5){
+    border-right: 1px solid #F4F4F4;
+}
+.gift-list .vcode a {
+    width: 90px;
+    height: 30px;
+    line-height: 25px;
+    background: #fff;
+    color: #F49F1E;
+    border: 1px solid #F49F1E;
+}
+.gift-list .compile a,.gift-list .soldOut button{
+    width: 55px;
+    height: 30px;
+    line-height: 25px;
+    background: #FFFFFF;
+    color: #575656;
+    border: 1px solid #E4E5E5;
+}
+//订单查询页面样式
+.order-warp{
+    height: 110px;
+    background: #F7F8F8;
+    margin-bottom: 30px;
+}
+.order-warp1{
+    margin-top: 10px;
+}
+.order-head {
+    margin-left: 0px;
+    padding-top: 15px;
+    margin-right: 0px;
+    margin-top: -10px;
+}
+.order-time .form-control{
+    border-radius: 0;
+    font-size: 12px;
+    border-right: none;
+}
+.order-time .btn-default{
+    background-color: #FFFFFF;
+    border: 1px solid #ccc;
+    border-radius: 0 !important
+}
+.order-time .btn-col1{
+    margin-left: -16px;
+}
+.order-time .font-span {
+    line-height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #B5B5B6;
+}
+.order-time .start,.order-time .end{
+    padding: 0;
+}
+.order-time .start .form-group,.order-time .end .form-group{
+    margin: 0;
+    padding: 0;
+}
+.end .control-label{
+    float: left;
+}
+.end .pull-left{
+    float: none !important;
+}
+.order-head .col-xs-3 .form-group{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.form-number {
+    float: left;
+    width: 173px;
+    font-size: 12px;
+    border-radius: 0;
+}
+.btn-sub {
+    float: left;
+    border: 1px solid #CCCCCC !important;
+    border-radius: 0;
+    margin-left: -1px;
+}
+
+.order-head .pagination{
+    display: none;
+}
+.form-pagi .pagi-per-page .btn-line.btn-metis-5{
+    border: 1px solid #CCCCCC;
+    border-radius: 0;
+    margin-left: -25px;
+}
+//  订单打印
+.print {
+    float: right;
+    margin-right: 4px;
+    margin-top: 20px;
+}
+.print .btn-primary.btn-outline {
+    border: 1px solid #889AFB;
+    padding: 4px 63px;
+    color: #889AFB;
+    background-color: #FFFFFF;
+}
+.gift-orderlist thead tr{
+    height: 48px;
+}
+.gift-orderlist thead tr th{
+    border-bottom: 1px solid #EEEFEF;
+    line-height: 25px;
+    font-weight: normal;
+    font-size: 14px;
+}
+.gift-orderlist tbody tr td{
+    border-right: 1px solid #F4F4F4;
+}
+.gift-orderlist tbody tr td:nth-child(1) a{
+    color: #595757;
+}
+.gift-orderlist tbody tr td:nth-child(3) a{
+    color: #7388FD;
+}
+.gift-orderlist .btn-dfh {
+    padding: 6px 8px;
+    background: #516CFD;
+}
+.gift-orderlist .btn-xq {
+    padding: 6px 8px;
+    border: 1px solid #E9EAEA;
+    background: #ffffff;
+}
+
+//发货管理页面样式
+
+.suborder thead tr{
+    height: 48px;
+}
+.suborder thead tr th{
+    border-bottom: 1px solid #EEEFEF;
+    line-height: 25px;
+    font-weight: normal;
+    font-size: 14px;
+}
+.suborder tbody tr:nth-child(even){
+    background: #F7F8F8;
+}
+.suborder tbody tr td{
+    border-right: 1px solid #F4F4F4;
+}
+.suborder tbody tr td:nth-child(6){
+    border-right:none;
+}
+.suborder .ship {
+    background: #ffffff;
+    border: 1px solid #F6B74E;
+    color: #F6B74E;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 20px;
+}
+.suborder .ifship{
+    margin-left: 25px;
+}
+.suborder .upload {
+    background: #ffffff;
+    border: 1px solid #EAEBEB;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 20px;
+}
+
+
+
+
+
+

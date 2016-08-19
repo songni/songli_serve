@@ -2,11 +2,11 @@
 
 module.exports = {
   api: {
-    uri: 'http://slapi.91pintuan.com',
-    component:'564ea08b83ba88982f8b4568',
+    uri: 'http://slapidev.91pintuan.com/',
+    component:'57a1c27a60c9c4a909f916a7',
     from:'merchant',
-    clientUri: 'songni.cc',
-    imgUri: 'imgs.91songli.cc'
+    clientUri: 'wx.songni.cc',
+    imgUri: 'imgs.wx.songni.cc'
   },
     livereload: false
 };

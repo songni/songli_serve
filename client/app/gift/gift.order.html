@@ -1,10 +1,5 @@
 <div ui-view class="panel panel-default gift-order">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      查询订单
-    </h4>
-  </div>
-  <div class="panel-body" style="border: 1px solid #eee; border-top:none">
+  <div class="panel-body">
     <!-- in v2, v1's toolbar is refactored -->
     <!-- https://github.com/arrking/songni/issues/84 -->
     <!-- <div class="btn-group btn-group-sm btn-danger" ng-if="env === 'dev'">
@@ -19,102 +14,107 @@
       <label class="btn" ng-model="status.shipping" btn-radio="false">未发货</label>
     </div>  -->
     <!--button type="button" class="btn btn-primary btn-sm" ng-click="exportCards()" style="margin-left:10px;">下载声音卡</button-->
-    <form class="form-horizontal" name="forms.orderForm" ng-submit="searchByCondition()" novalidate>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group" ng-class="{ 'has-error' : forms.orderForm.starttime.$invalid && submitted}">
-            <label for="starttime" class="col-sm-4 control-label">起始</label>
-            <div class="col-md-8 input-group pull-left">
-              <input type="text" class="form-control"
-                name="starttime"
-                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
-                ng-model="status.startTime" is-open="status.startTimePopup.opened" 
-                close-text="Close" 
-                alt-input-formats="altInputFormats" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="openStarttimePopup()">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                </button>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group" ng-class="{ 'has-error' : forms.orderForm.endtime.$invalid && submitted}">
-            <label for="endtime" class="col-sm-4 control-label">至</label>
-            <div class="input-group col-md-8 pull-left">
-              <input type="text" class="form-control"
-                name="endtime"
-                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
-                ng-model="status.endTime" is-open="status.endTimePopup.opened" 
-                close-text="Close" 
-                alt-input-formats="altInputFormats" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="openEndtimePopup()">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                </button>
-              </span>
-            </div>
-          </div>
-        </div>  
-      </div> 
-
-      <div class="form-group">
-        <label for="" class="col-sm-2 control-label">序列号</label>
-        <div class="col-md-4 input-group">
-          <input type="number" class="form-control" ng-model="status.serial" placeholder="输入序列号">
+    <form class="form-horizontal order-warp" name="forms.orderForm" ng-submit="searchByCondition()" novalidate>
+      <div class="row order-head">
+      	<div class="col-xs-5 order-time">
+      		<div class="start col-xs-5">
+	          <div class="form-group"
+	          	ng-class="{ 'has-error' : forms.orderForm.starttime.$invalid && submitted}">
+	            <div class="input-group pull-left">
+	              <input type="text" class="form-control"
+	                name="starttime"
+	                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
+	                ng-model="status.startTime" is-open="status.startTimePopup.opened" 
+	                close-text="Close" 
+	                placeholder="起始时间"
+	                alt-input-formats="altInputFormats" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="openStarttimePopup()">
+	                  <i class="glyphicon glyphicon-calendar"></i>
+	                </button>
+	              </span>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-xs-1 font-span">
+	        	<span>至</span>
+	        </div>
+	        <div class="end col-xs-5">
+	          <div class="form-group" 
+	          	ng-class="{ 'has-error' : forms.orderForm.endtime.$invalid && submitted}">
+	            <!--<label for="endtime" class="control-label"> —— </label>-->
+	            <div class="input-group pull-left">
+	              <input type="text" class="form-control"
+	                name="endtime"
+	                uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" 
+	                ng-model="status.endTime" is-open="status.endTimePopup.opened" 
+	                close-text="Close" 
+	                placeholder="结束时间"
+	                alt-input-formats="altInputFormats" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="openEndtimePopup()">
+	                  <i class="glyphicon glyphicon-calendar"></i>
+	                </button>
+	              </span>
+	            </div>
+	          </div>
+	        </div> 
+	        <div class="col-xs-1 btn-col1">
+	        	<button type="submit" class="btn btn-primary btn-outline btn-sm btn-sub">搜索</button>
+	        </div>
+      	</div>
+      	<!--序列号-->
+      	<div class="col-xs-3">
+          <input type="number" class="form-control form-number" ng-model="status.serial" placeholder="按序列号查找">
+        	<button type="submit" class="btn btn-primary btn-outline btn-sm btn-sub">搜索</button>
+      	</div>
+      	<!--订单号-->
+        <div class="col-xs-3">
+        	<div class="form-group">
+	          <input type="text" class="form-control form-number" ng-model="status.order" placeholder="输入订单号查找">
+	        	<button type="submit" class="btn btn-primary btn-outline btn-sm btn-sub">搜索</button>
+		      </div>
+        </div> 
+        <!--分页-->
+        <div class="col-xs-1 form-pagi">
+        	<nosy-pagi pagi="pagi"></nosy-pagi>
         </div>
       </div>
-    
-      <div class="form-group">
-        <label for="" class="col-sm-2 control-label">订单号</label>
-        <div class="col-md-4 input-group">
-          <input type="text" class="form-control" ng-model="status.order" placeholder="输入订单号">
-        </div>
+      <div class="row print">
+      	<div class="col-xs-12">
+      		<!--<button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportCards()" >声音卡</button>-->
+        <button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportOrders()">导出订单</button>
+      	</div>
       </div>
-      
-      <div class="form-group">
-        <div class="col-lg-12">
-          <button type="submit" class="btn btn-primary btn-outline btn-sm">搜索</button>
-        </div>
-      </div>
-
     </form>
-
-    <div class="from-group">
-      <div class="col-lg-12">
-        <div class="btn-group">
-          <div class="btn-group btn-danger btn-group-sm">
-            <label class="btn" ng-model="status.finish" uib-btn-radio="">全部订单</label>
-            <label class="btn" ng-model="status.finish" uib-btn-radio="false">待发货</label>
-            <label class="btn" ng-model="status.finish" uib-btn-radio="true">发货完成</label>
-          </div>
-        </div>
+		<!--订单筛选-->
+		
+    <div class="from-group online">
+      <div class="col-xs-6 left left1">
+	      <div class="btn-group btn-danger btn-group-sm">
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="">全部订单</label>
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="false">待发货</label>
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="true">发货完成</label>
+	      </div>
       </div>
-    </div>
-
-    <div class="from-group">
-      <nosy-pagi pagi="pagi"></nosy-pagi>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12 text-right">
-        <button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportCards()" style="margin-left:10px;">声音卡</button>
-        <button type="button" class="btn btn-primary btn-outline btn-sm" ng-click="exportOrders()" style="margin-left:10px;">导出订单</button>
+      <div class="col-xs-6 right">
+    	  <nosy-pagi pagi="pagi"></nosy-pagi>
       </div>
-    </div>
+    </div>  
   </div>
-  <table class="table table-condensed" id="exportable">
+  
+  
+  <table class="table table-condensed gift-orderlist" id="exportable">
     <thead>
       <tr>
-        <th>序列号</th>
-        <th>买家</th>
-        <th>所购商品</th>
-        <th>下单时间</th>
-        <th>实付金额</th>
-        <th>购买数量</th>
-        <th>发货状态</th>
-        <th class="hidden-print">订单状态 </th>
+        <th width="15%">订单号</th>
+        <th width="10%">买家</th>
+        <th width="18%">所购商品</th>
+        <th width="12%">支付时间</th>
+        <th width="12%">实付金额</th>
+        <th width="10%">购买数量</th>
+        <th width="15%">子订单发货状态</th>
+        <th class="hidden-print" width="20%">订单详情</th>
       </tr>
     </thead>
     <tbody>
@@ -128,12 +128,12 @@
           gift:order.gift.info.name
         };">
         <td>
-        <a style="color:#a241f7;cursor:pointer;" ui-sref="gift.order.detail({id:order.id})">
+        <a  ui-sref="gift.order.detail({id:order.id})">
         {{order.serial}} </a>
         </td>
         <td>{{order.sender.info.nickname}}</td>
         <td>
-          <a style="color:#a241f7;cursor:pointer;" ui-sref="gift.detail.qrcode({id:order.gift.id})">
+          <a  ui-sref="gift.detail.qrcode({id:order.gift.id})">
           {{order.gift.info.name}}</a>
         </td>
         <td>{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</td>
@@ -144,8 +144,8 @@
                     <p class="visible-print-block">{{order.receiver.address}}</p>
                 </td-->
         <td align="center">
-          <div>已发货 {{countShipping(order)}}</div>
-          <button ui-sref="gift.order.detail({id:order.id})" class="btn btn-primary btn-xs">待发货 {{order.receivers.length-countShipping(order)}}</button>
+          <div>已发货 ({{countShipping(order)}})</div>
+          <button ui-sref="gift.order.detail({id:order.id})" class="btn btn-primary btn-xs btn-dfh">待发货 ({{order.receivers.length-countShipping(order)}})</button>
         </td>
         <td ng-if="false" class="hidden-print"><span ng-class="{'bg-danger':order.status.pay}">{{order.status.pay?'已付':'未付'}}</span></td>
         <!--td align="center" class="hidden-print">
@@ -155,7 +155,7 @@
         </td-->
         <td align="center" class="hidden-print">
          <!-- <div>{{order.status.pay?'已付款':'待支付'}}</div>--> <!--see issue #133-->
-          <button class="btn btn-default btn-xs" ui-sref="gift.order.detail({id:order.id})">查看</button>
+          <button class="btn btn-default btn-xs btn-xq" ui-sref="gift.order.detail({id:order.id})">详情</button>
           <!--button class="btn btn-primary btn-xs" ng-click="shippingModel()" ng-if="!order.status.shipping">发货</button-->
         </td>
       </tr>

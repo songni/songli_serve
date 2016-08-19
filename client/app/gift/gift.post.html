@@ -1,71 +1,89 @@
 <p class="gift-post-title"><i class="fa fa-gift"></i> <span>填写礼物详情</span></p>
 
-<form name="giftForm" ng-submit="post()" class="form-horizontal" novalidate>
-  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.name'].$valid && submitted,
-                                      'has-error' : giftForm['gift.name'].$invalid && submitted }">
-    <label for="gift.name" class="control-label control-label-cust">礼物标题</label>
-    <div class="col-xs-11">
-      <input type="text" name="gift.name" ng-model="gift.info.name" class="form-control" placeholder="输入礼物标题" ng-maxlength="500" required>
-      <p ng-show="giftForm['gift.name'].$error.required && submitted" class="help-block">
-      礼物标题必须填写.
-      </p>
-      <p ng-show="giftForm['gift.name'].$error.maxlength" class="help-block">最多15个字.</p>
-    </div>
+<form name="giftForm" ng-submit="post()" class="form-horizontal form-post" novalidate>
+  	<!--礼物标题-->
+  	<div class="row form-group gift-title" 
+  		 ng-class="{ 'has-success': giftForm['gift.name'].$valid && submitted,
+                    'has-error' : giftForm['gift.name'].$invalid && submitted }">
+    	<div class="col-xs-1">
+    		<label for="gift.name" class="control-label control-label-cust">礼物标题：</label>
+    	</div>
+	    <div class="col-xs-11">
+	      <input type="text" name="gift.name" ng-model="gift.info.name" class="form-control"  ng-maxlength="500" required>
+	      <p ng-show="giftForm['gift.name'].$error.required && submitted" class="help-block">
+	      	礼物标题必须填写.
+	      </p>
+	      <p ng-show="giftForm['gift.name'].$error.maxlength" class="help-block">最多15个字.</p>
+	    </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.lead'].$valid && submitted,
+  <!--副标题-->
+  <div class="form-group row gift-title" ng-class="{ 'has-success': giftForm['gift.lead'].$valid && submitted,
                                       'has-error' : giftForm['gift.lead'].$invalid && submitted }">
-    <label for="gift.lead" class="control-label control-label-cust">副标题 </label>
+	  <div class="col-xs-1">
+			<label for="gift.lead" class="control-label  label-f control-label-cust">副标题 ：</label>
+	  </div>
     <div class="col-xs-11">
-      <textarea name="gift.lead" ng-model="gift.info.lead" class="form-control" rows="3" placeholder="输入礼物简介"></textarea>
+      <textarea name="gift.lead" ng-model="gift.info.lead" class="form-control" rows="5" placeholder="更多礼物描述"></textarea>
       <p ng-show="giftForm['gift.lead'].$error.required && submitted" class="help-block">
-      礼物副标题必须填写.
+      	礼物副标题必须填写.
       </p>
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.price'].$valid && submitted,
+  <!--礼物单价-->
+  <div class="form-group row gift-title" ng-class="{ 'has-success': giftForm['gift.price'].$valid && submitted,
                                       'has-error' : giftForm['gift.price'].$invalid && submitted }">
-    <label for="gift.price" class="control-label control-label-cust">礼物单价</label>
-    <div class="col-xs-11">
+		<div class="col-xs-1">
+    	<label for="gift.price" class="control-label control-label-cust">商品价格：</label>
+		</div>
+    <div class="col-xs-3">
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-        <input type="text" name="gift.price" ng-model="gift.info.price" class="form-control" placeholder="输入礼物价格" required>
+        <input type="text" name="gift.price" ng-model="gift.info.price" class="form-control"  required>
       </div>
       <p ng-show="giftForm['gift.price'].$error.required && submitted" class="help-block">
-      礼物价格必须填写.
+      	礼物价格必须填写.
       </p>
     </div>
   </div>
-  <div class="form-group" ng-class="{ 'has-success': giftForm['gift.num.stock'].$valid && submitted,
+  <!--库存-->
+  <div class="form-group row gift-title" ng-class="{ 'has-success': giftForm['gift.num.stock'].$valid && submitted,
                                       'has-error' : giftForm['gift.num.stock'].$invalid && submitted }">
-    <label for="gift.num.stock" class="control-label control-label-cust">库存</label>
-    <div class="col-xs-11">
+		<div class="col-xs-1">
+    	<label for="gift.num.stock" class="control-label label-k control-label-cust">库存：</label>
+		</div>
+    <div class="col-xs-3">
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-        <input type="number" ng-min="0" ng-max="9999999" name="gift.num.stock" ng-model="gift.num.stock" class="form-control" placeholder="输入礼物库存">
+        <input type="number" ng-min="0" ng-max="9999999" 
+        			 name="gift.num.stock" ng-model="gift.num.stock" 
+        			 class="form-control" placeholder="0">
+        <span class="input-group-addon">件</span>
       </div>
-      <p>0为不限制库存</p>
+      <p class="noteStock">库存数字默认为0，代表无库存限制</p>
       <p ng-show="giftForm['gift.num.stock'].$error.min && submitted" class="help-block">
-      库存必须大于0
+      	库存必须大于0
       </p>
       <p ng-show="giftForm['gift.num.stock'].$error.max && submitted" class="help-block">
-      库存必须小于9999999
+      	库存必须小于9999999
       </p>
     </div>
   </div>
+  <!--轮播图-->
   <ng-form name="giftCoverForm">
-  <div class="form-group" ng-class="{ 'has-success': uploadFile && submitted,
+  <div class="form-group row gift-title" ng-class="{ 'has-success': uploadFile && submitted,
                                       'has-error' : !uploadFile && submitted }">
-    <label for="gift.cover" class="control-label control-label-cust">礼物封面</label>
-    <div class="col-xs-11">
+		<div class="col-xs-1">
+    	<label for="gift.cover" class="control-label label-f control-label-cust">轮播图：</label>
+		</div>
+    <div class="col-xs-3">
       <div class="pull-left preview-image">
         <img ng-src="{{previewImage}}" ng-if="previewImage"  width="80px" height="80px">
         <img ng-src="{{'http://' + config.imgUri + gift.info.cover}}" ng-if="gift.info.cover&&!previewImage" width="80px" height="80px">
         <img holder="holder.js/100px80?text=暂无封面&bg=b5b6b6&fg=ffffff" class="img-responsive center-block" ng-if="!gift.info.cover && !previewImage" width="80px" height="80px">
       </div>
-      <div class="upload-file pull-left">
+      <div class="upload-file">
         <file-field class="btn btn-primary" ng-model="uploadFile" preview="previewImage">选择图片</file-field>
-        <span class="jy">建议尺寸446px * 446px </span>
       </div>
+      <p class="lunjy">建议长宽比例1:1 </p>
     </div>
   </div>
   </ng-form>
@@ -81,9 +99,13 @@
     </div>
   </div>
   -->
-  <div class="form-group"  ng-class="{'has-success': giftForm['gift.detail'].$valid && submitted,
+  <!--礼物详情-->
+  <div class="form-group row gift-title gift-details"  
+  		 ng-class="{'has-success': giftForm['gift.detail'].$valid && submitted,
                                       'has-error' : giftForm['gift.detail'].$invalid && submitted }">
-    <label for="gift.detail" class="hidden-xs control-label control-label-cust">礼物详情</label>
+    <div class="col-xs-1">
+    	<label for="gift.detail" class="hidden-xs control-label control-label-cust">礼物详情：</label>
+    </div>
     <div class="col-xs-11">
       <textarea type="text" name="gift.detail" class="form-control" placeholder="输入礼物详情"
             ng-model="gift.info.detail"
@@ -92,9 +114,9 @@
       <p ng-show="giftForm['gift.detail'].$error.required && submitted" class="help-block">礼物详情必须填写.</p>
     </div>
   </div>
-  <div class="form-group" style="background-color:transparent;">
-    <div class="col-xs-3">
-      <button type="submit" class="btn btn-primary btn-block" style="margin-left:-15px;">发布礼物</button>
+  <div class="form-group row gift-title" style="background-color:transparent;">
+    <div class="col-xs-3 form-foot">
+      <button type="submit" class="btn btn-primary btn-block btn-ground">上架</button>
     </div>
   </div>
 </form>
