@@ -7,7 +7,7 @@
     <div class="form-group">
       <label class="col-xs-3 control-label">快递公司</label>
       <div class="col-xs-8">
-        <select class="form-control" ng-model="order.express.company" ng-options="com.name for com in express.companies">
+        <select class="form-control" ng-model="exp.company" ng-options="com.name for com in express.companies">
           <option value="">请选择</option>
         </select>
       </div>
@@ -15,7 +15,7 @@
     <div class="form-group">
       <label class="col-xs-3 control-label">快递单号</label>
       <div class="col-xs-8">
-        <input type="text" class="form-control" ng-model="order.express.no" placeholder="请输入快递单号">
+        <input type="text" class="form-control" ng-model="exp.no" placeholder="请输入快递单号">
       </div>
     </div>
     <div class="form-group has-warning">

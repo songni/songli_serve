@@ -517,10 +517,10 @@ angular.module('serveApp')
                     .one(receiver.id)
                     .customPUT({
                         express: {
-                            no: $scope.order.express.no, // 快递单号
+                            no: $scope.exp.no, // 快递单号
                             company: {
-                                id: $scope.order.express.company.id, // 快递公司 id
-                                name: $scope.order.express.company.name // 快递公司名称
+                                id: $scope.exp.company.id, // 快递公司 id
+                                name: $scope.exp.company.name // 快递公司名称
                             }
                         }
                     })

@@ -33,11 +33,11 @@ angular.module('serveApp')
       if(form.$invalid) {return false;}
       if($scope.merchant.id){
         $scope.merchant.put().then(function(){
-           $state.go('bambu.config');
+           $state.go('bambu.config.pay');
         });
       }else{
         Merchant.post('',$scope.merchant).then(function(){
-          $state.go('bambu.config');
+          $state.go('bambu.config.pay');
         });
       }
     };
@@ -89,17 +89,33 @@ angular.module('serveApp')
         alert('请上传资质证书！');
         return;
       }
-      var fd = new FormData();
-      fd.append('mch_id', $scope.pay.mch_id);
-      fd.append('key', $scope.pay.key);
-      fd.append('pfx', $('input[type=file]')[0].files[0]);
-      $scope.pay
-        .withHttpConfig({transformRequest: angular.identity})
-        .customPOST(fd, undefined, undefined, { 'Content-Type': undefined })
-        .then(function(){
-          location.href = '/';
-        });
+    	$scope.popup(function(){
+           var fd = new FormData();
+         fd.append('mch_id', $scope.pay.mch_id);
+         fd.append('key', $scope.pay.key);
+         fd.append('pfx', $('input[type=file]')[0].files[0]);
+         $scope.pay
+           .withHttpConfig({transformRequest: angular.identity})
+           .customPOST(fd, undefined, undefined, { 'Content-Type': undefined })
+           .then(function(){
+             	location.href = '/';
+           });
+      });
     };
+		//  弹窗
+    $scope.popup = function(cb){
+    	var modalInstance = $uibModal.open({
+        templateUrl: 'app/main/main.popup.html',
+        controller: 'MainCtrl',
+        resolve: {
+          type: function(){
+            return 'agreement';
+          }
+        }
+     });
+     modalInstance.result.then(cb, cb)
+    };
+    
     $scope.howtoMdl = function () {
       $uibModal.open({
         templateUrl: 'app/document/document.html',

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('serveApp')
-  .controller('SubOrderListCtrl', function ($scope, $rootScope, $interval, $log, $uibModal, Alert, RestGift, RestExp, RestOrderGift) {
+  .controller('SubOrderListCtrl', function ($scope, $rootScope, $interval, $log, $uibModal, Alert, RestGift, RestExp, RestOrderGift, RestSuborder) {
     $rootScope.title = '发货管理';
     $scope.suborders = [];
     $scope.forms = {};
@@ -97,6 +97,30 @@ angular.module('serveApp')
                 saveAs(file, suborder.order.serial + '.png');
             });
     };
+
+    $scope.exportSuborders = function(){
+        RestSuborder.one('export').one('orders')
+            .withHttpConfig({
+                responseType: "arraybuffer"
+            })
+            .get({
+                page: $scope.pagi.currentPage,
+                limit: $scope.pagi.itemsPerPage,
+                startTime: $scope.pagi.startTime,
+                endTime: $scope.pagi.endTime,
+                order: $scope.pagi.order,
+                serial: $scope.pagi.serial,
+                shipping: $scope.status.shipping,
+                pay: $scope.status.pay
+            })
+            .then(function(data){
+                console.warn(data);
+                var file = new Blob([data], {
+                    type: 'application/vnd.openxmlformats'
+                });
+                saveAs(file, 'suborders.' + (new Date()).getTime() + '.xlsx');
+            })
+    }
     
     $scope.$watchCollection('[pagi.currentPage,pagi.itemsPerPage,pagi.startTime,pagi.endTime,pagi.order,pagi.serial,status.shipping,status.pay,status.refresh]', function(newVal) {
         $scope.suborders = [];
