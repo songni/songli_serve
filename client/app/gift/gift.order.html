@@ -65,16 +65,16 @@
       	</div>
       	<!--序列号-->
       	<div class="col-xs-3">
-          <input type="number" class="form-control form-number" ng-model="status.serial" placeholder="按序列号查找">
+          <input type="number" class="form-control form-number" ng-model="status.serial" placeholder="按订单号查找">
         	<button type="submit" class="btn btn-primary btn-outline btn-sm btn-sub">搜索</button>
       	</div>
       	<!--订单号-->
-        <div class="col-xs-3">
+        <!--<div class="col-xs-3">
         	<div class="form-group">
 	          <input type="text" class="form-control form-number" ng-model="status.order" placeholder="输入订单号查找">
 	        	<button type="submit" class="btn btn-primary btn-outline btn-sm btn-sub">搜索</button>
 		      </div>
-        </div> 
+        </div> -->
         <!--分页-->
         <div class="col-xs-1 form-pagi">
         	<nosy-pagi pagi="pagi"></nosy-pagi>
@@ -93,8 +93,8 @@
       <div class="col-xs-6 left left1">
 	      <div class="btn-group btn-danger btn-group-sm">
 	        <label class="btn" ng-model="status.finish" uib-btn-radio="">全部订单</label>
-	        <label class="btn" ng-model="status.finish" uib-btn-radio="false">待发货</label>
-	        <label class="btn" ng-model="status.finish" uib-btn-radio="true">发货完成</label>
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="false">未完成</label>
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="true">已完成</label>
 	      </div>
       </div>
       <div class="col-xs-6 right">
@@ -145,7 +145,8 @@
                 </td-->
         <td align="center">
           <div>已发货 ({{countShipping(order)}})</div>
-          <button ui-sref="gift.order.detail({id:order.id})" class="btn btn-primary btn-xs btn-dfh">待发货 ({{order.receivers.length-countShipping(order)}})</button>
+          <div ng-if="order.receivers.length-countShipping(order) === 0">待发货 (0)</div>
+          <button ng-if="order.receivers.length-countShipping(order) != 0" ui-sref="gift.order.detail({id:order.id})" class="btn btn-primary btn-xs btn-dfh">待发货 ({{order.receivers.length-countShipping(order)}})</button>
         </td>
         <td ng-if="false" class="hidden-print"><span ng-class="{'bg-danger':order.status.pay}">{{order.status.pay?'已付':'未付'}}</span></td>
         <!--td align="center" class="hidden-print">

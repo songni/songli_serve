@@ -5,6 +5,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 body {
   background: #f7f7f7;
   color: #595757;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Sans GB', 'PingHei', 'PingFang SC', 'STHeitiSC-Light', 'Microsoft YaHei', 'Lantinghei SC', 'Arial', sans-serif;
 }
 
 .browsehappy {
@@ -15,6 +16,7 @@ body {
 }
 
 .header {
+  height: 130px;
   position: relative;
   color: #ffffff;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
@@ -23,7 +25,7 @@ body {
 }
 
 .gift-navbar {
-  margin-top: 80px;
+  margin-top: 60px;
   float: right;
   margin-bottom: 0;
   background-color: transparent;
@@ -32,6 +34,10 @@ body {
 //菜单栏样式
 .container{
     width: 1210px;
+}
+.img-responsive{
+    margin-top: 40px;
+    margin-left: -18px;
 }
 .gift-cont,.gift-menu{
     padding: 0;
@@ -43,6 +49,10 @@ body {
 .gift-navbar .navbar-nav > li > a {
   color: #ffffff;
 }
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+    color: #8FC31F
+}
+
 .container{
     width: 1210px;
 }
@@ -52,7 +62,6 @@ body {
 }
 
 .gift-home {
-  margin-top: 30px;
   min-height: 550px;
 }
 
@@ -69,7 +78,7 @@ body {
 
 .gift-sidebar .nav>li>a {
   display: block;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   color: #000000;
   background: #DCDDDD;

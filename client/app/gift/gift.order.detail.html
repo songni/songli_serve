@@ -15,7 +15,7 @@
             <div style="height:60px;"><a style="color:#a241f7;cursor:pointer;">{{order.gift.info.name}}</a></div>
             <div>礼物单价：￥ {{order.gift.info.price}}</div>
             <div>购买数量： {{order.capacity}}</div>
-            <div>实付金额：￥ {{order.gift.info.price * order.capacity}}</div>
+            <div>实付金额：￥ {{order.gift.info.price * order.capacity | currency}}</div>
           </div>
         </td>
         <td>

@@ -1,4 +1,72 @@
+//main.popup.html
+.popup-head{
+    padding: 30px;
+}
+.popup-head span{
+    color: #999;
+    font-weight: normal;
+    font-size: 27px
+}
+.modal-popup .title{
+    text-align: center;
+    color: #8FC31F;
+    font-size: 18px;
+    margin: 30px 0;
+}
+.modal-popup .cont{
+    text-indent: 2em;
+    font-size: 13px;
+}
+.modal-popup .btn{
+    margin: 0 auto;
+    display: block;
+    padding: 17px 35px;
+    background: #8FC31F;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    line-height: 0;
+}
+.modal-popup .btn a{
+    color: #ffffff;
+}
+.modal-popup .btn a:hover{
+    color: #ffffff;
+    text-decoration: none;
+}
+
 /*home*/
+.home_head{
+    height: 110px;
+    background: #EFEFEF;
+}
+.home_head .index-logo{
+    padding: 30px 0 0 80px;
+}
+.home_head .col-xs-4{
+    text-align: right;
+    padding-right: 80px;
+}
+.home_head .wechat{
+    margin-top: 50px;
+    padding: 8px 20px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+}
+.home_head .btnsj{
+    background: #8FC31F;
+    color: #FFFFFF;
+}
+.home_head .btnkt{
+    border: 1px solid #8FC31F;
+    color: #8FC31F;
+    padding: 6px 20px;
+}
+.index-banner2{
+    width: 400px;
+    float: right;
+}
+
 .home-banner{
 	background-color:#f04453;
 	padding:90px 0;
@@ -31,18 +99,17 @@
   background-color:#f7f8f8;
 }
 .home_banner_1{
-  background-color:#ef7889;
-  margin-top:45px;
+  background-color:#8FC31F;
   padding-top:35px;
   padding-bottom:40px;
 }
 .home_banner_2{
-  background-color:#f7f8f8;
+  background-color:#F7F8F8;
   padding-top:56px;
   padding-bottom:60px;
 }
 .home_banner_3{
-  background-color:#ffebf0;
+  background-color:#E9F3D2;
   padding-top:115px;
   padding-bottom:108px;
 }

@@ -19,12 +19,12 @@ angular.module('serveApp')
         controller: 'BambuContactCtrl',
         authenticate: true,
         ncyBreadcrumb: {
-          label: '完善商家信息'
+          label: '填写商家信息'
         }
       })
       .state('bambu.config', {
         url: '/config',
-        templateUrl: 'app/bambu/bambu.config.html',
+        templateUrl: 'app/bambu/bambu.config.pay.html',
         controller: 'BambuServiceCtrl',
         authenticate: true,
         ncyBreadcrumb: {

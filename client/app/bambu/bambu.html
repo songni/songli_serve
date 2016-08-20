@@ -1,9 +1,9 @@
 <div class="row bambu-grid" ng-if="!('bambu.config.pay' | isState)">
   <div class="col-xs-6"  ui-sref-active="active">
-    <h3 class="mynexth3"><a ui-sref="bambu.contact">填写商家信息</a></h3>
+    <a class="bambu-tab" ui-sref="bambu.contact">填写商家信息</a>
   </div>
   <div class="col-xs-6"  ui-sref-active="active">
-    <h3 class="mynexth3"><a ui-sref="bambu.config">配置公众号</a></h3>
+    <a class="bambu-tab" ui-sref="bambu.config.pay">配置公众号</a>
   </div> 
 </div>
 <div ui-view=""></div>
