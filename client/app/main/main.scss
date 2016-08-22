@@ -1,4 +1,4 @@
-//main.popup.html
+//main.popup.html欢迎弹窗页面
 .popup-head{
     padding: 30px;
 }
@@ -34,20 +34,21 @@
     text-decoration: none;
 }
 
-/*home*/
+/*home送你主页面*/
 .home_head{
     height: 110px;
     background: #EFEFEF;
+    overflow-x: hidden;
 }
 .home_head .index-logo{
-    padding: 30px 0 0 80px;
+    padding: 25px 0 0 80px;
 }
 .home_head .col-xs-4{
     text-align: right;
     padding-right: 80px;
 }
 .home_head .wechat{
-    margin-top: 50px;
+    margin-top: 40px;
     padding: 8px 20px;
     border: 0;
     border-radius: 4px;
@@ -62,15 +63,14 @@
     color: #8FC31F;
     padding: 6px 20px;
 }
+.home_head .btnsj:hover,.home_head .btnkt:hover{
+    opacity: .8;
+}
 .index-banner2{
-    width: 400px;
+    width: 432px;
     float: right;
 }
 
-.home-banner{
-	background-color:#f04453;
-	padding:90px 0;
-}
 .home-banner .container{
 	max-width:1000px;
 }
@@ -114,7 +114,7 @@
   padding-bottom:108px;
 }
 .home_banner_4{
-  background-color:#f7f8f8;
+  background-color:#FFFFFF;
 }
 .home_banner{
   margin-right: auto;
@@ -122,7 +122,16 @@
   padding-left: 15px;
   padding-right: 15px;
   max-width:900px;
+//padding:90px 0; 
 }
+.home_banner1{
+    max-width: 1270px;
+    padding: 0px 50px;
+}
+.home_banner1 .img-responsive1{
+    margin-left: 80px;
+}
+
 .btn_wx{
   float:right;
 }

@@ -410,13 +410,14 @@
 //  订单打印
 .print {
     float: right;
-    margin-right: 4px;
-    margin-top: 20px;
+//  margin-right: 4px;
+//  margin-top: 20px;
 }
 .print .btn-primary.btn-outline {
     border: 1px solid #889AFB;
     padding: 4px 63px;
     color: #889AFB;
+    float: right;
     background-color: #FFFFFF;
 }
 .gift-orderlist thead tr{
