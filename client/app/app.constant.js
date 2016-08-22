@@ -2,7 +2,7 @@
   angular.module("serveApp.constants", [])
 
 .constant("appConfig", {
-	"uri": "https://apidev.91pintuan.com",
+	// "uri": "https://apidev.91pintuan.com",
 	"uriImg": "https://img.91pintuan.com",
 	"uriPht": "https://photo.91pintuan.com",
 	"style": {
