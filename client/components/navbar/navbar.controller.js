@@ -1,19 +1,22 @@
 'use strict';
 
 angular.module('serveApp')
-  .controller('NavbarCtrl', function ($scope, $location) {
+  .controller('NavbarCtrl', function ($rootScope, $scope, $location) {
     $scope.menu = [
       {
-        'title': '设置支付',
-        'link': 'wechat.pay'
+        'title': '公号配置',
+        'link': 'wechat.pay',
+        show: !!($rootScope.wxUser && $rootScope.wxUser.pay_config)
       },
       {
         'title': '充值中心',
-        'link': 'plans.center'
+        'link': 'plans.center',
+        show: !!($rootScope.wxUser && $rootScope.wxUser.pay_config)
       },
       {
         'title': '退出',
-        'link': 'logout'
+        'link': 'logout',
+        show: true
       }
     ];
 

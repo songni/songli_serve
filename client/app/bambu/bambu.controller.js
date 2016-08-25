@@ -102,7 +102,7 @@ angular.module('serveApp')
            });
       });
     };
-		//  弹窗
+		//  配置完成后页面弹窗
     $scope.popup = function(cb){
     	var modalInstance = $uibModal.open({
         templateUrl: 'app/main/main.popup.html',

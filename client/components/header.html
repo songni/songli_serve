@@ -1,10 +1,10 @@
 <div class="container" ng-controller="MainCtrl">
   <div class="row">
     <div class="col-xs-4">
-      <img src="assets/images/snlogo.png" class="img-responsive">
+      <img src="assets/images/sllogo.png" class="img-responsive">
     </div>
     <div class="col-xs-8">
-      <div class="navbar navbar-default gift-navbar" ng-controller="NavbarCtrl">
+      <div class="navbar navbar-default gift-navbar navbar1" ng-controller="NavbarCtrl">
         <div class="container-fluid">
           <div class="navbar-header">
             <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
@@ -19,7 +19,7 @@
               <li ng-if="wxUser">
                 <a ui-sref="main">{{wxUser.nick_name}}</a>
               </li>
-              <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}" ng-if="wxUser">
+              <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}" ng-show="item.show">
                   <a ui-sref="{{item.link}}">{{item.title}}</a>
               </li>
               <li ng-if="!wxUser">

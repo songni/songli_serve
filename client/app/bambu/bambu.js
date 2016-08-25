@@ -24,7 +24,7 @@ angular.module('serveApp')
       })
       .state('bambu.config', {
         url: '/config',
-        templateUrl: 'app/bambu/bambu.config.pay.html',
+        template: '<ui-view/>',
         controller: 'BambuServiceCtrl',
         authenticate: true,
         ncyBreadcrumb: {

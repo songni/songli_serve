@@ -106,10 +106,10 @@ angular.module('serveApp', [
     headers.Authorization = $cookieStore.get('token');
     Restangular.setDefaultHeaders(headers);
     RestWecom.one('auth').one('info').get().then(function(wxUser) {
+      $rootScope.wxUser = wxUser;
       if(!wxUser.pay_config){
         return $state.go('bambu.contact');
       }
-      $rootScope.wxUser = wxUser;
       $rootScope.isVerify = wxUser.verify;
     });
   }

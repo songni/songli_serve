@@ -1,63 +1,169 @@
-<form class="form-horizontal" name="form" ng-submit="post(form)" novalidate>
-  <div class="form-group" ng-class="{ 'has-success': form['pay.mch_id'].$valid && submitted,
+<div class="row bam-config">
+	<form class="form-horizontal con-form" name="form" ng-submit="post(form)" novalidate>
+  	<div class="row con-head con-head1">
+  		<div class="col-xs-12">
+	      <span>下载配置文档，按照配置文档完成以下配置</span>
+	      <a href="http://static.91pintuan.com/contract/91%E6%8B%BC%E5%9B%A2%E6%94%AF%E4%BB%98%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.pdf" target="_blank" class="btn xzwdbtn">下载配置文档 <i class="fa fa-long-arrow-down"></i></a>
+	   </div>
+  	</div>
+  	<div class="row con-body con-body1">
+  		<div class="col-xs-6">
+  			<!--商户号-->
+  			<div class="row form-group form-all" 
+  					 ng-class="{ 'has-success': form['pay.mch_id'].$valid && submitted,
+                                            'has-error' : form['pay.mch_id'].$invalid && submitted }">
+					<div class="col-xs-2">
+          	<label for="pay.mch_id" class="control-label config-name">商户号</label>
+					</div>
+          <div class="col-xs-10">
+            <input id="from-cntrol1" type="text"  
+            	class="form-control form-config" 
+            	ng-model="pay.mch_id" 
+            	name="pay.mch_id" 
+            	placeholder="请输入微信支付分配的商户号" required>
+            <p ng-show="form['pay.mch_id'].$error.required && submitted" class="help-block">
+            	商户号必须填写.
+            </p>
+          </div>
+        </div>
+        <!--API密钥-->
+        <div class="row form-group form-all" 
+        		 ng-class="{ 'has-success': form['pay.key'].$valid && submitted,
+                                            'has-error' : form['pay.key'].$invalid && submitted }">
+					<div class="col-xs-2">
+          	<label for="pay.key" class="control-label config-name">API密钥</label>
+					</div>
+          <div class="col-xs-10">
+            <input id="from-cntrol2" type="text" class="form-control form-config" 
+            			 name="pay.key" ng-model="pay.key" placeholder="请输入API签名密钥" required>
+            <p ng-show="form['pay.key'].$error.required && submitted" class="help-block">
+            	API签名密钥必须填写.
+            </p>
+          </div>
+        </div>
+        <!--API证书-->
+  			<div class="row form-group form-all" 
+  					 ng-class="{ 'has-success': form['pfx'].$valid && submitted,
+                                            'has-error' : form['pfx'].$invalid && submitted }">
+          <div class="col-xs-2">
+          	<label for="pfx" class="control-label config-name">API证书</label>
+          </div>
+          <div class="col-xs-10 uploadFlie">
+            <input id="from-cntrol3" type="file" class="form-control"  name="pfx" required/>
+            <p ng-show="form['pfx'].$error.required && submitted" class="help-block">
+              API证书必须填写.
+            </p>
+          </div>
+        </div>
+        <!--支付授权目录-->
+        <div class="row config-font">
+        	<div class="col-xs-2 fcol">支付授权目录</div>
+        	<div class="col-xs-10">{{ wxUser.pubdom }}/wepay/ </div>
+        </div>
+        <!--JS接口安全域名-->
+        <div class="row config-font">
+        	<div class="col-xs-2 fcol">JS接口安全域名</div>
+        	<div class="col-xs-10">{{ wxUser.pubdom }}</div>
+        </div>
+  			<!--企业域名-->
+  			<div class="row config-font">
+  				<div class="col-xs-2 fcol">企业域名</div>
+  				<div class="col-xs-10">{{ wxUser.pubdom }}</div>
+  			</div>
+  			<!--微信公号模板消息-->
+  			<div class="row config-font">
+  				<div class="col-xs-2 fcol">微信公号模板消息</div>
+  				<div class="col-xs-10">
+  					确认微信公众号模板消息行业为IT/科技 电子商务<br />
+            <small class="small">如果不是,请修改</small>
+  				</div>
+  			</div>
+  			<!--编辑按钮-->
+  			<div class="row btn-foot btn-foot1">
+	  			<div class="col-xs-4">
+	        	<button type="submit" class="btn btn-primary btn-block">完成</button>
+	  			</div>
+  			</div>
+  		</div>
+  		<div class="col-xs-6"></div>
+  	</div>
+  </form>
+</div>
+
+
+<!--
+<form class="form-horizontal form-pay" name="form" ng-submit="post(form)" novalidate>
+  <div class="row form-group" ng-class="{ 'has-success': form['pay.mch_id'].$valid && submitted,
                                       'has-error' : form['pay.mch_id'].$invalid && submitted }">
-    <label for="pay.mch_id" class="col-xs-2 control-label">商户号</label>
+    <div class="col-xs-1">
+    	<label for="pay.mch_id" class="control-label control-label1">商户号</label>
+    </div>
     <div class="col-xs-10">
-      <input type="text" class="form-control" ng-model="pay.mch_id" name="pay.mch_id" placeholder="请输入微信支付分配的商户号" required>
+      <input type="text" class="form-control" 
+      	ng-model="pay.mch_id" 
+      	name="pay.mch_id" 
+      	placeholder="请输入微信支付分配的商户号" required>
       <p ng-show="form['pay.mch_id'].$error.required && submitted" class="help-block">
-      商户号必须填写.
+      	商户号必须填写.
       </p>
     </div>
-  </div>
-  <div class="form-group" ng-class="{ 'has-success': form['pay.key'].$valid && submitted,
+  <div class="row form-group" ng-class="{ 'has-success': form['pay.key'].$valid && submitted,
                                       'has-error' : form['pay.key'].$invalid && submitted }">
-    <label for="pay.key" class="col-xs-2 control-label">API密钥</label>
+    <div class="col-xs-1">
+    	<label for="pay.key" class="control-label">API密钥</label>
+    </div>
     <div class="col-xs-10">
-      <input type="text" class="form-control" name="pay.key" ng-model="pay.key" placeholder="请输入API签名密钥" required>
+      <input type="text" 
+      	class="form-control" 
+      	name="pay.key" 
+      	ng-model="pay.key" 
+      	placeholder="请输入API签名密钥" required>
       <span class="help-block" ng-if="!submitted"><span class="text-danger">安全考虑，设置后将不再显示！</span></span>
       <p ng-show="form['pay.key'].$error.required && submitted" class="help-block">
-      API签名密钥必须填写.
+      	API签名密钥必须填写.
       </p>
     </div>
   </div>
-  <div class="form-group">
-  	<label for="pay.file" class="col-xs-2 control-label">API证书</label>
+  <div class="row form-group">
+  	<div class="col-xs-1">
+  		<label for="pay.file" class="control-label">API证书</label>
+  	</div>
   	<div class="col-xs-10">
-      <!--<input type="file" class="form-control" name="pfx"/>-->
-      <file-field class="btn btn-primary" ng-model="uploadFile">选择API证书</file-field>
+        <input type="file" class="form-control" name="pfx"/>
+      <file-field class="btn btn-primary" ng-model="uploadFile">上传API证书</file-field>
 			<span class="help-block"><span class="text-danger">下载包里的.p12文件</span></span>
   	</div>
   </div>
-  <div class="form-group">
-    <div class="col-xs-offset-2 col-xs-2">
-      <button type="submit" class="btn btn-primary btn-block">保存</button>
-    </div>
-  </div>
-</form>
+-->
 
-<div class="row" style="margin-top:100px;">
-  <div class="col-xs-offset-2 col-xs-10">
-    <h5>详细微信支付设置请参考:</h5>
-    <ol>
-	    <li>微信支付|商户平台: <a href="http://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=3_1" target="_blank">设置支付账户</a></li>
-	    <li>
-        公众号: <a href="http://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3" target="_blank">支付开发步骤</a>
-        <ul>
-          <li>支付授权目录: {{wxUser.appid}}.{{clientUri}}/wepay/</li>
-        </ul>
-      </li>
-      <li>
-      	公众号: <a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.AD.A5.E9.AA.A4.E4.B8.80.EF.BC.9A.E7.BB.91.E5.AE.9A.E5.9F.9F.E5.90.8D" target="_blank">设置JS接口安全域名</a>
-        <ul>
-          <li>域名: {{wxUser.appid}}.{{clientUri}}</li>
-        </ul>
-      </li>
-      <li>
-	      公众号: <a href="http://jingyan.baidu.com/article/20095761b8a15dcb0721b4dd.html" target="_blank">设置业务域名</a>
-        <ul>
-          <li>域名: {{wxUser.appid}}.{{clientUri}}</li>
-        </ul>
-      </li>
-    </ol>
-  </div>
-</div>
+<!--<div class="row wxuser">
+  	<div class="row wx-head"><h5>详细微信支付设置请参考:</h5></div>
+  	
+  	<div class="row commonpt">
+  		<div class="col-xs-2">微信支付 | 商户平台：</div>
+  		<div class="col-xs-10"><a href="http://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=3_1" target="_blank">设置支付账户</a></div>
+  	</div>
+  	<div class="row common">
+  		<div class="col-xs-2">公 众 号：</div>
+  		<div class="col-xs-10">
+  			<div class="col-xs-12"><a href="http://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3" target="_blank">支付开发步骤</a></div>
+  			<div class="col-xs-12">支付授权目录：{{wxUser.appid}}.{{clientUri}}/wepay/</div>
+  		</div>
+  	</div>
+  	<div class="row common">
+  		<div class="col-xs-2">公 共 号：</div>
+  		<div class="col-xs-10">
+  			<div class="col-xs-12"><a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.AD.A5.E9.AA.A4.E4.B8.80.EF.BC.9A.E7.BB.91.E5.AE.9A.E5.9F.9F.E5.90.8D" target="_blank">设置JS接口安全域名</a></div>
+  				<div class="col-xs-12">域名： {{wxUser.appid}}.{{clientUri}}</div>
+  		</div>
+  	</div>
+  	<div class="row common">
+  		<div class="col-xs-2">公 共 号：</div>
+  		<div class="col-xs-10">
+  			<div class="col-xs-12"><a href="http://jingyan.baidu.com/article/20095761b8a15dcb0721b4dd.html" target="_blank">设置业务域名</a></div>
+  				<div class="col-xs-12">域名：{{wxUser.appid}}.{{clientUri}}</div>
+  		</div>
+  	</div>
+</div> 	-->
+  	
+

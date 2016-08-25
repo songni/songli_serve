@@ -1,35 +1,37 @@
-<div ui-view class="panel panel-default gift-order">
-  <table class="table table-condensed">
+<div ui-view class="panel panel-default gift-order gift-info">
+  <table class="table table-condensed table-head">
     <thead>
       <tr>
-        <th width="300">订单号：{{order.serial}}</th>
-        <th width="200">买方：{{order.sender.name}}</th>
-        <th class="text-right" width="180">下单时间：{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</th>
+        <th>订单号：{{order.serial}}</th>
+        <th>买方：{{order.sender.name}}</th>
+        <th>支付时间：{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
-          <img style="width:130px;height:130px;float:left;" ng-src="{{order.gift.info.cover ? 'http://' + config.imgUri + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
-          <div style="padding:8px;padding-left:140px;font-size:14px;line-height:18px;">
-            <div style="height:60px;"><a style="color:#a241f7;cursor:pointer;">{{order.gift.info.name}}</a></div>
-            <div>礼物单价：￥ {{order.gift.info.price}}</div>
-            <div>购买数量： {{order.capacity}}</div>
-            <div>实付金额：￥ {{order.gift.info.price * order.capacity | currency}}</div>
+          <img ng-src="{{order.gift.info.cover ? 'http://' + config.imgUri + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
+          <div class="order-info">
+            <div class="info-name"><a>{{order.gift.info.name}}</a></div>
+            <div>礼物单价：{{order.gift.info.price  | currency}}</div>
+            <div>购买数量：{{order.capacity}}</div>
+            <div>实付金额：{{order.gift.info.price * order.capacity | currency}}</div>
           </div>
         </td>
-        <td>
+        <td class="downcode">
           <qrcode data="{{order.url}}" version="5" error-correction-level="M" size="100" download="来自{{order.sender.name}}的礼物"></qrcode>
           <button ng-click="exportCard()" class="btn btn-primary">下载语音码</button>
         </td>
-        <td align="center">
-          <div style="margin-bottom:20px;font-size:16px">
-            <span>已发货 <strong style="font-size:20px;margin:0 10px">{{order.shipping}}</strong></span>
-            <span style="color:#90c132">待发货 <strong style="font-size:20px;margin:0 10px">{{order.receivers.length - order.shipping}}</strong></span></div>
+        <td class="center">
+          <div>
+            <span>已发货 ({{order.shipping}})</span><br />
+            <span style="color: #617AFD">待发货 ({{order.receivers.length - order.shipping}})</span>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
+  
   <table class="table table-condensed">
     <thead>
       <tr>

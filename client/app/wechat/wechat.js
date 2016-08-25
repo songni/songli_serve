@@ -18,7 +18,7 @@ angular.module('serveApp')
         templateUrl: 'app/wechat/pay.html',
         controller: 'WechatPayCtrl',
         ncyBreadcrumb: {
-          label: '配置支付参数'
+          label: '公号配置'
         }
       })
       .state('wechat.menu', {

@@ -33,8 +33,12 @@ body {
 }
 //菜单栏样式
 .container{
-    width: 1210px;
+//  width: 1210px;
 }
+.container .col-xs-8{
+    padding-right: 0;
+}
+
 .img-responsive{
     margin-top: 40px;
     margin-left: -18px;
@@ -52,9 +56,11 @@ body {
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
     color: #8FC31F
 }
-
-.container{
-    width: 1210px;
+.navbar1 .container-fluid{
+    padding-right: 0;
+}
+.navbar1 .navbar-collapse{
+    padding-right: 0;
 }
 .gift-container {
   margin-top: 40px;
@@ -186,6 +192,7 @@ thead {
 @import 'gift/gift.scss';
 @import 'main/main.scss';
 @import 'plans/plans.scss';
+@import 'wechat/wechat.scss';
 @import '../components/alert/alert.scss';
 @import '../components/directives/ng-print.scss';
 @import '../components/directives/nosy-pagi.scss';

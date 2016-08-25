@@ -35,8 +35,8 @@
     <div class="container gift-container" ng-if="wxUser">
       <div class="row">
         <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>
-        <div class="col-xs-10 gift-cont" >
-          <span ncy-breadcrumb></span>
+        <div ng-class="{'col-xs-10': wxUser.pay_config, 'col-xs-12': !wxUser.pay_config}" class="gift-cont">
+          <span ng-if="wxUser.pay_config" ncy-breadcrumb></span>
           <div  ui-view="" class="main"></div>
         </div>
       </div>

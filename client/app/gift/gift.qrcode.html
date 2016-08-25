@@ -1,20 +1,22 @@
-<form class="form-horizontal" role="form">
-  <div class="form-group">
-    <label for="url" class="col-xs-2 control-label">地址</label>
+<p class="gift-post-title"><i class="fa fa-gift"></i> <span>商品二维码</span></p>
+<form class="form-horizontal row  form-url" role="form">
+  	<div class="col-xs-1">
+    	<label for="url" class="control-label">商品地址</label>
+  	</div>
     <div class="col-xs-10">
-      <div class="input-group">
-        <input type="text" name="url" class="form-control" ng-model="url">
-        <span class="input-group-btn">
-          <button type="button" clip-copy="getTextToCopy()" clip-click="doSomething()" class="btn btn-default">复制</button>
-        </span>
-      </div>
+      <input type="text" name="url" class="form-control" ng-model="url">
     </div>
-  </div>
+    <div class="col-xs-1">
+      <button type="button" clip-copy="getTextToCopy()" clip-click="doSomething()" class="btn btn-default">复制链接</button>
+    </div>
 </form>
-<div class="row">
+
+<div class="row form-shop">
   <div class="col-xs-6">
-    <div class="text-center" style="margin-top:50px">
-    <qrcode version="8" error-correction-level="H" size="200" data="{{text}}"></qrcode>
+    <div class="text-center text-code">
+    	<qrcode version="8" error-correction-level="H" size="200" data="{{text}}"></qrcode>
+    	<p>商品二维码</p>
+    	<p>扫描即可查看礼物</p>
     </div>
   </div>
   <div class="col-xs-6">

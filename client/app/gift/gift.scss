@@ -23,15 +23,8 @@
   margin: 0;
 }
 
-//.form-horizontal .form-group {
-//margin-left: 40px;
-//margin-right: 40px;
-//background-color: #f7f7f7;
-//padding: 10px 0;
-//}
-
 .gift-post-title {
-  margin: 20px 40px 25px;
+  margin: 20px 30px 25px;
 }
 
 .gift-post-title span {
@@ -136,47 +129,32 @@
   white-space: normal;
 }
 
-//发布礼物页面样式
-
+//发布礼物页面样式----------
 .form-post .row{
-    margin-left: 0;
+    margin-left: 20px;
     margin-right: 0;
 }
 .form-post .col-xs-1,.form-post .col-xs-11,.form-post .col-xs-3{
     padding-left: 0;
     padding-right: 0;
 }
-.form-post .form-control{
-    border-radius: 0;
-}
-.form-post textarea{
-    resize: none;
-}
-.form-post .form-group{
-    margin-bottom: 0;
-}
+.form-post .form-control{border-radius: 0;}
+.form-post textarea{resize: none;}
+.form-post .form-group{margin-bottom: 0;}
 .gift-title{
     background: #F7F8F8;
     padding: 10px 0;
 }
-.gift-details{
-    padding-bottom: 35px;
-}
+.gift-details{padding-bottom: 35px;}
 .gift-title label{
     font-weight: normal;
     font-size: 14px;
     color: #494545;
-    padding-left: 10px;
+    padding-left: 7px;
 }
-.gift-title .label-f{
-    padding-left: 20px;
-}
-.gift-title .label-k{
-    padding-left: 38px;
-}
-.gift-title .col-xs-11{
-    width: 89%;
-}
+.gift-title .label-f{padding-left: 16px;}
+.gift-title .label-k{padding-left: 34px;}
+.gift-title .col-xs-11{width: 89%;}
 .gift-title .input-group-addon{
     background: #EFEFEF;
     border-radius: 0;
@@ -186,13 +164,15 @@
     margin-top: 5px;
     color: #B9B9BA;
 }
-.form-foot{
-    width: 20%;
-}
+.form-foot{width: 20%;}
 .form-foot .btn-ground{
-    padding: 25px 0;
+    width: 239px;
+    padding: 27px 0;
     line-height: 0;
     background: #516CFD;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
 }
 .lunjy{
     clear: both;
@@ -200,17 +180,56 @@
     font-size: 13px;
     color: #B9B9BA;
 }
-
-
-//商品管理页面样式
+//商品二维码页面样式----------
+.form-url{
+    background: #EFEFEF;
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-url .col-xs-1,.form-url .col-xs-10{
+    padding-left: 0;
+    padding-right: 0;
+}
+.form-url .col-xs-10{width: 81%;}
+.form-url .control-label{
+    font-weight: normal;
+    line-height: 40px;
+    padding-left: 10px;
+    font-size: 15px;
+}
+.form-url .form-control{
+    height: 34px;
+    border-radius: 0;
+    margin: 10px 0;
+}
+.form-url .btn{
+    margin-top: 10px;
+    max-height: 34px !important;
+    border: 1px solid #9BC838;
+    background: #FFFFFF;
+    border-radius: 4px;
+    margin-left: 10px;
+    color: #9BC838;
+    font-size: 12px;
+}
+.form-shop .qrcode{padding-top: 30px;}
+.text-code{
+    text-align: center;
+    width: 260px;
+    background: #F7F8F8;
+    padding-bottom: 30px;
+}
+.form-shop .panel-default{
+    border:1px solid  #C7E18F;
+    margin-top: 25px;
+}
+//商品管理页面样式----------
 .panel-search{
     height: 65px;
     background: #F7F8F8;
     margin: -10px 0 30px 0;
 }
-.panel-search .col-xs-7{
-    margin-top: 16px;
-}
+.panel-search .col-xs-7{margin-top: 16px;}
 .panel-search .s-input{
     float: left;
     width: 205px;
@@ -245,7 +264,8 @@
 }
 .select span:nth-child(2){
     display: inline-block;
-    width: 70px;
+    width: 75px;
+    padding-right: 5px;
     font-size: 12px;
     height: 32px;
     border: 1px solid #DCDCDD;
@@ -253,29 +273,21 @@
     background: #FFFFFF;
     line-height: 32px;
 }
-.panel-search .pagi-r .pagination{
-    display: none;
-}
+.panel-search .pagi-r .pagination{display: none;}
 .pagi-r .pull-left{
     float: right !important;
     border: 1px solid #DCDCDD;
     border-left: none;
     height: 32px;
 }
-.pagi-r{
-    margin-top: 16px;
-}
+.pagi-r{margin-top: 16px;}
 .pagi-r .pagi-per-page .btn-line.btn-metis-5{
     color: #000000;
     background-color: #FFFFFF;
     border-color: none;
 }
-.pagi-r .btn-group.open .dropdown-toggle{
-    box-shadow: none;
-}
-.online .left1{
-    padding-left: 0;
-}
+.pagi-r .btn-group.open .dropdown-toggle{box-shadow: none;}
+.online .left1{padding-left: 0;}
 .online1{margin-bottom: 75px;}
 .online1 .left{padding-left: 0;}
 .online .left .btn{
@@ -290,32 +302,21 @@
     color: #000000;
     margin-left: 10px;
 }
-.online .btn-danger,.online1 .btn-primary,{
-    background: #F7F8F8;
-}
+.online .btn-danger,.online1 .btn-primary,{background: #F7F8F8;}
 .online .btn:active,.online .btn.active{
     box-shadow: none;
     background: #FFFFFF;
 }
-.online .right{
-    text-align: right;
-}
-.online .right .pull-left{
-    float: right !important;
-}
-
-.gift-list thead tr{
-    height: 48px;
-}
+.online .right{text-align: right;}
+.online .right .pull-left{float: right !important;}
+.gift-list thead tr{height: 48px;}
 .gift-list thead tr th{
     border-bottom: 1px solid #EEEFEF;
     line-height: 25px;
     font-weight: normal;
     font-size: 14px;
 }
-.gift-list tbody tr:nth-child(even){
-    background: #F7F8F8;
-}
+.gift-list tbody tr:nth-child(even){background: #F7F8F8;}
 .gift-list tbody tr td:nth-child(1),.gift-list tbody tr td:nth-child(2),.gift-list tbody tr td:nth-child(3),.gift-list tbody tr td:nth-child(4),.gift-list tbody tr td:nth-child(5){
     border-right: 1px solid #F4F4F4;
 }
@@ -335,15 +336,13 @@
     color: #575656;
     border: 1px solid #E4E5E5;
 }
-//订单查询页面样式
+//订单查询页面样式----------
 .order-warp{
     height: 110px;
     background: #F7F8F8;
     margin-bottom: 30px;
 }
-.order-warp1{
-    margin-top: 10px;
-}
+.order-warp1{margin-top: 10px;}
 .order-head {
     margin-left: 0px;
     padding-top: 15px;
@@ -360,28 +359,20 @@
     border: 1px solid #ccc;
     border-radius: 0 !important
 }
-.order-time .btn-col1{
-    margin-left: -16px;
-}
+.order-time .btn-col1{margin-left: -16px;}
 .order-time .font-span {
     line-height: 28px;
     padding: 0 10px;
     font-size: 12px;
     color: #B5B5B6;
 }
-.order-time .start,.order-time .end{
-    padding: 0;
-}
+.order-time .start,.order-time .end{padding: 0;}
 .order-time .start .form-group,.order-time .end .form-group{
     margin: 0;
     padding: 0;
 }
-.end .control-label{
-    float: left;
-}
-.end .pull-left{
-    float: none !important;
-}
+.end .control-label{float: left;}
+.end .pull-left{float: none !important;}
 .order-head .col-xs-3 .form-group{
     margin: 0 !important;
     padding: 0 !important;
@@ -398,21 +389,14 @@
     border-radius: 0;
     margin-left: -1px;
 }
-
-.order-head .pagination{
-    display: none;
-}
+.order-head .pagination{display: none;}
 .form-pagi .pagi-per-page .btn-line.btn-metis-5{
     border: 1px solid #CCCCCC;
     border-radius: 0;
     margin-left: -25px;
 }
-//  订单打印
-.print {
-    float: right;
-//  margin-right: 4px;
-//  margin-top: 20px;
-}
+    //  订单打印
+.print {float: right;}
 .print .btn-primary.btn-outline {
     border: 1px solid #889AFB;
     padding: 4px 63px;
@@ -420,24 +404,16 @@
     float: right;
     background-color: #FFFFFF;
 }
-.gift-orderlist thead tr{
-    height: 48px;
-}
+.gift-orderlist thead tr{height: 48px;}
 .gift-orderlist thead tr th{
     border-bottom: 1px solid #EEEFEF;
     line-height: 25px;
     font-weight: normal;
     font-size: 14px;
 }
-.gift-orderlist tbody tr td{
-    border-right: 1px solid #F4F4F4;
-}
-.gift-orderlist tbody tr td:nth-child(1) a{
-    color: #595757;
-}
-.gift-orderlist tbody tr td:nth-child(3) a{
-    color: #7388FD;
-}
+.gift-orderlist tbody tr td{border-right: 1px solid #F4F4F4;}
+.gift-orderlist tbody tr td:nth-child(1) a{color: #595757;}
+.gift-orderlist tbody tr td:nth-child(3) a{color: #7388FD;}
 .gift-orderlist .btn-dfh {
     padding: 6px 8px;
     background: #516CFD;
@@ -447,27 +423,17 @@
     border: 1px solid #E9EAEA;
     background: #ffffff;
 }
-
-//发货管理页面样式
-
-.suborder thead tr{
-    height: 48px;
-}
+//发货管理页面样式----------
+.suborder thead tr{height: 48px;}
 .suborder thead tr th{
     border-bottom: 1px solid #EEEFEF;
     line-height: 25px;
     font-weight: normal;
     font-size: 14px;
 }
-.suborder tbody tr:nth-child(even){
-    background: #F7F8F8;
-}
-.suborder tbody tr td{
-    border-right: 1px solid #F4F4F4;
-}
-.suborder tbody tr td:nth-child(6){
-    border-right:none;
-}
+.suborder tbody tr:nth-child(even){background: #F7F8F8;}
+.suborder tbody tr td{border-right: 1px solid #F4F4F4;}
+.suborder tbody tr td:nth-child(6){border-right:none;}
 .suborder .ship {
     background: #ffffff;
     border: 1px solid #F6B74E;
@@ -476,9 +442,7 @@
     padding: 5px 10px;
     margin-left: 20px;
 }
-.suborder .ifship{
-    margin-left: 25px;
-}
+.suborder .ifship{margin-left: 25px;}
 .suborder .upload {
     background: #ffffff;
     border: 1px solid #EAEBEB;
@@ -486,8 +450,7 @@
     padding: 5px 10px;
     margin-left: 20px;
 }
-
-//填写商家信息
+//填写商家信息----------
 .bambu-grid{margin: 0;}
 .bambu-grid .col-xs-6{padding: 0;}
 .bambu-grid .active{background: #8FC31F;}
@@ -506,9 +469,7 @@
     color: #000000;
     border: 1px solid #ECECED;
 }
-.bambu-grid .bambu-tab:hover{
-    text-decoration: none;
-}
+.bambu-grid .bambu-tab:hover{text-decoration: none;}
 .bamcont .row{
     margin-left: 15px;
     margin-right: 15px;
@@ -517,9 +478,7 @@
     padding-left: 0;
     padding-right: 0;
 }
-.bamcont .col-xs-10{
-    width: 75%;
-}
+.bamcont .col-xs-10{width: 75%;}
 .bambu-group .label-name{
     font-weight: normal;
     margin-bottom: 0;
@@ -534,16 +493,14 @@
     height: 32px;
     padding-left: 5px;
 }
-.bambu-btn{
-    margin-bottom: 20px;
-}
+.bambu-btn{margin-bottom: 20px;}
 .bambu-btn .btn{
     border-radius: 3px;
     max-height: 40px;
     color: #ffffff;
     background: #8FC31F;
 }
-//配置公众号样式
+//配置公众号样式----------
 .bam-config,.bam-config .row{
     margin-left: 0;
     margin-right: 0;
@@ -552,9 +509,7 @@
     padding-left: 0;
     padding-right: 0;
 }
-.con-head{
-    margin: 40px 0;
-}
+.con-head{margin: 40px 0;}
 .con-head .col-xs-10{
     background: #F7F8F8;
     border: 1px solid #EBECEC;
@@ -571,15 +526,9 @@
     border: 1px solid #C1DD86;
     color: #C1DD86;
 }
-.con-body .right{
-    border-right: 1px solid #B5B5B6;
-}
-.con-body .col-xs-10{
-    width: 75%;
-}
-.form-all{
-    margin-bottom: 25px;
-}
+.con-body .right{border-right: 1px solid #B5B5B6;}
+.con-body .col-xs-10{width: 75%;}
+.form-all{margin-bottom: 25px;}
 .form-all .config-name{
     font-weight: normal;
     color: #595757;
@@ -589,17 +538,13 @@
     padding: 15px 5px;
     font-size: 12px;
 }
-.uploadFlie .form-control{
-    border: 0;
-}
-
+.uploadFlie .form-control{ border: 0;}
 .config-font{
     margin-bottom: 25px;
     color: #595757;
 }
-.config-font .small{
-    color: #B5B5B6;
-}
+.config-font .small{color: #B5B5B6;}
+.btn-foot{margin-bottom: 20px;}
 .btn-foot .fanhui {
     width: 90px;
     height: 40px;
@@ -608,9 +553,7 @@
     border-radius: 4px;
     border: 1px solid #BFBFC0;
 }
-.btn-foot .fanhui a{
-    color: #BFBFC0;
-}
+.btn-foot .fanhui a{color: #BFBFC0;}
 .btn-foot .btn{
     width: 150px;
     max-height: 40px;
@@ -620,12 +563,34 @@
     color: #FFFFFF;
     padding-top: 0;
 }
-
-
-
-
-
-
+//订单详情页面样式----------
+.gift-info{border: none;box-shadow: none;}
+.gift-info .table-head{border: 1px solid #F8F8F8;margin-bottom: 20px;}
+.gift-info .table-head thead tr th{font-weight: normal;}
+.gift-info .table-head tbody tr td{
+    width: 800px;
+    border-right: 1px solid #F8F8F8;
+}
+.gift-info .table-head tbody tr td:nth-child(3){border-right: 0;}
+.gift-info .table-head tbody tr td img{
+    width:120px;
+    height:120px;
+    float:left;
+}
+.gift-info .table-head tbody .order-info{
+    padding:8px;
+    font-size:14px;
+    line-height:18px;
+    float: left;
+}
+.gift-info .table-head tbody .info-name{
+    width: 200px;
+    height: 50px;
+}
+.gift-info .table-head tbody .info-name a{color: #617AFD;}
+.gift-info .table-head tbody .downcode{text-align: center;}
+.gift-info .table-head tbody .downcode .qrcode-link .qrcode {margin-left: 100px;}
+.gift-info .table-head tbody .center{text-align: center;font-size: 16px;line-height: 30px;}
 
 
 
