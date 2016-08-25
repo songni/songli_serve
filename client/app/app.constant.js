@@ -3,7 +3,7 @@
 
 .constant("appConfig", {
 	// "uri": "https://apidev.91pintuan.com",
-	"uriImg": "https://img.91pintuan.com",
+	"uriImg": "https://photo.91pintuan.com",
 	"uriPht": "https://photo.91pintuan.com",
 	"style": {
 		"phtStl320160": "@1e_1c_0o_0l_399sh_160h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=8&t=63&s=58&color=I2U2ZGVkZQ&p=9&y=5&x=5",
