@@ -10,7 +10,7 @@
     <tbody>
       <tr>
         <td>
-          <img ng-src="{{order.gift.info.cover ? 'http://' + config.imgUri + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
+          <img ng-src="{{order.gift.info.cover ? 'http://' + config.uriImg + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
           <div class="order-info">
             <div class="info-name"><a>{{order.gift.info.name}}</a></div>
             <div>礼物单价：{{order.gift.info.price  | currency}}</div>
@@ -19,7 +19,7 @@
           </div>
         </td>
         <td class="downcode">
-          <qrcode data="{{order.url}}" version="5" error-correction-level="M" size="100" download="来自{{order.sender.name}}的礼物"></qrcode>
+          <!--<qrcode data="{{order.url}}" version="5" error-correction-level="M" size="100" download="来自{{order.sender.name}}的礼物"></qrcode>-->
           <button ng-click="exportCard()" class="btn btn-primary">下载语音码</button>
         </td>
         <td class="center">
