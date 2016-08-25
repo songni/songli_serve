@@ -89,18 +89,18 @@ angular.module('serveApp')
         alert('请上传资质证书！');
         return;
       }
-    	$scope.popup(function(){
-           var fd = new FormData();
-         fd.append('mch_id', $scope.pay.mch_id);
-         fd.append('key', $scope.pay.key);
-         fd.append('pfx', $('input[type=file]')[0].files[0]);
-         $scope.pay
-           .withHttpConfig({transformRequest: angular.identity})
-           .customPOST(fd, undefined, undefined, { 'Content-Type': undefined })
-           .then(function(){
-             	location.href = '/';
-           });
-      });
+      var fd = new FormData();
+      fd.append('mch_id', $scope.pay.mch_id);
+      fd.append('key', $scope.pay.key);
+      fd.append('pfx', $('input[type=file]')[0].files[0]);
+      $scope.pay
+        .withHttpConfig({transformRequest: angular.identity})
+        .customPOST(fd, undefined, undefined, { 'Content-Type': undefined })
+        .then(function(){
+          $scope.popup(function(){
+            location.href = '/';
+          });
+        });
     };
 		//  配置完成后页面弹窗
     $scope.popup = function(cb){

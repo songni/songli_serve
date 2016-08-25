@@ -33,8 +33,10 @@
     margin-top: 40px;
     margin-bottom: 20px;
     line-height: 0;
+    color: #FFFFFF;
 }
-.modal-popup .btn a{
+
+.modal-popup .btn a,.modal-popup .btn span{
     color: #ffffff;
 }
 .modal-popup .btn a:hover{
@@ -77,7 +79,7 @@
     opacity: .8;
 }
 .index-banner2{
-    width: 432px;
+    width: 465px;
     float: right;
 }
 
