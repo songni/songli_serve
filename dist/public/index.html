@@ -14,7 +14,7 @@
     <meta name="baidu-site-verification" content="qWoevylhcr" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="app/42ce6c5b.app.css"/>
+    <link rel="stylesheet" href="app/535068ef.app.css"/>
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -28,8 +28,8 @@
     <div class="container gift-container" ng-if="wxUser">
       <div class="row">
         <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>
-        <div class="col-xs-10 gift-cont" >
-          <span ncy-breadcrumb></span>
+        <div ng-class="{'col-xs-10': wxUser.pay_config, 'col-xs-12': !wxUser.pay_config}" class="gift-cont">
+          <span ng-if="wxUser.pay_config" ncy-breadcrumb></span>
           <div  ui-view="" class="main"></div>
         </div>
       </div>
@@ -42,7 +42,7 @@
     <![endif]-->
     <script src="app/f200ffde.vendor.js"></script>
 
-    <script src="app/b453c203.app.js"></script>
+    <script src="app/de3b5a3f.app.js"></script>
 <!-- <div style="display:none">
 <script src="http://s11.cnzz.com/stat.php?id=1256263160&web_id=1256263160" language="JavaScript"></script>
 </div> -->
