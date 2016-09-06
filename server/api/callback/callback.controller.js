@@ -24,8 +24,7 @@ exports.component = function(req, res){
   });
 }
 exports.pubno = function(req, res){
-  let url = config.api.uri + '/callback/' + path.join(req.params.appid, "/pubno");
-  console.warn(url) 
+  let url = config.api.uri + '/callback/' + path.join(req.params.appid, "/pubno"); 
   var options = {
     url: url,
     qs: req.query,

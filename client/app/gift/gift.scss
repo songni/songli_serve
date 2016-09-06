@@ -291,7 +291,6 @@
 .online1{margin-bottom: 75px;}
 .online1 .left{padding-left: 0;}
 .online .left .btn{
-    width: 73px;
     border: 1px solid #E2E2E3;
     border-radius: 0;
     color: #000000;
@@ -404,6 +403,14 @@
     float: right;
     background-color: #FFFFFF;
 }
+    //批量下载语音码
+.print .btn-card{
+    margin-top: 20px;
+    width: 176px;
+    margin-right: 15px !important;
+    padding: 4px 0 !important;
+}
+    
 .gift-orderlist thead tr{height: 48px;}
 .gift-orderlist thead tr th{
     border-bottom: 1px solid #EEEFEF;
@@ -416,7 +423,7 @@
 .gift-orderlist tbody tr td:nth-child(3) a{color: #7388FD;}
 .gift-orderlist .btn-dfh {
     padding: 6px 8px;
-    background: #516CFD;
+    background: #F39800;
 }
 .gift-orderlist .btn-xq {
     padding: 6px 8px;
@@ -565,13 +572,13 @@
 }
 //订单详情页面样式----------
 .gift-info{border: none;box-shadow: none;}
-.gift-info .table-head{border: 1px solid #F8F8F8;margin-bottom: 20px;}
+.gift-info .table-head{border: 1px solid #F8F8F8;margin-bottom: 20px;background: #F7F8F8;}
 .gift-info .table-head thead tr th{font-weight: normal;}
 .gift-info .table-head tbody tr td{
-    width: 800px;
-    border-right: 1px solid #F8F8F8;
+//  width: 800px;
+    border-right: 1px solid #F0F0F0;
 }
-.gift-info .table-head tbody tr td:nth-child(3){border-right: 0;}
+.gift-info .table-head tbody tr td:nth-child(4){border-right: 0;}
 .gift-info .table-head tbody tr td img{
     width:120px;
     height:120px;
@@ -585,13 +592,35 @@
 }
 .gift-info .table-head tbody .info-name{
     width: 200px;
-    height: 50px;
+    height: 68px;
 }
 .gift-info .table-head tbody .info-name a{color: #617AFD;}
 .gift-info .table-head tbody .downcode{text-align: center;}
-.gift-info .table-head tbody .downcode .qrcode-link .qrcode {margin-left: 100px;}
+.gift-info .table-head tbody .downcode .btn-code{
+    background: #FFFFFF;
+    border: 1px solid #E2E3E3;
+    color: #5E77FD;
+    padding: 11px 19px;
+    max-height: 42px !important;
+    border-radius: 4px !important;
+}
 .gift-info .table-head tbody .center{text-align: center;font-size: 16px;line-height: 30px;}
+.gift-info .table-head tbody .center .shipping{color: #F39800;}
 
-
-
-
+.table-condensed > thead > tr > th{font-weight: normal;}
+    //商品详情页面[发货]，[下载]按钮
+.btn-ship{
+    color: #FFFFFF !important;
+    background: #F39800 !important;
+    border: 1px solid #F39800 !important;
+}
+.btn-ship:hover{
+    background: rgba(243,152,0,.7) !important;
+}
+.btn-ship-down{
+    border: 1px solid #E6E7E7 !important;
+    color: #595757 !important;
+}
+.btn-ship-down:hover{
+    background: rgba(247,247,247,.8) !important;
+}

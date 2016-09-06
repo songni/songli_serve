@@ -129,8 +129,9 @@ angular.module('serveApp', [
   $rootScope.$on('$stateChangeSuccess', function(event, to) {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     $rootScope.innerHeight = 1300;//$window.innerHeight;
+    var astrict = $rootScope.wxUser?$rootScope.wxUser.astrict:'ok';
     var num = $rootScope.wxUser?$rootScope.wxUser.num:{};
-    if(!_.includes(to.name,'plans') && !_.includes(to.name,'bambu') && num.pay >= num.plans) {
+    if(!_.includes(to.name,'plans') && !_.includes(to.name,'bambu') && astrict !== 'ok') {
       $uibModal.open({
         templateUrl: 'app/main/null.html',
         controller: 'NullModalCtrl'

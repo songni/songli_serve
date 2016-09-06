@@ -409,6 +409,10 @@ angular.module('serveApp')
                     limit: $scope.pagi.itemsPerPage,
                     ext: 'wx'
                 }).then(function(data) {
+                    if(!data.byteLength){
+                        Alert.add('danger', '无可用语音码');
+                        return;
+                    }
                     // https://github.com/arrking/songni/issues/182
                     var file = new Blob([data], {
                         type: 'application/octet-stream;charset=utf-8'
@@ -417,7 +421,7 @@ angular.module('serveApp')
                 });
         };
     })
-    .controller('GiftOrderDetailCtrl', function($scope, $rootScope, $stateParams, $uibModal, order, RestOrderGift, Alert, $log) {
+    .controller('GiftOrderDetailCtrl', function($scope, $rootScope, $stateParams, $uibModal, order, RestOrderGift, RestSuborder, Alert, $log) {
         $rootScope.title = '订单详情';
         $scope.order = order;
         $scope.order.shipping = 0;
@@ -469,7 +473,7 @@ angular.module('serveApp')
             });
             return false;
         };
-        $scope.exportCard = function() {
+        $scope.exportCards = function() {
             var order = this.order;
             if(!order.receivers || !order.receivers.length || order.receivers.filter(function(r){return r.telephone}).length <=0){
                 return;
@@ -491,6 +495,37 @@ angular.module('serveApp')
                     // });
                     // saveAs(file, order.serial + '.png');
                 });
+        };
+        $scope.exportCard = function(suborder) {
+            if(suborder.card){
+                RestSuborder.one(suborder.id || suborder._id).one('export').one('card')
+                .withHttpConfig({
+                    responseType: "arraybuffer"
+                })
+                .get({
+                    ext: 'wx'
+                })
+                .then(function(data) {
+                    var file = new Blob([data], {
+                        type: 'image/png'
+                    });
+                    saveAs(file, suborder._id || suborder.id + '.png');
+                });
+            }else{
+                RestOrderGift.one('export').one('card').one(suborder.order.id || suborder.order._id)
+                    .withHttpConfig({
+                        responseType: "arraybuffer"
+                    })
+                    .get({
+                        ext: 'wx'
+                    })
+                    .then(function(data) {
+                        var file = new Blob([data], {
+                            type: 'image/png'
+                        });
+                        saveAs(file, $scope.order.serial + '.png');
+                    });
+            }
         };
     })
     .controller('GiftOrderQrcodeCtrl', function($scope, $rootScope, $uibModalInstance, orderId, saveas) {

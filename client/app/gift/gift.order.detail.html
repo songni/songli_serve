@@ -1,32 +1,37 @@
 <div ui-view class="panel panel-default gift-order gift-info">
   <table class="table table-condensed table-head">
-    <thead>
+    <!--<thead>
       <tr>
         <th>订单号：{{order.serial}}</th>
         <th>买方：{{order.sender.name}}</th>
         <th>支付时间：{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</th>
       </tr>
-    </thead>
+    </thead>-->
     <tbody>
       <tr>
-        <td>
-          <img ng-src="{{order.gift.info.cover ? 'http://' + config.uriImg + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
+        <td width="40%">
+          <img ng-src="{{order.gift.info.cover ? 'http://' + config.uriPht + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
           <div class="order-info">
             <div class="info-name"><a>{{order.gift.info.name}}</a></div>
-            <div>礼物单价：{{order.gift.info.price  | currency}}</div>
-            <div>购买数量：{{order.capacity}}</div>
+            <div>商品价格：{{order.gift.info.price  | currency}}</div>
             <div>实付金额：{{order.gift.info.price * order.capacity | currency}}</div>
           </div>
         </td>
-        <td class="downcode">
-          <!--<qrcode data="{{order.url}}" version="5" error-correction-level="M" size="100" download="来自{{order.sender.name}}的礼物"></qrcode>-->
-          <button ng-click="exportCard()" class="btn btn-primary">下载语音码</button>
-        </td>
-        <td class="center">
+   			<td width="20%">
+   				<p>买家：{{order.sender.name}}</p>
+   				<p>订单号：{{order.serial}}</p>
+        	<p>支付时间：{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</p>
+        	<p>购买数量：{{order.capacity}}</p>
+   			</td>
+        <td width="20%" class="center">
           <div>
             <span>已发货 ({{order.shipping}})</span><br />
-            <span style="color: #617AFD">待发货 ({{order.receivers.length - order.shipping}})</span>
+            <span class="shipping">待发货 ({{order.receivers.length - order.shipping}})</span>
           </div>
+        </td>
+        <td width="20%" class="downcode">
+          <!--<qrcode data="{{order.url}}" version="5" error-correction-level="M" size="100" download="来自{{order.sender.name}}的礼物"></qrcode>-->
+          <button ng-click="exportCards()" class="btn btn-code">批量下载语音码</button>
         </td>
       </tr>
     </tbody>
@@ -35,25 +40,33 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th width="100">收货人姓名</th>
-        <th width="200">地址</th>
-        <th width="100">电话</th>
-        <th width="100">时间</th>
-        <th class="text-center" width="90">交易状态</th>
+        <th>子订单单号（序列号）</th>
+        <th>收货人信息</th>
+        <th>时间</th>
         <th class="text-center" width="90">发货管理</th>
+        <th class="text-center" width="90">语音码</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="item in order.receivers">
-        <td>{{item.consignee || item.name}}</td>
-        <td>{{item.address}}</td>
-        <td>{{item.telephone}}</td>
-        <td>{{item.fillinDate | date : 'yyyy.MM.dd hh:mm'}}</td>
-        <td align="center">{{item.status.shipping?'已发货':'待发货'}}</td>
+        <td>{{item.id}}</td>
+        <td>
+          <span>{{item.consignee || item.name}}</span>
+          <span>{{item.address}}</span>
+          <span>{{item.telephone}}</span>
+        </td>
+        <td>
+					<p>创建时间－{{ item.fillinDate | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+					<p ng-if="item.status.shipping_date">发货时间－{{ item.status.shipping_date | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+					<p ng-if="item.status.read_date">收货时间－{{ item.status.read_date | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+				</td>
         <td align="center">
           <span ng-if="item.status.shipping">已发货</span>
-          <button ng-if="!item.status.shipping && item.telephone" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">发货</button>
-          <button ng-disabled="true" ng-if="!item.status.shipping && !item.telephone" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">－</button>
+          <button ng-if="!item.status.shipping && item.telephone" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs btn-ship">发货</button>
+          <button ng-if="!item.status.shipping && !item.telephone" ng-disabled="true" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">－</button>
+        </td>
+        <td align="center">
+          <button ng-click="exportCard(item)" class="btn btn-primary btn-outline btn-xs btn-ship-down">下载</button>
         </td>
       </tr>
     </tbody>

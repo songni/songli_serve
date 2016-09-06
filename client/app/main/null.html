@@ -2,8 +2,15 @@
   <button class="close" ng-click="$dismiss()"><span>&times;</span></button>
 </div>
 <div class="modal-body modal-popup">
-  <h1 class="title">订单余额不足提醒！</h1>
-  <p class="cont">商家您好，您当前的订单使用量余额不足，为方便您和消费者的正常使用，请尽快到送你服务平台<a ui-sref="plans.center" class="myred">充值中心</a>充值！</p>
+  <div ng-if="wxUser.astrict === 'burst'">
+    <h1 class="title">订单余额不足提醒 </h1>
+    <p class="cont">商家您好,您当前的订单使用量不足,为不影响您的正常使用,<br/>请尽快到<a ui-sref="plans.center" class="myred">充值中心</a>购买!</p>
+  </div>
+  <div ng-if="wxUser.astrict === 'expired'">
+    <h1 class="title">会员过期</h1>
+    <p class="cont">商家您好,您当前的会员过期,为不影响您的正常使用,<br/>请尽快到<a ui-sref="plans.center" class="myred">充值中心</a>购买!</p>
+  </div>
+
   <button class="btn">
   	<a href="/plans/center">充值中心</a>
   </button>

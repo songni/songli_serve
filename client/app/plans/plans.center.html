@@ -9,9 +9,9 @@
         </div>
         <div class="media-body mylht">
        		<p class="plsj">{{wxUser.nick_name}}</p>
-        	<p class="pldd">截止目前，你已使用订单量为{{wxUser.num.pay}}，剩余可使用订单量<span class="ts">{{numbers-wxUser.num.pay}}</span></p>
-        	<!--需要加日期字段-->
-        	<p class="pldd">{{wxUser.expire | date:'yyyy年MM月dd日'}}到期</p>
+					<p class="pldd" ng-if="wxUser.status.charge === 'number'">截止目前，你已使用订单量为{{wxUser.num.pay}}，剩余可使用订单量<span class="ts">{{numbers-wxUser.num.pay}}</span></p>
+					<p class="pldd" ng-if="wxUser.status.charge === 'number'">{{wxUser.expire | date:'yyyy年MM月dd日'}}到期</p>
+					<p class="pldd" ng-if="wxUser.status.charge === 'time'">包年包月{{wxUser.time.deadline | date:'yyyy年MM月dd日'}}到期</p>
           <span ng-bind="numbers?'':'暂无购买记录'" ng-class="{'text-danger':po_ct_diff}">numbers</span>
         </div>
       </div>

@@ -81,9 +81,32 @@ angular.module('serveApp')
         });
         return false;
     };
+
+    $scope.exportCards = function(){
+        RestSuborder.one('export').one('cards')
+            .withHttpConfig({
+                responseType: "arraybuffer"
+            })
+            .get({
+                shipping: $scope.status.shipping,
+                pay: $scope.status.pay,
+                page: $scope.pagi.currentPage,
+                limit: $scope.pagi.itemsPerPage,
+                ext: 'wx'
+            })
+            .then(function(data) {
+                if(!data.byteLength){
+                    Alert.add('danger', '无可用语音码');
+                    return;
+                }
+                var file = new Blob([data], {
+                    type: 'application/octet-stream;charset=utf-8'
+                });
+                saveAs(file, '语音卡.zip');
+            });
+    }
     
     $scope.exportCard = function(suborder) {
-        console.warn(suborder);
         if(suborder.card){
             RestSuborder.one(suborder.id || suborder._id).one('export').one('card')
             .withHttpConfig({
@@ -96,11 +119,7 @@ angular.module('serveApp')
                 var file = new Blob([data], {
                     type: 'image/png'
                 });
-                if(data.type == 0){
-                    saveAs(file, suborder.order.serial + '.png');    
-                } else {
-                    saveAs(file, suborder._id + '.png');
-                }
+                saveAs(file, suborder._id + '.png');
             });
         }else{
              RestOrderGift.one('export').one('card').one(suborder.order.id || suborder.order._id)

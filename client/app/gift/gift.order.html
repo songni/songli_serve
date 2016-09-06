@@ -95,9 +95,9 @@
     <div class="from-group online">
       <div class="col-xs-6 left left1">
 	      <div class="btn-group btn-danger btn-group-sm">
-	        <label class="btn" ng-model="status.finish" uib-btn-radio="">全部订单</label>
-	        <label class="btn" ng-model="status.finish" uib-btn-radio="false">未完成</label>
-	        <label class="btn" ng-model="status.finish" uib-btn-radio="true">已完成</label>
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="'all'">全部订单<span ng-if="status.finish === 'all'">({{pagi.totalItems}})</span></label>
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="false">未完成<span ng-if="status.finish === false">({{pagi.totalItems}})</span></label>
+	        <label class="btn" ng-model="status.finish" uib-btn-radio="true">已完成<span ng-if="status.finish === true">({{pagi.totalItems}})</span></label>
 	      </div>
       </div>
       <div class="col-xs-6 right">
