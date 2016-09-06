@@ -471,7 +471,10 @@ angular.module('serveApp')
         };
         $scope.exportCard = function() {
             var order = this.order;
-            RestOrderGift.one('export').one('card').one(order.id)
+            if(!order.receivers || !order.receivers.length || order.receivers.filter(function(r){return r.telephone}).length <=0){
+                return;
+            }
+            RestOrderGift.one('export').one('cards').one(order.id)
                 .withHttpConfig({
                     responseType: "arraybuffer"
                 })
@@ -480,9 +483,13 @@ angular.module('serveApp')
                 })
                 .then(function(data) {
                     var file = new Blob([data], {
-                        type: 'image/png'
+                        type: 'application/octet-stream;charset=utf-8'
                     });
-                    saveAs(file, order.serial + '.png');
+                    saveAs(file, order.serial + '.zip');
+                    // var file = new Blob([data], {
+                    //     type: 'image/png'
+                    // });
+                    // saveAs(file, order.serial + '.png');
                 });
         };
     })

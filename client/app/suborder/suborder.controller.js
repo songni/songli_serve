@@ -83,7 +83,9 @@ angular.module('serveApp')
     };
     
     $scope.exportCard = function(suborder) {
-        RestOrderGift.one('export').one('card').one(suborder.order._id)
+        console.warn(suborder);
+        if(suborder.card){
+            RestSuborder.one(suborder.id || suborder._id).one('export').one('card')
             .withHttpConfig({
                 responseType: "arraybuffer"
             })
@@ -94,8 +96,27 @@ angular.module('serveApp')
                 var file = new Blob([data], {
                     type: 'image/png'
                 });
-                saveAs(file, suborder.order.serial + '.png');
+                if(data.type == 0){
+                    saveAs(file, suborder.order.serial + '.png');    
+                } else {
+                    saveAs(file, suborder._id + '.png');
+                }
             });
+        }else{
+             RestOrderGift.one('export').one('card').one(suborder.order.id || suborder.order._id)
+                .withHttpConfig({
+                    responseType: "arraybuffer"
+                })
+                .get({
+                    ext: 'wx'
+                })
+                .then(function(data) {
+                    var file = new Blob([data], {
+                        type: 'image/png'
+                    });
+                    saveAs(file, suborder.order.serial + '.png');
+                });
+        }
     };
 
     $scope.exportSuborders = function(){
@@ -114,7 +135,6 @@ angular.module('serveApp')
                 pay: $scope.status.pay
             })
             .then(function(data){
-                console.warn(data);
                 var file = new Blob([data], {
                     type: 'application/vnd.openxmlformats'
                 });

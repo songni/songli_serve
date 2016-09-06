@@ -1,0 +1,22 @@
+<div style="width:320px;margin:50px auto;">
+  <form name="loginForm" ng-submit="login()" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.telephone.$invalid && submitted}">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-phone fa-2 fa-fw"></i></span>
+        <input type="tel" name="telephone" class="form-control" placeholder="请输入您的手机号码" ng-model="user.telephone" required phone>
+      </div>
+      <p ng-show="loginForm.telephone.$invalid && submitted" class="help-block">手机号不符合规则</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid &&  submitted}">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-2 fa-fw"></i></span>
+        <input type="password" name="password" class="form-control" placeholder="请输入密码" 
+        ng-model="user.password" required>
+      </div>
+      <p ng-show="loginForm.password.$invalid && submitted" class="help-block">请输入密码需要</p>
+    </div>
+    <div class="form-group">
+       <button type="submit" class="btn btn-block btn-primary">登录</button>
+    </div>
+  </form>
+</div>

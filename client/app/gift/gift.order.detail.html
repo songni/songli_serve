@@ -52,7 +52,8 @@
         <td align="center">{{item.status.shipping?'已发货':'待发货'}}</td>
         <td align="center">
           <span ng-if="item.status.shipping">已发货</span>
-          <button ng-if="!item.status.shipping" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">发货</button>
+          <button ng-if="!item.status.shipping && item.telephone" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">发货</button>
+          <button ng-disabled="true" ng-if="!item.status.shipping && !item.telephone" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">－</button>
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,67 @@
+<div class="input-group">
+  <span class="input-group-addon">员工登录地址:</span>
+  <input type="text" class="form-control" value="https://wx.91pintuan.com/worker/login" readonly="true">
+  <span class="input-group-btn">
+    <a href="" class="btn btn-default"
+      clip-copy="getTextToCopy()"
+      clip-click="doSomething()"
+      ng-bind="copyText"></a>
+  </span>
+</div>
+
+<div class="box">
+  <header>
+    <div class="icons">
+      <i class="fa fa-{{ico}}"></i>
+    </div>
+    <h5>{{title}}<small>[{{pagi.totalItems}}]</small></h5>
+    <div class="toolbar">
+      <a ui-sref="worker.add" class="btn btn-primary btn-sm btn-rect"><i class="fa fa-user-plus"></i></a>
+      <div class="btn-group">
+        <label class="btn btn-success btn-sm" ng-model="pagi.lock" uib-btn-radio="''">全部</label>
+        <label class="btn btn-success btn-sm" ng-model="pagi.lock" uib-btn-radio="true">锁定</label>
+        <label class="btn btn-success btn-sm" ng-model="pagi.lock" uib-btn-radio="false">开放</label>
+      </div>
+    </div>
+  </header>
+  <div class="body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>电话</th>
+          <th>登录次数</th>
+          <th>时间</th>
+          <th>登录地点</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="worker in workers">
+          <td>{{worker.info.name}}</td>
+          <td>{{worker.info.telephone}}</td>
+          <td>{{worker.num.login}}</td>
+          <td>
+            创建:{{worker.time.created | amDateFormat:'YYYY.MM.DD HH:mm:ss'}}<br />
+            登录:{{worker.time.login | amDateFormat:'YYYY.MM.DD HH:mm:ss'}}<br />
+            锁定:{{worker.time.lock | amDateFormat:'YYYY.MM.DD HH:mm:ss'}}<br />
+            解锁:{{worker.time.open | amDateFormat:'YYYY.MM.DD HH:mm:ss'}}<br />
+          </td>
+          <td>{{worker.info.ip}}</td>
+          <td>
+            <a ui-sref="worker.edit({id:worker.id})" class="btn btn-warning btn-sm btn-rect">编辑</a>
+            <button class="btn btn-sm btn-rect"
+              ng-click="lock()"
+              ng-bind="worker.status.lock?'解锁':'锁定'"
+              ng-class="{
+                'btn-metis-1':!worker.status.lock,
+                'btn-metis-5':worker.status.lock}"></button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <uib-pagination boundary-links="true" total-items="pagi.totalItems" ng-model="pagi.currentPage" items-per-page="pagi.itemsPerPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+  </div>
+</div>
+

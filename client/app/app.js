@@ -81,9 +81,16 @@ angular.module('serveApp', [
       });
       //location.href = '/login'
     }
+    if (response.data instanceof ArrayBuffer){
+      var decodedString = new TextDecoder('utf-8').decode(new Uint8Array(response.data));
+      var obj = JSON.parse(decodedString);
+      Alert.add('danger', obj.errmsg);
+      return;
+    }
     if (response.data &&response.data.errmsg) {
       Alert.add('danger', response.data.errmsg);
-    } else {
+    }
+    else {
       Alert.add('danger', '系统错误');
     }
   });

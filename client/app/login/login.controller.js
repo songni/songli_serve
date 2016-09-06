@@ -30,4 +30,16 @@ angular.module('serveApp')
       $cookieStore.put('token', data.token);
       location.href = '/';
     });
-  });
+  })
+  .controller('LoginWorkerCtrl', function ($scope,$cookieStore,RestWorker) {
+    $scope.login = function(){
+      if ($scope.loginForm.$invalid) {
+        $scope.submitted = true;
+        return false;
+      }
+      RestWorker.one('login').post('',$scope.user).then(function(data){
+        if(data.token) {$cookieStore.put('token', data.token);}
+        location.href = '/';
+      });
+    };
+  })
