@@ -10,7 +10,7 @@
     <tbody>
       <tr>
         <td width="40%">
-          <img ng-src="{{order.gift.info.cover ? 'http://' + config.uriPht + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
+          <img ng-src="{{order.gift.info.cover ? appConfig.uriPht + order.gift.info.cover:'assets/images/present_sent_demo.png'}}" alt="...">
           <div class="order-info">
             <div class="info-name"><a>{{order.gift.info.name}}</a></div>
             <div>商品价格：{{order.gift.info.price  | currency}}</div>

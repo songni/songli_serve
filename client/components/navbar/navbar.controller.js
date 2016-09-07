@@ -14,6 +14,11 @@ angular.module('serveApp')
         show: !!($rootScope.wxUser && $rootScope.wxUser.pay_config)
       },
       {
+        'title': '工人管理',
+        'link': 'worker.list',
+        show: !!($rootScope.wxUser && $rootScope.wxUser.pay_config)
+      },
+      {
         'title': '退出',
         'link': 'logout',
         show: true
