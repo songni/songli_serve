@@ -9,3 +9,4 @@ router.get('/', controller.index);
 router.get('/download', controller.download);
 
 module.exports = router;
+//# sourceMappingURL=index.js.map

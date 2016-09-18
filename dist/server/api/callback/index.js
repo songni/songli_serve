@@ -9,3 +9,4 @@ router.post('/callback', callback.component);
 router.post('/:appid/callback', callback.pubno);
 
 module.exports = router;
+//# sourceMappingURL=index.js.map

@@ -1,12 +1,8 @@
 (function(angular, undefined) {
   angular.module("serveApp.constants", [])
+
 .constant("appConfig", {
-	"apiUri": {
-		//dev
-		"www.dev.songni.cc": "http://apidev.91songli.cc",
-		//prd
-		"www.songni.cc": "http://api.91songli.cc"
-	},
+	"uri": "https://api.91pintuan.com",
 	"uriImg": "https://img.91pintuan.com",
 	"uriPht": "https://photo.91pintuan.com",
 	"style": {
@@ -14,9 +10,58 @@
 		"phtStl320": "@1e_1c_0o_0l_399sh_320h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=12&t=52&s=57&color=I2ZmZmZmZg&p=9&y=5&x=5",
 		"phtStl120": "@1e_1c_0o_0l_100sh_120h_120w_90q.src"
 	},
-	"component": "5726bf8700bbe21526c4ccbe",
-	"debug": true,
+	"component": "5581117b5f225e4c401c9259",
+	"debug": false,
 	"from": "merchant",
+	"commodity": {
+		"status": {
+			"paytype": "fullpay",
+			"collection": 0,
+			"qrcode": false,
+			"address": false,
+			"shelf": true,
+			"type": 1,
+			"virtual": 1
+		},
+		"time": {
+			"start": "2016-09-18 18:48",
+			"end": "2016-11-18 18:38"
+		},
+		"money": {
+			"price": 0,
+			"discount": 0,
+			"days": 1,
+			"hours": 0,
+			"minutes": 0,
+			"partakers": 2,
+			"commission": 0,
+			"prepayment": 100,
+			"piece": 0,
+			"stock": 0
+		},
+		"pois": [],
+		"sku": [],
+		"stocks": [],
+		"logistic": {
+			"headReceive": "0",
+			"type": "0",
+			"uniformFreight": 0
+		},
+		"consumeType": "0",
+		"poitag": {
+			"id": "574e8ee63027e17c4b56c0bc",
+			"name": "全部门店",
+			"num": 0
+		},
+		"virtualComm": {
+			"consumeCredentialType": 0
+		}
+	},
+	"allPoiObj": {
+		"id": "574e8ee63027e17c4b56c0bc",
+		"name": "全部门店",
+		"num": 0
+	},
 	"tinymceOptions": {
 		"language": "zh_CN",
 		"baseURL": "https://img.91pintuan.com/bower_components/tinymce",
@@ -60,6 +105,9 @@
 			}
 		],
 		"file_picker_types": "image"
+	},
+	"apiUri": {
+		"www.songni.cc": "https://api.91pintuan.com"
 	}
 })
 

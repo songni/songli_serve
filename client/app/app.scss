@@ -1,7 +1,7 @@
-$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
-$fa-font-path: "/bower_components/font-awesome/fonts";
-@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
-@import 'font-awesome/scss/font-awesome';
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import '../bower_components/font-awesome/scss/font-awesome';
 body {
   background: #f7f7f7;
   color: #595757;
@@ -188,13 +188,13 @@ thead {
 }
 
 // Component styles are injected through grunt
-// injector
-@import 'gift/gift.scss';
-@import 'main/main.scss';
-@import 'plans/plans.scss';
-@import 'wechat/wechat.scss';
-@import '../components/alert/alert.scss';
-@import '../components/directives/ng-print.scss';
-@import '../components/directives/nosy-pagi.scss';
-@import '../components/modal/modal.scss';
-// endinjector
+/* inject:scss */
+@import 'gift/gift';
+@import 'main/main';
+@import 'plans/plans';
+@import 'wechat/wechat';
+@import '../components/alert/alert';
+@import '../components/directives/ng-print';
+@import '../components/directives/nosy-pagi';
+@import '../components/modal/modal';
+/* endinject */

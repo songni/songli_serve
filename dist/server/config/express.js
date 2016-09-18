@@ -15,7 +15,7 @@ var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
 
-module.exports = function(app) {
+module.exports = function (app) {
     var env = app.get('env');
 
     app.set('views', config.root + '/server/views');
@@ -28,7 +28,7 @@ module.exports = function(app) {
     app.use(bodyParser.json());
     app.use(bodyParser.raw({
         type: 'text/xml'
-    }))
+    }));
     app.use(methodOverride());
     app.use(cookieParser());
 
@@ -42,7 +42,7 @@ module.exports = function(app) {
     if ('development' === env || 'test' === env) {
         if (config.livereload) {
             app.use(require('connect-livereload')({
-                port: 35720
+                port: 35711
             }));
         }
 
@@ -53,3 +53,4 @@ module.exports = function(app) {
         app.use(errorHandler()); // Error handler - has to be last
     }
 };
+//# sourceMappingURL=express.js.map

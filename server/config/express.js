@@ -42,7 +42,7 @@ module.exports = function(app) {
     if ('development' === env || 'test' === env) {
         if (config.livereload) {
             app.use(require('connect-livereload')({
-                port: 35720
+                port: 35711
             }));
         }
 
