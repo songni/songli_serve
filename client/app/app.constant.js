@@ -1,8 +1,12 @@
 (function(angular, undefined) {
   angular.module("serveApp.constants", [])
-
 .constant("appConfig", {
-	// "uri": "https://apidev.91pintuan.com",
+	"apiUri": {
+		//dev
+		"www.dev.songni.cc": "http://apidev.91songli.cc",
+		//prd
+		"www.songni.cc": "http://api.91songli.cc"
+	},
 	"uriImg": "https://img.91pintuan.com",
 	"uriPht": "https://photo.91pintuan.com",
 	"style": {

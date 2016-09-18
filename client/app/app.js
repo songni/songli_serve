@@ -1,35 +1,4 @@
 'use strict';
-
-var req = new XMLHttpRequest();
-req.open('GET', '/api/configs', false);
-req.send(null);
-var config = JSON.parse(req.responseText);
-var apiUrl = config.uri; //merchant commodity 需要这个变量
-var token = '';
-
-function getUrlVars() {
-  var vars = [],
-    hash;
-  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-  for (var i = 0; i < hashes.length; i++) {
-    hash = hashes[i].split('=');
-    vars.push(hash[0]);
-    vars[hash[0]] = hash[1];
-  }
-  return vars;
-}
-var auth_code = getUrlVars()["auth_code"];
-if (auth_code) {
-  req.open('GET', config.uri + '/wechat/component/auth?auth_code=' + auth_code, false);
-  req.setRequestHeader('X-API-From', config.from);
-  req.setRequestHeader('X-Component', config.component);
-  req.send(null);
-  token = JSON.parse(req.responseText).token;
-}
-
-var hostname = window.location.hostname.split('.');
-var env = hostname[0];
-
 angular.module('serveApp', [
   'serveApp.constants',
   'ngCookies',
@@ -57,27 +26,29 @@ angular.module('serveApp', [
 
   $logProvider.debugEnabled('enable'); //disable
 
-  RestangularProvider.setBaseUrl(config.uri);
   //$breadcrumbProvider.setOptions({templateUrl: 'app/breadcrumb/breadcrumb.html'});
 
   tinyMCE.baseURL = '/bower_components/tinymce-dist';
 }).run(function(appConfig, $rootScope, $location, $cookieStore, $log, $state, $window, Restangular, RestWecom, Alert, $uibModal) {
-  $rootScope.appConfig = _.assign(appConfig, config);
+  $rootScope.appConfig = window.config = appConfig;
+  var apiUri = appConfig.apiUri[$location.host()];
+  !apiUri && (apiUri = appConfig.uri);
+  Restangular.setBaseUrl(apiUri);
   $rootScope.phtUri = 'https://photo.91pintuan.com';
   $rootScope.phtStl320160 = '@1e_1c_0o_0l_399sh_160h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=8&t=63&s=58&color=I2U2ZGVkZQ&p=9&y=5&x=5';
   $rootScope.phtStl320 = '@1e_1c_0o_0l_399sh_320h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=12&t=52&s=57&color=I2ZmZmZmZg&p=9&y=5&x=5';
   $rootScope.phtStl120 = '@1e_1c_0o_0l_100sh_120h_120w_90q.src';
 
   $rootScope.$on("$stateChangeError", console.log.bind(console));
-  $rootScope.env = hostname[0];
+  
   Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
     if (response.status === 401) {
       $cookieStore.remove('token');
       Restangular.setDefaultHeaders({
-        'X-API-From': config.from
+        'X-API-From': appConfig.from
       });
       Restangular.setDefaultHeaders({
-        'X-Component': config.component
+        'X-Component': appConfig.component
       });
       //location.href = '/login'
     }
@@ -102,13 +73,13 @@ angular.module('serveApp', [
     }
     return data;
   });
-  if (auth_code) $location.url($location.path()); //去掉后缀
+  // if (auth_code) $location.url($location.path()); //去掉后缀
   var headers = {
-    'X-API-From': config.from,
-    'X-Component': config.component
+    'X-API-From': appConfig.from,
+    'X-Component': appConfig.component
   };
   Restangular.setDefaultHeaders(headers);
-  if (token) $cookieStore.put('token', token);
+  // if (token) $cookieStore.put('token', token);
   if ($cookieStore.get('token')) {
     headers.Authorization = $cookieStore.get('token');
     Restangular.setDefaultHeaders(headers);

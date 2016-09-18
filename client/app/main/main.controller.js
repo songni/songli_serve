@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('serveApp')
-  .controller('MainCtrl', function ($scope,$stateParams,RestWecom,RestWechat) {
+  .controller('MainCtrl', function ($scope,$stateParams,$cookieStore,$window,$location,RestWecom,RestWechat) {
     $scope.wechat = function(){
       RestWecom.get()
       .then(function(link) {
