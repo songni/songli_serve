@@ -27,7 +27,7 @@ const serverPath = 'server';
 const paths = {
     client: {
         assets: `${clientPath}/assets/**/*`,
-        images: `${clientPath}/assets/images/**/*`,
+        images: `${clientPath}/assets/images/*`,
         scripts: [
             `${clientPath}/**/!(*.spec|*.mock).js`,
             `!${clientPath}/assets/**/*`,
@@ -532,11 +532,11 @@ gulp.task('build', cb => {
             'transpile:server'
         ],
         [
-            //'build:images',
+            // 'build:images',
             'copy:extras',
             'copy:fonts',
             'copy:media',
-            //'copy:tinymce-dist',
+            'copy:tinymce-dist',
             'copy:assets',
             'copy:server',
             'build:client'
@@ -634,7 +634,7 @@ gulp.task('copy:tinymce-dist', () => {
         .pipe(gulp.dest(`${paths.dist}/${clientPath}/bower_components/tinymce-dist`));
 });
 gulp.task('copy:assets', () => {
-    return gulp.src([paths.client.assets, '!' + paths.client.images])
+    return gulp.src(paths.client.assets)
         .pipe(gulp.dest(`${paths.dist}/${clientPath}/assets`));
 });
 
