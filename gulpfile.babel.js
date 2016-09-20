@@ -540,9 +540,6 @@ gulp.task('build', cb => {
             'copy:assets',
             'copy:server',
             'build:client'
-        ],[
-            'oss',
-            'cdn'
         ],
         cb);
 });

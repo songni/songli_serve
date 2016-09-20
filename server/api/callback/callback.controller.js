@@ -30,7 +30,6 @@ exports.pubno = function(req, res){
     qs: req.query,
     body: req.body,
   };
-  console.log("callback.controller.js pubno req.params " + JSON.stringify(req.params));
   headers['X-APPID'] = req.params.appid;
 	request = request.defaults({headers: headers});
   request.post(options,function (error, response, body) {

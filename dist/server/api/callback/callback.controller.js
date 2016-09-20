@@ -1,11 +1,5 @@
 'use strict';
 
-var _stringify = require('babel-runtime/core-js/json/stringify');
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var config = require('../../config/environment');
 var request = require('request');
 var path = require('path');
@@ -36,7 +30,6 @@ exports.pubno = function (req, res) {
     qs: req.query,
     body: req.body
   };
-  console.log("callback.controller.js pubno req.params " + (0, _stringify2.default)(req.params));
   headers['X-APPID'] = req.params.appid;
   request = request.defaults({ headers: headers });
   request.post(options, function (error, response, body) {
