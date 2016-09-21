@@ -179,7 +179,7 @@ angular.module('serveApp')
     })
     .controller('GiftQrcodeCtrl', function($scope, $rootScope, $sce, gift, RestWechat) {
         $rootScope.title = '礼物链接二维码';
-        var url = $scope.wxUser.uri + '/gift/' + gift.id;
+        var url = $rootScope.wxUser.uri + '/gift/' + gift.id;
         /*
         RestWechat.one('short').one('url').get({url:url}).then(function(url){
         $scope.text = url;    
