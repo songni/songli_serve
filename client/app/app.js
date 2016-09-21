@@ -31,6 +31,7 @@ angular.module('serveApp', [
   tinyMCE.baseURL = '/bower_components/tinymce-dist';
 }).run(function(appConfig, $rootScope, $location, $cookieStore, $log, $state, $window, Restangular, RestWecom, Alert, $uibModal) {
   $rootScope.appConfig = window.config = appConfig;
+  appConfig.clientUri = $location.host().replace('www.dev.', '');
   var apiUri = appConfig.apiUri[$location.host()];
   !apiUri && (apiUri = appConfig.uri);
   Restangular.setBaseUrl(apiUri);

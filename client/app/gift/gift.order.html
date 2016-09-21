@@ -140,7 +140,7 @@
           {{order.gift.info.name}}</a>
         </td>
         <td>{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</td>
-        <td>￥ {{order.gift.info.price}}</td>
+        <td>￥ {{order.gift.info.price * order.capacity}}</td>
         <td align="center">{{order.capacity}}</td>
         <!--td style="background:#f7f7f7">
                     <p class="hidden-print">{{order.receiver.address | limitTo:15}}{{order.receiver.address.length > 15 ? '...' : ''}}</p>
