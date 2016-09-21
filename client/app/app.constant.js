@@ -2,7 +2,7 @@
   angular.module("serveApp.constants", [])
 
 .constant("appConfig", {
-	"uri": "https://api.91pintuan.com",
+	"uri": "http://api.91songli.cc",
 	"uriImg": "https://img.91pintuan.com",
 	"uriPht": "https://photo.91pintuan.com",
 	"style": {
@@ -24,8 +24,8 @@
 			"virtual": 1
 		},
 		"time": {
-			"start": "2016-09-20 18:47",
-			"end": "2016-11-20 18:37"
+			"start": "2016-09-21 11:08",
+			"end": "2016-11-21 10:58"
 		},
 		"money": {
 			"price": 0,
@@ -107,7 +107,7 @@
 		"file_picker_types": "image"
 	},
 	"apiUri": {
-		"www.songni.cc": "https://api.91pintuan.com"
+		"www.91songli.cc": "http://api.91songli.cc"
 	}
 })
 

@@ -108,14 +108,14 @@ var tinymceOptions = {
   //'media_dimensions': false
 };
 var apiUriDev = {};
-apiUriDev['www.dev.songni.cc'] = 'https://apidev.91pintuan.com';
+apiUriDev['www.dev.songni.cc'] = 'http://apidev.91songli.cc';
 
 var apiUriPro = {};
-apiUriPro['www.songni.cc'] = 'https://api.91pintuan.com';
+apiUriPro['www.91songli.cc'] = 'http://api.91songli.cc';
 
 exports = module.exports = {
   development:{//开发版
-    uri: 'https://apidev.91pintuan.com',
+    uri: 'http://apidev.91songli.cc',
     uriImg: uriImg,
     uriPht: uriPht,
     style:{
@@ -132,7 +132,7 @@ exports = module.exports = {
     apiUri:apiUriDev
   },
   production:{//产品版本
-    uri: 'https://api.91pintuan.com',
+    uri: 'http://api.91songli.cc',
     uriImg: uriImg,
     uriPht: uriPht,
     style:{
