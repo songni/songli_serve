@@ -2,7 +2,7 @@
   angular.module("serveApp.constants", [])
 
 .constant("appConfig", {
-	"uri": "http://apidev.91songli.cc",
+	"uri": "http://api.91songli.cc",
 	"uriImg": "https://img.91pintuan.com",
 	"uriPht": "https://photo.91pintuan.com",
 	"style": {
@@ -10,8 +10,8 @@
 		"phtStl320": "@1e_1c_0o_0l_399sh_320h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=12&t=52&s=57&color=I2ZmZmZmZg&p=9&y=5&x=5",
 		"phtStl120": "@1e_1c_0o_0l_100sh_120h_120w_90q.src"
 	},
-	"component": "5726bf8700bbe21526c4ccbe",
-	"debug": true,
+	"component": "5581117b5f225e4c401c9259",
+	"debug": false,
 	"from": "merchant",
 	"commodity": {
 		"status": {
@@ -24,8 +24,8 @@
 			"virtual": 1
 		},
 		"time": {
-			"start": "2016-09-21 19:06",
-			"end": "2016-11-21 18:56"
+			"start": "2016-10-25 17:26",
+			"end": "2016-12-25 17:16"
 		},
 		"money": {
 			"price": 0,
@@ -107,7 +107,7 @@
 		"file_picker_types": "image"
 	},
 	"apiUri": {
-		"www.dev.songni.cc": "http://apidev.91songli.cc"
+		"www.91songli.cc": "http://api.91songli.cc"
 	}
 })
 
