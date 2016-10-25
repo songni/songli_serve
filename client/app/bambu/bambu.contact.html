@@ -100,6 +100,22 @@
 		        {{ errors['info.address'] }}
 		      </p>
 		    </div>
+		  </div>		  
+		  <!--服务号-->
+		  <div class="row form-group bambu-group" 
+		  	   ng-class="{ 'has-success': form['info.agent'].$valid && submitted,
+                'has-error': form['info.agent'].$invalid && submitted }">
+		    <div class="col-xs-2">
+		    	<label for="info.agent" class="mw control-label label-name label-name1">服务商编码(选填)</label>
+		    </div>
+		    <div class="col-xs-10">
+		    <input type="text" name="info.agent" class="form-control input-lg test bambu-input"
+		           placeholder="如果是服务商客户，请输入服务商编码"
+		           ng-model="merchant.info.agent"/>
+		    <p class="help-block" ng-show="form['info.agent'].$error.mongoose">
+        	{{ errors['info.agent'] }}
+      	</p>
+		    </div>
 		  </div>
 		  <!--协议-->
 		  <!--<div class="form-group"

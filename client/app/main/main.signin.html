@@ -1,5 +1,4 @@
 <form class="form-horizontal form-home">
-  
   <div class="row form-group form-bot bot1">
     <div class="col-xs-1">
     	<label class="control-label">授权公众号</label>
@@ -40,6 +39,15 @@
     </div>
     <div class="col-xs-11">
       <p class="form-control-static">{{wxUser.user_name}}</p>
+    </div>
+  </div>
+  
+  <div class="row form-group form-bot">
+    <div class="col-xs-1">
+    	<label class="control-label">服务商编码</label>
+    </div>
+    <div class="col-xs-11">
+      <p class="form-control-static">{{wxUser.info.agent}}</p>
     </div>
   </div>
   

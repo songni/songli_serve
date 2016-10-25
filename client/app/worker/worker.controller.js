@@ -34,7 +34,7 @@ angular.module('serveApp')
     };
     $scope.copyText='复制';
     $scope.getTextToCopy = function() {
-        return 'https://wx.91pintuan.com/worker/login';
+        return 'http://www.91songli.cc/worker/login';
     };
     $scope.doSomething = function () {
         $scope.copyText='复制成功!';
