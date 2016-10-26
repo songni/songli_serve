@@ -104,6 +104,7 @@ apiUriDev['www.dev.songni.cc'] = 'http://apidev.91songli.cc';
 
 var apiUriPro = {};
 apiUriPro['www.91songli.cc'] = 'http://api.91songli.cc';
+apiUriPro['www.dalibao.com'] = 'http://api.dalibao.com';
 
 exports = module.exports = {
   development: { //开发版

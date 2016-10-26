@@ -24,8 +24,8 @@
 			"virtual": 1
 		},
 		"time": {
-			"start": "2016-10-25 17:26",
-			"end": "2016-12-25 17:16"
+			"start": "2016-10-26 12:30",
+			"end": "2016-12-26 12:20"
 		},
 		"money": {
 			"price": 0,
@@ -107,7 +107,8 @@
 		"file_picker_types": "image"
 	},
 	"apiUri": {
-		"www.91songli.cc": "http://api.91songli.cc"
+		"www.91songli.cc": "http://api.91songli.cc",
+		"www.dalibao.com": "http://api.dalibao.com"
 	}
 })
 
