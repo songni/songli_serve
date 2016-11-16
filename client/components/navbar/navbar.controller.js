@@ -48,21 +48,21 @@ angular.module('serveApp')
       'menu': true,
       'title': '发货管理',
       'link': 'suborder.list'
-    }]
-    // {
-    //   'header':true,
-    //   'title':'门店/物流/虚拟商品',
-    //   'ico':'cube',
-    // },
-    // {
-    //   'menu':true,
-    //   'title':'门店统计',
-    //   'link':'poi.manage',
-    // },{
-    //   'menu':true,
-    //   'title':'门店分组',
-    //   'link':'poi.tags',
-    // }];
+    },
+    {
+      'header':true,
+      'title':'门店/物流/虚拟商品',
+      'ico':'cube',
+    },
+    {
+      'menu':true,
+      'title':'门店统计',
+      'link':'poi.manage',
+    },{
+      'menu':true,
+      'title':'门店分组',
+      'link':'poi.tags',
+    }];
     $scope.isActive = function(route) {
       return $state.is(route);
     };

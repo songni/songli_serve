@@ -42,7 +42,8 @@
       <div class="row">
         <!--<div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>-->
         <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu">
-          <ul id="menu" ng-controller="MenuCtrl" ng-include="'components/sidebar.html'"></ul>
+          <ul id="menu" ng-controller="MenuCtrl" ng-include="'components/navbar/menu.html'"></ul>
+          <!--<ul id="menu" ng-controller="MenuCtrl" ng-include="'components/sidebar.html'"></ul>-->
         </div>
         <div ng-class="{'col-xs-10': wxUser.pay_config, 'col-xs-12': !wxUser.pay_config}" class="gift-cont">
           <span ng-if="wxUser.pay_config" ncy-breadcrumb></span>
@@ -102,6 +103,7 @@
       <script src="bower_components/jszip/dist/jszip.js"></script>
       <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
       <script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
+      <script src="bower_components/checklist-model/checklist-model.js"></script>
       <!-- endbower -->
       <script src="bower_components/angular-i18n/angular-locale_zh.js"></script>
       <script src="bower_components/moment/locale/zh-cn.js"></script>

@@ -17,7 +17,8 @@ angular.module('serveApp', [
   'ngCsv',
   'bootstrap.fileField',
   'ngHolder',
-  'monospaced.elastic'
+  'monospaced.elastic',
+  'checklist-model'
 ]).config(function(appConfig, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $logProvider, RestangularProvider, $breadcrumbProvider, uiSelectConfig) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
