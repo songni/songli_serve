@@ -24,8 +24,8 @@
 			"virtual": 1
 		},
 		"time": {
-			"start": "2016-10-26 14:34",
-			"end": "2016-12-26 14:24"
+			"start": "2016-11-16 11:01",
+			"end": "2017-01-16 10:51"
 		},
 		"money": {
 			"price": 0,
@@ -106,9 +106,28 @@
 		],
 		"file_picker_types": "image"
 	},
-	"apiUri": {
-		"www.91songli.cc": "http://api.91songli.cc",
-		"www.dalibao.com": "http://api.dalibao.com"
+	"app": {
+		"www.dev.songni.cc": {
+			"api": "http://apidev.91songli.cc",
+			"name": "91送礼开发版",
+			"wechat": "91送礼",
+			"telephone": "010-84988362",
+			"icp": "京ICP证060911"
+		},
+		"www.91songli.cc": {
+			"api": "http://api.91songli.cc",
+			"name": "91送礼",
+			"wechat": "91送礼",
+			"telephone": "010-84988362",
+			"icp": "京ICP证060911"
+		},
+		"www.dalibao.com": {
+			"api": "http://api.dalibao.com",
+			"name": "大礼包",
+			"wechat": "村村乐",
+			"telephone": "010-51692648",
+			"icp": "京公网安备11010102001340号"
+		}
 	}
 })
 

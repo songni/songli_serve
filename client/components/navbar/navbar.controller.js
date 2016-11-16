@@ -33,18 +33,36 @@ angular.module('serveApp')
   })
   .controller('MenuCtrl', function ($scope, $state) { 
     $scope.menus = [{
+      'menu': true,
       'title': '发布礼物',
       'link': 'gift.post'
     },{
+      'menu': true,
       'title': '商品管理',
       'link': 'gift.list'
     },{
+      'menu': true,
       'title': '订单查询',
       'link': 'gift.order'
     },{
+      'menu': true,
       'title': '发货管理',
       'link': 'suborder.list'
-    }];
+    }]
+    // {
+    //   'header':true,
+    //   'title':'门店/物流/虚拟商品',
+    //   'ico':'cube',
+    // },
+    // {
+    //   'menu':true,
+    //   'title':'门店统计',
+    //   'link':'poi.manage',
+    // },{
+    //   'menu':true,
+    //   'title':'门店分组',
+    //   'link':'poi.tags',
+    // }];
     $scope.isActive = function(route) {
       return $state.is(route);
     };

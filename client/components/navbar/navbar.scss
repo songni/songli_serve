@@ -1,0 +1,71 @@
+#top .navbar{
+    border-top: 3px solid #F0373D;
+    background: #231815;
+    border-bottom: 0;
+}
+
+.breadcrumd{
+	font-size: 24px;
+  font-weight: 500;
+}
+.navbar-brand img{
+	width: 200px;
+	margin-top: 5px;
+	margin-right: 30px;
+}
+.user-nav{
+	position: relative;
+  display: inline-block;
+  vertical-align: middle;
+	width: 150px;
+	color: #9d9d9d;
+	font-size: 9px;
+	overflow: hidden;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.user-nav a{
+	color: #FFFFFF;
+	text-decoration: none;
+	opacity: 60%;
+}
+.user-nav a:hover{
+	color: #F0373D;
+}
+.user-ico {
+	width: 30px;
+	float: left;;
+}
+.user-ico img {
+	width:100%;
+  height: auto;
+  padding: 1px;
+  background-color: #fff;
+  border-radius: 6px;
+}
+.user-name {
+	margin-left: 10px;
+	float: left;
+	text-align: left;
+	font-size: 12px;
+}
+
+
+.nav-logout {
+	border-left:1px solid #9d9d9d;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 15px;
+}
+.nav-logout a{
+	color: #9d9d9d;
+	text-decoration: none;
+}
+.nav-logout a:hover{
+	color: #ffffff;
+}
+.un-box{
+  padding:60px 30px;
+  background-color:transparent;
+}

@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()"><span>&times;</span></button>
+    <h3 class="modal-title">微信扫一扫，添加扫码员</h3>
+</div>
+<div class="modal-body text-center">
+<img
+ ng-if="qrcodeTicket"
+ ng-src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={{qrcodeTicket}}" style="width:320px;">
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">完成</button>
+    <button class="btn btn-warning" type="button" ng-click="$dismiss()">关闭</button>
+</div>

@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title>91送礼－微信送礼营销工具</title> 
+    <title ng-bind-template="{{app.name}}－微信送礼营销工具"></title> 
     <meta name="keywords" content="送礼,礼物说,微信送礼,会说话的礼物,91拼团,社群电商,社交电商,微信第三方应用"> 
     <meta name="description" content="91送礼是基于微信的第三方送礼平台。91送礼旨在解决传统送礼方式的各类痛点，让送礼更轻更有趣好玩，并为商家积累粉丝。商家无需二次开发，直接开通免费试用!">
     <!--<title ng-bind-template="{{title?title+'-':''}}送你微信公众号第三方平台">送你</title>-->
@@ -18,6 +18,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/select2/select2.css" />
+      <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+      <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -37,7 +40,10 @@
     <div ui-view="" ng-if="!wxUser" class="gift-home"></div>
     <div class="container gift-container" ng-if="wxUser">
       <div class="row">
-        <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>
+        <!--<div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>-->
+        <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu">
+          <ul id="menu" ng-controller="MenuCtrl" ng-include="'components/sidebar.html'"></ul>
+        </div>
         <div ng-class="{'col-xs-10': wxUser.pay_config, 'col-xs-12': !wxUser.pay_config}" class="gift-cont">
           <span ng-if="wxUser.pay_config" ncy-breadcrumb></span>
           <div  ui-view="" class="main"></div>
@@ -80,6 +86,9 @@
       <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
       <script src="bower_components/tinymce-dist/tinymce.js"></script>
       <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+      <script src="bower_components/select2/select2.js"></script>
+      <script src="bower_components/angular-ui-select3/src/select3.js"></script>
+      <script src="bower_components/angular-ui-select/dist/select.js"></script>
       <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
       <script src="bower_components/angular-qrcode/qrcode.js"></script>
       <script src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
@@ -91,6 +100,8 @@
       <script src="bower_components/angular-holderjs/src/holder.js"></script>
       <script src="bower_components/angular-elastic/elastic.js"></script>
       <script src="bower_components/jszip/dist/jszip.js"></script>
+      <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+      <script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
       <!-- endbower -->
       <script src="bower_components/angular-i18n/angular-locale_zh.js"></script>
       <script src="bower_components/moment/locale/zh-cn.js"></script>
@@ -124,6 +135,9 @@
       <script src="app/plans/plans.controller.js"></script>
       <script src="app/plans/plans.js"></script>
       <script src="app/plans/plans.service.js"></script>
+      <script src="app/poi/poi.controller.js"></script>
+      <script src="app/poi/poi.js"></script>
+      <script src="app/poi/poi.service.js"></script>
       <script src="app/suborder/suborder.controller.js"></script>
       <script src="app/suborder/suborder.js"></script>
       <script src="app/suborder/suborder.service.js"></script>
@@ -140,6 +154,7 @@
       <script src="components/directives/valid-file.js"></script>
       <script src="components/modal/modal.service.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
+      <script src="components/services/rest.services.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
 <!-- <div style="display:none">

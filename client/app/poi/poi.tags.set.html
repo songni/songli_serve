@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-xs-8 left">
+    <div class="box">
+      <div class="allStore">
+        <span>{{pagi.tag.name?pagi.tag.name:'全部门店'}} ({{pagi.tag.name?pagi.tag.num:pagi.all}}家)</span>
+      </div>
+
+
+	<div id="address" class="body">
+		<div class="row" >
+		  <div class="col-xs-2 ssq">
+		  <ui-select ng-model="area.province">
+		      <ui-select-match placeholder="省">
+		          <span ng-bind="$select.selected.name"></span>
+		      </ui-select-match>
+		      <ui-select-choices repeat="province in (provinces | filter: $select.search) track by province.id">
+		          <span ng-bind="province.name"></span>
+		      </ui-select-choices>
+		  </ui-select>
+		  </div>
+		  <div class="col-xs-2 ssq">
+		  <ui-select ng-model="area.city">
+		      <ui-select-match placeholder="市">
+		          <span ng-bind="$select.selected.name"></span>
+		      </ui-select-match>
+		      <ui-select-choices repeat="city in (cities | filter: $select.search) track by city.id">
+		          <span ng-bind="city.name"></span>
+		      </ui-select-choices>
+		  </ui-select>
+		  </div>
+		  <div class="col-xs-2 ssq">
+		  <ui-select ng-model="area.district">
+		      <ui-select-match placeholder="区">
+		          <span ng-bind="$select.selected.name"></span>
+		      </ui-select-match>
+		      <ui-select-choices repeat="district in (area.city.district | filter: $select.search) track by district.id">
+		          <span ng-bind="district.name"></span>
+		      </ui-select-choices>
+		  </ui-select>
+		  </div>
+		  <div class="col-xs-4 search">
+		    <div class="input-group">
+		    	<input type="text" class="form-control" placeholder="请输入门店名称" ng-model="area.keyword">
+		      <span class="input-group-btn">
+		      <button class="btn btn-default" type="button" ng-model="area.keyword"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		      </span>
+		    </div>
+  		</div>
+		</div>
+	</div>
+
+  <table id="table" class="table table-condensed table-hover table-striped">
+    <tbody>
+      <tr class="thead">
+        <td colspan="3">
+          <label>
+            <input type="checkbox"
+              ng-model="selpoi.selall"
+              ng-true-value="true"
+              ng-false-value="false"
+              ng-click="selAll()"
+            >&nbsp;&nbsp;全选
+          </label>
+          <button id="btn" class="btn btn-default  btn-sm btn-mr"
+            uib-popover-template="'app/poi/pois.tags.popover.html'"
+            popover-placement = "bottom"
+            popover-trigger="outsideClick"
+            popover-is-open="selpoi.tagspop"
+            ng-disabled="selpoi.ids.length<1">添加到分组</button>
+        </td>
+      </tr>
+      <tr ng-repeat = "poi in pois"
+        ng-init="poi.close=false"
+        ng-mouseenter="poi.close = true"
+        ng-mouseleave="poi.close = false"
+        class="poisList" >
+        <td style="width: 30px;">
+          <input type="checkbox"
+            checklist-model="selpoi.ids"
+            checklist-value="poi.id">
+        </td>
+        <td>
+          <a href="" ng-bind="poi.base_info.business_name+(poi.base_info.branch_name?'('+poi.base_info.branch_name+')':'')"
+            uib-popover-template="'app/poi/poi.info.popover.html'"
+            popover-placement = "right-top"
+            popover-trigger="outsideClick">
+            </a>
+          <p class="text-muted">
+            <span ng-repeat="tag in poi.tags track by $index">{{tag.name}} {{!$last&&tag.name?'、 ':''}}</span>
+            <span ng-if="poi.tags.length<1">无标签</span>
+            <i class="fa fa-caret-down"
+              uib-popover-template="'app/poi/poi.tags.popover.html'"
+              popover-append-to-body="true"
+              popover-placement = "bottom"
+              popover-trigger="click"
+              popover-is-open="poi.tagspop"></i>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+      <div class="panel-footer">
+        <nosy-pagi dropup="true" pagi="pagi"></nosy-pagi>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-4  right">
+    <div class="box">
+      <header style="background: #F4F5F9">
+        <h5>门店分组</h5>
+        <div class="toolbar">
+          <button class="btn btn-default  btn-sm"
+            uib-popover-template="'app/poi/poi.add_tags.popover.html'"
+            popover-placement = "bottom-right"
+            popover-trigger="outsideClick"
+            popover-is-open="add_tags.close"
+            style="margin: 10px;background: #3796F9">新建分组</button>
+        </div>
+      </header>
+      <div class="list-group">
+        <div class="list-group-item"
+          ng-class="{'active':!pagi.tag.id}">
+          <a href="#" ng-click="pagi.tag = {}">全部门店({{pagi.all}}家)</a>
+        </div>
+        <div class="list-group-item"
+          ng-class="{'active':pagi.tag.id === tag.id}"
+          ng-repeat="tag in tags"
+          ng-mouseenter="tag.close = true"
+          ng-mouseleave="tag.close = false"
+          editable-text="tag.name"
+          e-name="tag.name"
+          e-form="tagForm"
+          onaftersave = "editTag()"
+          e-required>
+          <a href="#" class="badge btn btn-metis-5 bt-xs  btn-line"
+            ng-show="tag.close"
+            ng-click="delTag()">删除</a>
+          <a href="#" class="badge btn btn-metis-6 bt-xs btn-line"
+            ng-show="tag.close"
+            ng-click="tagForm.$show()">编辑</a>
+          <a href="" ng-click="pagi.tag = tag">{{tag.name}}({{tag.num}}家)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

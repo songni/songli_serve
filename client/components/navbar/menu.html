@@ -1,0 +1,28 @@
+<li ng-repeat="menu in menus" ui-sref-active="active"
+		ng-class="{'nav-divider':menu.divider,'nav-header':menu.header}">
+  <span ng-if="menu.header">
+  	<i class="fa fa-{{menu.ico}} fa-fw"></i>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{menu.title}}
+  </span>
+  <a  ui-sref="{{menu.link}}"
+  		ui-sref-opts="{{menu.opts}}"
+  		ng-if="menu.link&&menu.menu">
+    <span class="link-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{menu.title}}</span>
+    <span class="fa arrow" ng-show="menu.submenus"></span>
+  </a>
+  <a ng-if="!menu.link&&menu.menu">
+    <span class="link-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{menu.title}}</span>
+    <span class="fa arrow" ng-show="menu.submenus"></span>
+  </a>
+  <ul ng-if="menu.submenus&&menu.menu">
+    <li class="" ng-repeat="submenu in menu.submenus">
+      <a ui-sref="{{submenu.link || 'javascript:;'}}"
+      	ui-sref-opts="{{submenu.opts}}">
+        <i class="fa fa-angle-right"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{submenu.title}}
+      </a>
+    </li>
+  </ul>
+</li>
+
+

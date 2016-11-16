@@ -107,12 +107,30 @@ var tinymceOptions = {
   //'media_poster': false,
   //'media_dimensions': false
 };
-var apiUriDev = {};
-apiUriDev['www.dev.songni.cc'] = 'http://apidev.91songli.cc';
 
-var apiUriPro = {};
-apiUriPro['www.91songli.cc'] = 'http://api.91songli.cc';
-apiUriPro['www.dalibao.com'] = 'http://api.dalibao.com';
+var app = {};
+
+app['www.dev.songni.cc'] = {
+  api: 'http://apidev.91songli.cc',
+  name: '91送礼开发版',
+  wechat: '91送礼',
+  telephone: '010-84988362',
+  icp: '京ICP证060911'
+}
+app['www.91songli.cc'] = {
+  api: 'http://api.91songli.cc',
+  name: '91送礼',
+  wechat: '91送礼',
+  telephone: '010-84988362',
+  icp: '京ICP证060911'
+}
+app['www.dalibao.com'] = {
+  api: 'http://api.dalibao.com',
+  name: '大礼包',
+  wechat: '村村乐',
+  telephone: '010-51692648',
+  icp: '京公网安备11010102001340号'
+}
 
 exports = module.exports = {
   development:{//开发版
@@ -130,7 +148,7 @@ exports = module.exports = {
     commodity:commodity,
     allPoiObj:allPoiObj,
     tinymceOptions:tinymceOptions,
-    apiUri:apiUriDev
+    app: app
   },
   production:{//产品版本
     uri: 'http://api.91songli.cc',
@@ -147,6 +165,6 @@ exports = module.exports = {
     commodity:commodity,
     allPoiObj:allPoiObj,
     tinymceOptions:tinymceOptions,
-    apiUri:apiUriPro
+    app: app
   }
 };

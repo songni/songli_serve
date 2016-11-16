@@ -6,6 +6,7 @@ angular.module('serveApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
+  'ui.select',
   'restangular',
   'ncy-angular-breadcrumb',
   'angularMoment',
@@ -17,7 +18,7 @@ angular.module('serveApp', [
   'bootstrap.fileField',
   'ngHolder',
   'monospaced.elastic'
-]).config(function(appConfig, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $logProvider, RestangularProvider, $breadcrumbProvider) {
+]).config(function(appConfig, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $logProvider, RestangularProvider, $breadcrumbProvider, uiSelectConfig) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
 
@@ -27,14 +28,19 @@ angular.module('serveApp', [
   $logProvider.debugEnabled('enable'); //disable
 
   //$breadcrumbProvider.setOptions({templateUrl: 'app/breadcrumb/breadcrumb.html'});
+  uiSelectConfig.theme = 'bootstrap';
+  uiSelectConfig.resetSearchInput = true;
+  uiSelectConfig.appendToBody = true;
 
   tinyMCE.baseURL = '/bower_components/tinymce-dist';
 }).run(function(appConfig, $rootScope, $location, $cookieStore, $log, $state, $window, Restangular, RestWecom, Alert, $uibModal) {
   $rootScope.appConfig = window.config = appConfig;
   appConfig.clientUri = $location.host().replace('www.dev.', '').replace('www.', '');
-  var apiUri = appConfig.apiUri[$location.host()];
+  var app = appConfig.app[$location.host()];
+  var apiUri = app.api;
   !apiUri && (apiUri = appConfig.uri);
   Restangular.setBaseUrl(apiUri);
+  $rootScope.app = app;
   $rootScope.phtUri = 'https://photo.91pintuan.com';
   $rootScope.phtStl320160 = '@1e_1c_0o_0l_399sh_160h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=8&t=63&s=58&color=I2U2ZGVkZQ&p=9&y=5&x=5';
   $rootScope.phtStl320 = '@1e_1c_0o_0l_399sh_320h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=12&t=52&s=57&color=I2ZmZmZmZg&p=9&y=5&x=5';

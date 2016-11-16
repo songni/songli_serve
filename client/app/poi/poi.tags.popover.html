@@ -1,0 +1,11 @@
+  <label class="checkbox-inline" ng-repeat="tag in tags">
+    <input type="checkbox"
+      checklist-model="poi.tags"
+      checklist-value="tag"
+      checklist-comparator=".id"
+      ng-change="poiSelTag(checked)"> {{tag.name}}
+  </label>
+  <div class="text-right" style="border-top:1px solid #DCDDDD;padding-top:5px;margin-left: -11px;margin-right: -4px;">
+    <button class="btn btn-success  btn-sm btn-sure"
+      ng-click="poiAddTag()">确定</button>
+  </div>

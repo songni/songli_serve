@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title>91送礼－微信送礼营销工具</title> 
+    <title ng-bind-template="{{app.name}}－微信送礼营销工具"></title> 
     <meta name="keywords" content="送礼,礼物说,微信送礼,会说话的礼物,91拼团,社群电商,社交电商,微信第三方应用"> 
     <meta name="description" content="91送礼是基于微信的第三方送礼平台。91送礼旨在解决传统送礼方式的各类痛点，让送礼更轻更有趣好玩，并为商家积累粉丝。商家无需二次开发，直接开通免费试用!">
     <!--<title ng-bind-template="{{title?title+'-':''}}送你微信公众号第三方平台">送你</title>-->
@@ -16,8 +16,8 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="baidu-site-verification" content="qWoevylhcr" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    
-    <link rel="stylesheet" href="app/app-700f1df74f.css">
+    <link rel="stylesheet" href="app/vendor-7b04fed5ea.css">
+    <link rel="stylesheet" href="app/app-2087c481b2.css">
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -30,7 +30,10 @@
     <div ui-view="" ng-if="!wxUser" class="gift-home"></div>
     <div class="container gift-container" ng-if="wxUser">
       <div class="row">
-        <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>
+        <!--<div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>-->
+        <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu">
+          <ul id="menu" ng-controller="MenuCtrl" ng-include="'components/sidebar.html'"></ul>
+        </div>
         <div ng-class="{'col-xs-10': wxUser.pay_config, 'col-xs-12': !wxUser.pay_config}" class="gift-cont">
           <span ng-if="wxUser.pay_config" ncy-breadcrumb></span>
           <div  ui-view="" class="main"></div>
@@ -43,9 +46,9 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-    <script src="app/vendor-30c5ca1279.js"></script>
+    <script src="app/vendor-57bfe26942.js"></script>
 
-    <script src="app/app-1350ab525b.js"></script>
+    <script src="app/app-3bd3e482a8.js"></script>
 <!-- <div style="display:none">
 <script src="http://s11.cnzz.com/stat.php?id=1256263160&web_id=1256263160" language="JavaScript"></script>
 </div> -->

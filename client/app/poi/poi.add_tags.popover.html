@@ -1,0 +1,14 @@
+  <form name="tagForm" ng-submit="addTag()" style="min-width:244px;">
+    <div class="input-group">
+      <input type="text" class="form-control"
+        name="tag"
+        placeholder="添加新的标签"
+        ng-model='add_tags.tag'>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">添加</button>
+        <button class="btn btn-default"
+          type="button"
+          ng-click="add_tags.close = false;">取消</button>
+      </span>
+    </div>
+  </form>

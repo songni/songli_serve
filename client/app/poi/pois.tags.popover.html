@@ -1,0 +1,12 @@
+  <label class="checkbox-inline" ng-repeat="tag in tags">
+    <input type="checkbox"
+      checklist-model="selpoi.tags"
+      checklist-value="tag"
+      checklist-comparator=".id"> {{tag.name}}
+  </label>
+  <div class="text-right" style="border-top:1px solid #DCDDDD;padding-top:5px;margin-left: -11px;margin-right: -4px">
+    <button class="btn btn-success  btn-sm btn-sure"
+      ng-click="poisAddTag()">确定</button>
+    <!--<button class="btn btn-success btn-rect btn-sm btn-close"
+      ng-click="poisClose()">取消</button>-->
+  </div>

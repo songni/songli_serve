@@ -1,0 +1,54 @@
+<form class="form-horizontal" style="min-width:244px;">
+    <div class="form-group">
+        <label class="col-xs-4 control-label">名称</label>
+        <div class="col-xs-8">
+        <p class="form-control-static" ng-bind="poi.base_info.business_name"></p>
+        </div>
+    </div>
+    <div class="form-group" ng-if="poi.base_info.branch_name">
+        <label class="col-xs-4 control-label">分店名</label>
+        <div class="col-xs-8">
+        <p class="form-control-static" ng-bind="poi.base_info.branch_name"></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-4 control-label">省市区</label>
+        <div class="col-xs-8">
+        <p class="form-control-static">
+            <span ng-bind="poi.base_info.province"></span>
+            <span ng-bind="poi.base_info.city"></span>
+            <span ng-bind="poi.base_info.district"></span>
+        </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-4 control-label">地址</label>
+        <div class="col-xs-8">
+        <p class="form-control-static" ng-bind="poi.base_info.address"></p>
+        </div>
+    </div>
+    <div class="form-group" ng-if="poi.base_info.telephone">
+        <label class="col-xs-4 control-label">电话</label>
+        <div class="col-xs-8">
+        <p class="form-control-static" ng-bind="poi.base_info.telephone"></p>
+        </div>
+    </div>
+    <div class="form-group" ng-if="poi.base_info.categories">
+        <label class="col-xs-4 control-label">类型</label>
+        <div class="col-xs-8">
+        <p class="form-control-static" ng-bind="poi.base_info.categories"></p>
+        </div>
+    </div>
+    <div class="form-group" ng-if="poi.base_info.special">
+        <label class="col-xs-4 control-label">服务</label>
+        <div class="col-xs-8">
+        <p class="form-control-static" ng-bind="poi.base_info.special"></p>
+        </div>
+    </div>
+    <div class="form-group" ng-if="poi.base_info.introduction">
+        <label class="col-xs-4 control-label">简介</label>
+        <div class="col-xs-8">
+        <p class="form-control-static" ng-bind="poi.base_info.introduction"></p>
+        </div>
+    </div>
+</form>

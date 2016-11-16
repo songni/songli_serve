@@ -1,0 +1,69 @@
+//头部
+.title{background: #F4F5F9;padding-top: 30px;padding-bottom: 10px;}
+.title .pic img{width: 54px;height: 54px;float: right;}
+//.title .font p{line-height: 14px;}
+.title .font p:first-child{font-size: 20px;line-height: 18px;}
+.title .font p:last-child{white-space: normal;color: #898989;line-height: 20px;}
+//左侧
+.left .box .allStore span{display:block;height: 40px;line-height: 40px;padding-left: 10px;background: #F4F5F9;}
+.left .box{margin-top: 40px;}
+    //省市区
+.left #address{background: #F4F5F9;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0)}
+.left #address .ssq{padding-right: 0;}
+.left #address .ui-select-bootstrap .ui-select-match .btn{border-radius: 0;}
+.left #address .input-group .form-control:first-child{border-radius: 0;}
+.left #address .input-group .input-group-btn .btn{border-radius: 0;}
+.left #address .search .input-group span{color: #898989;}
+    //全选
+#table{margin-top: 5px;}
+#table tbody tr td{border-top: 0;}
+#table .thead{background: #F4F5F9;}
+#table .thead label{margin-top: 10px;margin-bottom: 10px;}
+#table .thead #btn{padding: 5px 20px;margin-left: 20px;margin-top: -5px;}
+#table .thead #btn[disabled]{background: #E8E8EC;color: #898989;border: 1px solid #CFCFD1;}
+#table .thead #btn[disabled]:hover{background: #E8E8EC;color: #898989;border: 1px solid #CFCFD1;}
+#table .thead #btn{background: #3796F9;color: #FFFFFF;border: none;}
+#table .thead #btn:hover{background: #3796F9;color: #FFFFFF;border: none;}
+#table label{margin-left:0px ;font-weight: normal;}
+//#table input[type="checkbox"]{margin: 4px 7px 0;}
+#table .text-muted{white-space: normal;}
+    //弹框
+
+.checkbox-inline + .checkbox-inline{margin-left: 0px;margin-top: 10px;}
+.checkbox-inline{width: 110px;margin-left: 0px;margin-right: 20px;margin-bottom: 10px;margin-top: 10px;}
+.btn-sure{float: left;margin:10px 0px 10px 95px;background: #3796F9;color: #FFFFFF;border: 0;padding: 5px 25px;border-radius: 5px;}
+.btn-sure:hover{background: #3796F9;}
+
+
+
+//右侧
+.right .box{margin-top: 40px;}
+.right .box header h5{line-height: 30px;font-weight: normal;}
+.right .box header .toolbar  .btn-sm{margin: 10px 5px;background: #3796F9;color: #FFFFFF;border: 0;}
+.right .list-group .store{background: #F4F5F9;border-bottom: 0;}
+.right .list-group .store a{color: #3796F9;}
+.right .list-group{min-height: 250px;}
+.right .list-group-item{border-left: 0;border-right: 0;}
+.right .list-group-item:first-child{border-radius: 0;border-top: 0;}
+.right .list-group-item:last-child{border-radius: 0;border-bottom: 0;}
+.right .list-group .editable-wrap{margin: 10px;}
+.right .list-group-item.active{background: #F4F5F9;border-color: #F1F1F3;color: #3796F9;}
+.right div.list-group-item a{color: #3796F9;text-decoration: none;}
+.right div.active a{color: #3796F9;}
+.right div.list-group-item .badge{font-weight: normal;border-color: #3796F9;}
+.right div.list-group-item .badge:hover{background: #3796F9;}
+.right .btn-primary{background: #3796F9;border: none;}
+.right .glyphicon-remove{color: #898989;}
+
+	/*标题*/
+//	.box header{background: #fff;height: 75px;border-bottom: 2px solid #CCCCCC;}
+//	.box header h5{padding: 0 0 0 20px;line-height: 75px;font-size: 16px;}
+//	.box header .toolbar{line-height: 75px;}
+	/*省市区*/
+	.ssq{padding-right: 0;}
+	.search .input-group span{color: #898989;}
+	/*排序*/
+	.sort{float: right;margin-right: 42px;}
+	.sort .ui-select-bootstrap > .ui-select-match > .btn{background: #F7F8F8;text-align: center !important;}
+	.sort .left{float: left;padding-top: 5px;font-size: 14px;}
+	.sort-container{margin-left: 35px;}

@@ -1,0 +1,141 @@
+<div ui-view="">
+<div class="box">
+  <header>
+    <!--<h5><i class="fa fa-{{ico}}"></i> {{title}} <small>[{{pagi.totalItems}}]</small></h5>-->
+    <h5>{{title}}</h5>
+    <div class="toolbar">
+      <button type="button" class="btn btn-primary btn-rect btn-sm"
+            uib-popover-template="'app/poi/poi.add.popover.html'"
+            popover-placement = "bottom-right"
+            popover-trigger="outsideClick">
+            <!--<i class="fa fa-plus"></i>--> 新建门店</button>
+      <button type="button" class="btn btn-default btn-sm" ng-click="flushPoiList()">刷新</button>
+    </div>
+  </header>
+
+  <div class="body">
+<div class="row" style="margin-bottom:10px;">
+  <div class="col-xs-1 ssq">
+  <ui-select ng-model="area.province">
+      <ui-select-match placeholder="省">
+          <span ng-bind="$select.selected.name"></span>
+      </ui-select-match>
+      <ui-select-choices repeat="province in (provinces | filter: $select.search) track by province.id">
+          <span ng-bind="province.name"></span>
+      </ui-select-choices>
+  </ui-select>
+  </div>
+  <div class="col-xs-1 ssq">
+  <ui-select ng-model="area.city">
+      <ui-select-match placeholder="市">
+          <span ng-bind="$select.selected.name"></span>
+      </ui-select-match>
+      <ui-select-choices repeat="city in (cities | filter: $select.search) track by city.id">
+          <span ng-bind="city.name"></span>
+      </ui-select-choices>
+  </ui-select>
+  </div>
+  <div class="col-xs-1 ssq">
+  <ui-select ng-model="area.district">
+      <ui-select-match placeholder="区">
+          <span ng-bind="$select.selected.name"></span>
+      </ui-select-match>
+      <ui-select-choices repeat="district in (area.city.district | filter: $select.search) track by district.id">
+          <span ng-bind="district.name"></span>
+      </ui-select-choices>
+  </ui-select>
+  </div>
+  <!--搜索-->
+  <div class="col-xs-3 search">
+    <!--<input type="text" class="form-control" placeholder="根据关键字查找" ng-model="area.keyword">-->
+    <div class="input-group">
+    	<input type="text" class="form-control" placeholder="请输入门店名称" ng-model="area.keyword">
+      <span class="input-group-btn">
+      <button class="btn btn-default" type="button" ng-model="area.keyword"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+  </div>
+  <!--排序-->
+
+  <div class="col-xs-2 sort">
+  	<span class="left">排序：</span>
+    <ui-select ng-model="sort.select" class="sort-container">
+      <ui-select-match placeholder="销售额">
+          <span ng-bind="$select.selected.name"></span>
+      </ui-select-match>
+      <ui-select-choices repeat="sort in (sort.list | filter: $select.search) track by $index">
+          <span ng-bind="sort.name"></span>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+
+</div>
+    <table class="table table-bordered table-condensed table-hover table-striped">
+      <thead>
+        <tr>
+          <th>门店信息</th>
+          <th>商品</th>
+          <th>订单</th>
+          <th>销售额</th>
+          <th>扫码员</th>
+          <th>核销设备</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr ng-repeat = "poi in pois" style="background: #FFFFFF;">
+          <td class="word-break">
+            <p>
+              <a href="#" ng-bind="poi.base_info.business_name+(poi.base_info.branch_name?'('+poi.base_info.branch_name+')':'')"
+                uib-popover-template="'app/poi/poi.info.popover.html'"
+                popover-placement = "right-top"
+                popover-trigger="outsideClick">
+                </a>
+            </p>
+            <p>
+              <span ng-bind="poi.base_info.province"></span>
+              <span ng-bind="poi.base_info.city"></span>
+              <span ng-bind="poi.base_info.district"></span>
+              <span ng-bind="poi.base_info.address"></span>
+            </p>
+            <p ng-bind="poi.base_info.telephone"></p>
+          </td>
+          <td>
+            <a href="#" ng-bind="poi.num.commodity" style="color: #3796F9;" ng-click="stockup()"></a>
+          </td>
+          <td>
+            <a ui-sref="order.list({poi:poi.id})" ng-bind="poi.num.partaker" style="color: #3796F9;"></a>
+          </td>
+          <td ng-bind="poi.num.amount | currency"></td>
+          <td class="word-break">
+            <ul class="list-unstyled">
+              <li ng-repeat="scanner in poi.scanner">
+                <a ui-sref="user.list({poi:poi.id})" ng-bind="scanner.user.name"  ng-if="scanner.user.poi&&scanner.user.poi === poi.id"></a>
+                <s ng-if="!scanner.user.poi||scanner.user.poi !== poi.id" ng-bind="scanner.user.name"></s> 核销{{scanner.partaker}}单,{{scanner.amount | currency}}
+              </li>
+            </ul>
+          </td>
+          <td class="word-break">
+            <ul class="list-unstyled">
+              <li ng-repeat="device in poi.device"><a href="#" ng-bind="device.name" ng-click="addDevice()"></a>
+              核销{{device.num.partaker}}单,{{device.num.amount | currency}}</li>
+            </ul>
+          </td>
+          <td class="text-center">
+            <p>
+              <button class="btn btn-metis-2 btn-rect btn-line btn-xs" ng-click="addScanner()">添加扫码员</button>
+            </p>
+            <p>
+              <button class="btn btn-primary btn-rect btn-line btn-xs" ng-click="addDevice()">添加核销设备</button>
+            </p>
+            <p>
+              <button class="btn btn-metis-5 btn-rect btn-line btn-xs" ng-click="delPoi()">删除</button>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nosy-pagi dropup="true" pagi="pagi"></nosy-pagi>
+  </div>
+</div>
+</div>
