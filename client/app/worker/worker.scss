@@ -1,0 +1,61 @@
+.worker{
+  .input-group{
+    height: 35px;
+    input{height: 35px;}
+    .input-group-btn{
+      a{
+        height: 35px;
+        display: block;
+        padding: 16.5px 15px;
+        line-height: 1px;
+        background: #FFFFFF;
+        border: 1px solid #CCCCCC;
+      }
+    }
+  }
+  .worker-body{
+    margin-top: 10px;
+    border: 1px solid #EFEFEF;
+    .fl{float: left;}
+    .fr{float: right;}
+    header{
+      width: 100%;
+      height: 45px;
+      margin-bottom: 10px;
+      background: rgba(204, 204, 204, .4);
+      .title{
+        line-height: 45px;
+        padding-left: 10px;
+      }
+      .toolbar{
+        .btn-group{
+          margin-top: 7px;
+          margin-right: 5px;
+          .btn-success{
+            max-height: 30px;
+          }
+        }
+        .btn-rect{
+          margin-top: 7px;
+        }
+      }
+    }
+    .table-worker{
+      border-top: 1px solid #EFEFEF;
+      thead{
+        tr th{
+          font-weight: normal;
+          border-bottom: 1px solid #EFEFEF;
+        }
+      }
+      tbody{
+        border-bottom: 1px solid #EFEFEF;
+        tr td{border-bottom: 1px solid #EFEFEF;}
+        tr:nth-child(odd):hover td,
+        tr:nth-child(even):hover td{
+          background: rgba(204, 204, 204, .2);
+        }
+      }
+    }
+  }
+}

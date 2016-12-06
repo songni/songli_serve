@@ -17,7 +17,7 @@ angular.module('serveApp')
         templateUrl: 'app/suborder/suborder.list.html',
         controller: 'SubOrderListCtrl',
         ncyBreadcrumb: {
-          label: '列表'
+          label: '发货管理'
         }
       })
   });

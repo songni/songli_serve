@@ -1,3 +1,4 @@
+textarea{resize: none;}
 .panel-body {
   padding: 10px 0;
 }
@@ -130,56 +131,181 @@
 }
 
 //发布礼物页面样式----------
-.form-post .row{
+.form-post{
+  .row{
     margin-left: 20px;
     margin-right: 0;
+    .col-xs-1,
+    .col-xs-3,
+    .col-xs-11{
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .form-control{border-radius: 0;}
+  .form-group{margin-bottom: 0;}
+  .choise{font-size: 12px;padding-left: 10px;color: #CCCCCC;}
 }
-.form-post .col-xs-1,.form-post .col-xs-11,.form-post .col-xs-3{
-    padding-left: 0;
-    padding-right: 0;
-}
-.form-post .form-control{border-radius: 0;}
-.form-post textarea{resize: none;}
-.form-post .form-group{margin-bottom: 0;}
-.gift-title{
-    background: #F7F8F8;
-    padding: 10px 0;
-}
-.gift-details{padding-bottom: 35px;}
-.gift-title label{
+.gift-common{
+  background: #F7F8F8;
+  padding: 10px 0;
+  label{
     font-weight: normal;
     font-size: 14px;
     color: #494545;
-    padding-left: 7px;
-}
-.gift-title .label-f{padding-left: 16px;}
-.gift-title .label-k{padding-left: 34px;}
-.gift-title .col-xs-11{width: 89%;}
-.gift-title .input-group-addon{
+    padding-left: 10px;
+  }
+  .label-f{padding-left: 16px;}
+  .label-k{padding-left: 34px;}
+  .input-group-addon{
     background: #EFEFEF;
     border-radius: 0;
-} 
-.gift-title .noteStock {
+  }
+  .noteStock {
     font-size: 12px;
     margin-top: 5px;
     color: #B9B9BA;
-}
-.form-foot{width: 20%;}
-.form-foot .btn-ground{
-    width: 239px;
-    padding: 27px 0;
-    line-height: 0;
-    background: #516CFD;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-}
-.lunjy{
+  }
+  .col-xs-11{width: 89%;}
+  .img-ratio{
     clear: both;
     padding-top: 5px;
     font-size: 13px;
     color: #B9B9BA;
+  }
 }
+.gift-details{padding-bottom: 15px;}
+.gift-consum{
+  .row{margin-left: 0;}
+  .store{
+    padding-left: 0 !important;
+    input{
+      vertical-align: -1px;
+      margin-right: 5px;
+    }
+  }
+  label{padding-top: 0 !important;}
+  .store-logistics{
+  }
+}
+.gift-poi{
+  .col-xs-2,
+  .col-xs-6{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  margin-bottom: 15px;
+  .col-xs-2{line-height: 30px;}
+  .btn-default{
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 3px;
+  }
+  .col-xs-7{
+    position: relative;
+    border: 1px solid #CCCCCC;
+    background: #FFFFFF;
+    padding: 10px;
+    margin-left: 0;
+  }
+  .triangle{
+    position: absolute;
+    top: -7px;
+    left: 110px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: #CCCCCC;
+    border-top-width: 0;
+  }
+  .triangle:after {
+    position: absolute;
+    border-width: 5px;
+    border-color: transparent;
+    border-style: solid;
+    border-bottom-color: #FFFFFF;
+    bottom: 1px;
+    margin-bottom: -8px;
+    margin-left: -5px;
+    content: " ";
+    border-top-width: 0;
+  }
+}
+.form-submit{
+  padding: 10px 0;
+  .form-foot{
+    width: 20%;
+    .btn-ground{
+      padding: 20px 0;
+      line-height: 0;
+      background: #516CFD;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    .btn-ground:hover{background: rgba(81,108,253,.7);}
+  }
+}
+.btn-tigger{display: inline-block;width: 12px;height: 8px;}
+.up_img{background: url(https://img.91pintuan.com/songli/client/up_img.png) no-repeat;}
+.down_img{background: url(https://img.91pintuan.com/songli/client/down_img.png) no-repeat;}
+.editGreeting{
+  padding-bottom: 30px;
+  .row{margin-left: 0;}
+  .col-xs-5,
+  .col-xs-6,
+  .col-xs-12{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .showHide{
+    span{
+      display: inline-block;
+      margin-top: 7px;
+    }
+    span:first-child{margin-right: 10px;}
+    span:last-child{
+      color: #CCCCCC;
+      cursor: pointer;
+    }
+  }
+  .edit{
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+  }
+  .edit-img{
+    span{padding-left: 15px;padding-bottom: 10px;display: block;}
+    img{width: 60%;padding-left: 15px;}
+  }
+  .edit-main{
+    background: #FFFFFF;
+    .edit-title{
+      .label-left{
+        padding-left: 0;
+        height: 30px;
+        line-height: 30px;
+      }
+      input{
+        height: 30px;
+        padding-right: 35px;
+        border: 1px solid #CCCCCC;
+      }
+      .note{
+        font-size: 12px;
+        color: #B9B9BA;
+      }
+    }
+    .guide{
+      margin-bottom: 10px;
+    }
+  }
+  
+}
+
+
 //商品二维码页面样式----------
 .form-url{
     background: #EFEFEF;
@@ -627,4 +753,61 @@
 }
 .btn-ship-down:hover{
     background: rgba(247,247,247,.8) !important;
+}
+
+// gift.order.shipping.html 发货管理
+.radio-exp{
+  margin-bottom: 10px;
+  margin-top: 30px;
+  height: 30px; 
+  .col-xs-2{padding-left: 11px;}
+  .col-xs-10{padding-left: 5px;}
+}
+.form-exp{
+  .col-xs-2,
+  .col-xs-10{
+    font-weight: normal;
+  }
+  .form-group{
+    .control-label{
+      color: #231815;
+    }
+    .form-control{
+      height: 35px;
+    }
+  }
+  .text-exp{
+    margin-top: 50px;
+    margin-bottom: -35px;
+    color: #898989 !important;
+    padding-left: 25px;
+  }
+}
+.div-self{
+  margin-top: 40px;
+  height: 25px;
+  p{
+    padding: 0 11px;
+  }
+}
+.form-btn{
+  background: #F4F5F9;
+  text-align: center;
+  margin-top: 20px;
+  border-top: 0;
+  .btn-com{
+    width: 110px;
+    max-height: 35px;
+    font-size: 15px;
+    margin-top: -5px;
+    padding: 5px;
+  }
+  .btn-sure_exp{
+    background: #2C70FF;
+    color: #FFFFFF;
+  }
+  .btn-cancel_exp{
+    background: #FFFFFF;
+    color: #1E1E1E;
+  }
 }

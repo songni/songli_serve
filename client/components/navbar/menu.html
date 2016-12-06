@@ -1,16 +1,26 @@
 <li ng-repeat="menu in menus" ui-sref-active="active"
-		ng-class="{'nav-divider':menu.divider,'nav-header':menu.header}">
+		ng-class="{'nav-divider':menu.divider, 'nav-header head-li':menu.header }">
   <span ng-if="menu.header">
-  	<i class="fa fa-{{menu.ico}} fa-fw"></i>
-  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{menu.title}}
+  	<span class="menu-icon">
+  	  <img src="https://img.91pintuan.com/songli/server/menu-icon/menu-{{menu.icon}}.png" alt="" />
+  	</span>
+  	<span>{{menu.title}}</span>
   </span>
   <a  ui-sref="{{menu.link}}"
   		ui-sref-opts="{{menu.opts}}"
   		ng-if="menu.link&&menu.menu">
-    <span class="link-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{menu.title}}</span>
+  	<!--<span ng-if="menu.icon" class="green-box"></span>-->
+  	<!--左侧按钮-->
+  	<span class="menu-icon menu-icon-gray" ng-if="menu.icon">
+  	  <img src="https://img.91pintuan.com/songli/server/menu-icon/menu-{{menu.icon}}.png" alt="" />
+  	</span>
+  	<span class="menu-icon menu-icon-green" ng-if="menu.icon">
+  	  <img src="https://img.91pintuan.com/songli/server/menu-icon/menu-{{menu.icon}}{{$index+1}}.png" alt="" />
+  	</span>
+    <span class="link-title" ng-class="{'mLeft': !menu.icon}">{{menu.title}} </span>
     <span class="fa arrow" ng-show="menu.submenus"></span>
   </a>
-  <a ng-if="!menu.link&&menu.menu">
+  <a ng-if="!menu.link && menu.menu">
     <span class="link-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{menu.title}}</span>
     <span class="fa arrow" ng-show="menu.submenus"></span>
   </a>

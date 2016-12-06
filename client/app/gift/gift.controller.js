@@ -4,9 +4,34 @@ angular.module('serveApp')
     .controller('GiftCtrl', function($scope, $rootScope) {
         $rootScope.title = '礼物管理';
     })
-    .controller('GiftPostCtrl', function($scope, $rootScope, $state, $stateParams, RestGift, RestAlbum, Alert, gift) {
+    .controller('GiftPostCtrl', function($scope, $rootScope, $state, $stateParams, $uibModal, RestGift, RestAlbum, RestCate, Alert, gift) {
+        var pubPoiNo  = $scope.wxUser ? $scope.wxUser.num.poi : 0;
+        var allPoiObj = {id: '574e8ee63027e17c4b56c0bc', name: '全部门店', num: pubPoiNo}; 
         $rootScope.title = '发布礼物';
         if ($stateParams.id) $scope.gift = gift;
+        if(!$scope.gift){
+            //new gift
+            $scope.gift = {
+                poitag: allPoiObj,
+                status: {
+                    type: 1,
+                    logistics: true
+                }
+            }
+        }
+        if(!$scope.gift.poitag){
+            $scope.gift.poitag = allPoiObj;
+        }
+        $scope.gift.status.poi && ($scope.consumeType = {type: 'poi'});
+        $scope.gift.status.logistics && ($scope.consumeType = {type: 'logistics'});
+
+        $scope.$watch('consumeType.type', type => {
+            let types = ['poi', 'logistics'];
+            let status = $scope.gift.status;
+            types.forEach( t => {
+                status[t] = t === type ? true : false ;
+            })
+        })
         $scope.submitted = false;
         $scope.config = config;
         $scope.tinymceOptions = {
@@ -72,18 +97,17 @@ angular.module('serveApp')
                                         });
                                     }
                                 });
-
-
                         });
                 }
             }
         };
         $scope.post = function() {
             $scope.submitted = true;
+            if ($scope.giftForm.$invalid) return false;
+
             if ($scope.gift.info.detail === '<p><br data-mce-bogus="1"></p>') {
                 $scope.gift.info.detail = '';
             }
-            if ($scope.giftForm.$invalid) return false;
             var fd = new FormData();
             fd.append("name", $scope.gift.info.name);
             fd.append("price", $scope.gift.info.price);
@@ -92,7 +116,16 @@ angular.module('serveApp')
             fd.append("detail", $scope.gift.info.detail ? $scope.gift.info.detail : '');
             fd.append("lead", $scope.gift.info.lead ? $scope.gift.info.lead : '');
             fd.append('cover', $scope.uploadFile);
-            if ($stateParams.id)
+            fd.append('poitag', $scope.gift.poitag ? JSON.stringify($scope.gift.poitag) : '');
+            fd.append('status', $scope.gift.status ? JSON.stringify($scope.gift.status) : '');
+            fd.append('logistics', $scope.gift.logistics);
+            
+            if($scope.gift.info.benedictory
+            ){
+                fd.append('benedictory', JSON.stringify($scope.gift.info.benedictory));
+            }
+
+            if ($stateParams.id) {
                 $scope.gift.withHttpConfig({
                     transformRequest: angular.identity
                 })
@@ -106,7 +139,8 @@ angular.module('serveApp')
                         id: $stateParams.id
                     });
                 });
-            else
+            }
+            else {
                 RestGift.one().withHttpConfig({
                     transformRequest: angular.identity
                 })
@@ -114,13 +148,48 @@ angular.module('serveApp')
                     'Content-Type': undefined
                 })
                 .then(function(data) {
-                    console.log(data);
                     Alert.add('success', data.message);
                     $scope.submitted = false;
                     $state.go('gift.detail.qrcode', {
                         id: data.id
                     });
                 });
+            }
+        };
+        const getTags = () => {
+            RestCate.getList({type: 'poi_tag'}).then(tags => {
+                tags = tags.plain();
+                for(var i in tags){
+                    var tag = tags[i];
+                    tag.group = '门店分组';
+                    tags[i] = tag;
+                }
+                tags.unshift(allPoiObj);
+                $scope.poitags = tags;
+            });
+        };
+        getTags();
+        $scope.modalPoiTag = tag => {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'app/poi/poi.tags.modal.html',
+                controller: 'PoiListCtrl',
+                size: 'lg',
+                resolve:{
+                    tag: function () {
+                        return tag;
+                    }
+                }
+            });
+            modalInstance.result.then(() => getTags(), () => getTags());
+        }
+        $scope.selPoiTagCB = (item, model) => {
+            if(model.num === 0) {
+                $scope.modalPoiTag(model);
+                if(model.id !== '574e8ee63027e17c4b56c0bd'){
+                   Alert.add('danger','【'+model.name+'】分组没有门店,请设置！');
+                   $scope.gift.poitag = allPoiObj;
+                }
+            }
         };
     })
     .controller('GiftListCtrl', function($scope, $rootScope, RestGift, Alert) {
@@ -544,7 +613,10 @@ angular.module('serveApp')
         $scope.express = {
             companies: companies
         };
+        $scope.exp = {type: 0};
         $scope.order = order;
+        $scope.receiver = receiver;
+        $scope.submitted = false;
         $scope.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         };
@@ -552,17 +624,36 @@ angular.module('serveApp')
             if (!receiver) {
                 return Alert.add('warn', '一键发货，暂不支持');
             } else {
-                RestOrderGift.one(order.id)
-                    .one(receiver.id)
-                    .customPUT({
-                        express: {
-                            no: $scope.exp.no, // 快递单号
-                            company: {
-                                id: $scope.exp.company.id, // 快递公司 id
-                                name: $scope.exp.company.name // 快递公司名称
+                $scope.submitted = true;
+                if($scope.giftOrderShippingForm && $scope.giftOrderShippingForm.$invalid){
+                    return;
+                }
+                let receiverForShipping = RestOrderGift.one(order.id).one(receiver.id);
+                let promise = null;
+                if($scope.receiver.scene === 'logistics'){
+                    if($scope.exp.type == 0){
+                        promise = receiverForShipping.customPUT({
+                            express: {
+                                no: $scope.exp.no, // 快递单号
+                                type: $scope.exp.type,
+                                company: {
+                                    id: $scope.exp.company.id, // 快递公司 id
+                                    name: $scope.exp.company.name // 快递公司名称
+                                }
                             }
-                        }
-                    })
+                        })
+                    }else if($scope.exp.type == 1){
+                        promise = receiverForShipping.customPUT({
+                            express: {
+                                type: $scope.exp.type
+                            }
+                        })
+                    }
+                    
+                }else{
+                    promise = receiverForShipping.put();
+                }
+                promise
                     .then(function(data) {
                         // get the response
                         Alert.add('success', data.message);

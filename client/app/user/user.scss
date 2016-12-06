@@ -1,0 +1,60 @@
+.sweep-list{
+  border: 1px solid #EFEFEF;
+  .toolbar{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    background-image: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%);
+    border-bottom: 1px solid #EFEFEF;
+    .btn-group{
+      float: right;
+      margin-top: 10px;
+      margin-right: 5px;
+      .btn-default{
+        max-height: 30px;
+        color: #231815;
+        background: #FFFFFF;
+        border: 1px solid #CCCCCC;
+      }
+      .btn-default.active{
+        background: #6089DC;
+        color: #FFFFFF;
+        border: 1px solid #6089DC;
+      }
+    }
+  }
+  .sw-body{
+    .btn-metis-5{
+      border: 1px solid #DDDDDD;
+      margin-left: 10px;
+    }
+    .table-sweep{
+      margin-top: 10px;
+      thead{
+        border-top: 1px solid #EFEFEF;
+        tr th{
+          font-weight: normal;
+          color: #231815;
+        }
+      }
+      tbody{
+        border-top: 1px solid #EFEFEF;
+        border-bottom: 1px solid #EFEFEF;
+        tr td{
+          height: 98px;
+          border-bottom:1px solid #EFEFEF;
+        }
+        tr:nth-child(odd):hover td,
+        tr:nth-child(even):hover td{
+          background: rgba(204, 204, 204, .2);
+        }
+      }
+      .buttons{
+        button:nth-child(1){
+          background: #FFFFFF;
+          border: 1px solid #DDDDDD;
+        }
+      }
+    }
+  }
+}

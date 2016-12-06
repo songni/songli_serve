@@ -6,7 +6,6 @@ angular.module('serveApp')
   .controller('PoiListCtrl', function (
     $scope,$rootScope,$state,$stateParams,$uibModal,$log,$location,
     Alert,RestPoi,RestCate) {
-    //console.log(tag);
     $rootScope.title = '门店管理';
     $rootScope.ico = 'location-arrow';
     $scope.reload = false;
@@ -45,7 +44,7 @@ angular.module('serveApp')
       if(newVal[5]) {params.keyword = newVal[5];}
       if(newVal[6]) {params.sort = newVal[6].key;}
       if(newVal[7]) {params.tag = newVal[7].id;}
-      if($stateParams.id) {params.tag = $stateParams.id;}
+      // if($stateParams.id) {params.tag = $stateParams.id;}
       RestPoi.one('count').get(params).then(function(data){
         $scope.pagi.totalItems = data || 0;
       });
@@ -192,13 +191,13 @@ angular.module('serveApp')
       this.poi.tagspop = false;
       $scope.reload = !$scope.reload;
     };
-  $scope.selpoi = {
+    $scope.selpoi = {
       selall:false,
       tagspop:false,
       ids:[],
       tags:[]
-   };
-   $scope.selAll = function () {
+    };
+    $scope.selAll = () => {
       if($scope.selpoi.selall){
         var poiids = [];
         var pois = $scope.pois.plain();
@@ -210,26 +209,25 @@ angular.module('serveApp')
         $scope.selpoi.ids = [];
       }
     };
-    $scope.poisAddTag = function(){
+    $scope.poisAddTag = () => {
       var selpoi = $scope.selpoi;
       var tags = [];
       for(var i in selpoi.tags){
         tags.push(selpoi.tags[i].id);
       }
-      RestPoi.one('batch').one('tags').post('',{pois:selpoi.ids,tags:tags}).then(function(data){
+      RestPoi.one('batch').one('tags').post('', {pois:selpoi.ids,tags:tags}).then(function(data){
         selpoi.tagspop = false;
         $scope.selpoi.tags = [];
         $scope.selpoi.ids = [];
         $scope.selpoi.selall = false;
-        Alert.add('success',data.message);
+        Alert.add('success', data.message);
         $scope.reload = !$scope.reload;
       });
     };
-    $scope.poisClose = function () {
+    $scope.poisClose = () => {
       $scope.selpoi.tagspop = false;
     };
-    $scope.addScanner = function () {
-      var poi = this.poi;
+    $scope.addScanner = poi => {
       var modalInstance = $uibModal.open({
         templateUrl: 'app/poi/poi.scanner.html',
         controller: 'PoiScannerModalCtrl',
@@ -239,13 +237,13 @@ angular.module('serveApp')
           }
         }
       });
-      modalInstance.result.then(function (reload) {
+      modalInstance.result.then(reload => {
         $scope.reload = reload;
-      }, function () {
+      }, () => {
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-    $scope.stockup = function () {
+    $scope.stockup = () => {
       var poi = this.poi;
       var modalInstance = $uibModal.open({
         templateUrl: 'app/poi/poi.stockup.modal.html',
@@ -256,13 +254,13 @@ angular.module('serveApp')
           }
         }
       });
-      modalInstance.result.then(function () {
+      modalInstance.result.then(() => {
         //$scope.reload = reload;
-      }, function () {
+      }, () => {
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-    $scope.addDevice = function(){
+    $scope.addDevice = () => {
       var poi = this.poi;
       var device = this.device;
       var modalInstance = $uibModal.open({
@@ -278,16 +276,14 @@ angular.module('serveApp')
           }
         }
       });
-      modalInstance.result.then(function (result) {
-        console.log(result);
+      modalInstance.result.then(result => {
         $scope.reload = !$scope.reload;
-      }, function (reason) {
-        console.error(reason);
+      }, reason => {
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
   })
-  .controller('PoiScannerModalCtrl',function($scope,$uibModalInstance,poi){
+  .controller('PoiScannerModalCtrl', function($scope, $uibModalInstance, poi){
       poi.one('scanner').one('qrcode').one('ticket').get().then(function (data) {
         $scope.qrcodeTicket = data;
       });
@@ -309,7 +305,7 @@ angular.module('serveApp')
     }else{
       $scope.device = device;
     }
-    $scope.poi = poi;
+    $scope.poi = poi; 
     $scope.setDevice = function(){
       if ($scope.deviceForm.$invalid) {
         $scope.submitted = true;

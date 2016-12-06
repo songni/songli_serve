@@ -41,6 +41,7 @@
     <thead>
       <tr>
         <th>子订单单号（序列号）</th>
+        <th>发货方式</th>
         <th>收货人信息</th>
         <th>时间</th>
         <th class="text-center" width="90">发货管理</th>
@@ -50,9 +51,11 @@
     <tbody>
       <tr ng-repeat="item in order.receivers">
         <td>{{item.id}}</td>
+        <td><span>{{item.scene === 'poi' ? '门店自提' : '物流配送'}}</span></td>
         <td>
           <span>{{item.consignee || item.name}}</span>
-          <span>{{item.address}}</span>
+          <span ng-if="item.scene === 'logistics'">{{item.address}}</span>
+          <span ng-if="item.scene === 'poi'">{{item.poi.base_info.business_name}}</span>
           <span>{{item.telephone}}</span>
         </td>
         <td>

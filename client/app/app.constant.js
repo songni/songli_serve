@@ -2,7 +2,7 @@
   angular.module("serveApp.constants", [])
 
 .constant("appConfig", {
-	"uri": "http://apidev.91songli.cc",
+	"uri": "http://api.91songli.cc",
 	"uriImg": "https://img.91pintuan.com",
 	"uriPht": "https://photo.91pintuan.com",
 	"style": {
@@ -10,8 +10,8 @@
 		"phtStl320": "@1e_1c_0o_0l_399sh_320h_320w_100q.src|watermark=2&text=OTHmi7zlm6I&type=ZHJvaWRzYW5zZmFsbGJhY2s&size=12&t=52&s=57&color=I2ZmZmZmZg&p=9&y=5&x=5",
 		"phtStl120": "@1e_1c_0o_0l_100sh_120h_120w_90q.src"
 	},
-	"component": "5726bf8700bbe21526c4ccbe",
-	"debug": true,
+	"component": "5581117b5f225e4c401c9259",
+	"debug": false,
 	"from": "merchant",
 	"commodity": {
 		"status": {
@@ -24,8 +24,8 @@
 			"virtual": 1
 		},
 		"time": {
-			"start": "2016-11-16 11:44",
-			"end": "2017-01-16 11:34"
+			"start": "2016-12-06 20:24",
+			"end": "2017-02-06 20:14"
 		},
 		"money": {
 			"price": 0,
@@ -112,21 +112,32 @@
 			"name": "91送礼开发版",
 			"wechat": "91送礼",
 			"telephone": "010-84988362",
-			"icp": "京ICP证060911"
+			"icp": "京ICP证060911",
+			"suffix": ".def"
 		},
 		"www.91songli.cc": {
 			"api": "http://api.91songli.cc",
 			"name": "91送礼",
 			"wechat": "91送礼",
 			"telephone": "010-84988362",
-			"icp": "京ICP证060911"
+			"icp": "京ICP证060911",
+			"suffix": ".def"
+		},
+		"www.91songli.com": {
+			"api": "http://api.91songli.com",
+			"name": "91送礼",
+			"wechat": "91送礼",
+			"telephone": "010-84988362",
+			"icp": "京ICP证060911",
+			"suffix": ".def"
 		},
 		"www.dalibao.com": {
 			"api": "http://api.dalibao.com",
 			"name": "大礼包",
 			"wechat": "村村乐",
 			"telephone": "010-51692648",
-			"icp": "京公网安备11010102001340号"
+			"icp": "京公网安备11010102001340号",
+			"suffix": ".cuncunle"
 		}
 	}
 })

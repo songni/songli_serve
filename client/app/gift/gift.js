@@ -21,11 +21,11 @@ angular.module('serveApp')
             authenticate: true,
             resolve: {
                 gift: function() {
-                    return {};
+                    return null;
                 }
             },
             ncyBreadcrumb: {
-                label: '发布礼物'
+                label: '发布商品'
             }
         })
 
@@ -35,7 +35,7 @@ angular.module('serveApp')
             controller: 'GiftListCtrl',
             authenticate: true,
             ncyBreadcrumb: {
-                label: '礼物列表'
+                label: '商品列表'
             }
         })
 

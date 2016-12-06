@@ -87,6 +87,7 @@
 			<tr>
 				<th>子订单单号 (序列号)</th>
 				<th>订单号</th>
+				<th>发货方式</th>
 				<th>收货人信息</th>
 				<th>商品</th>
 				<th>时间</th>
@@ -98,6 +99,7 @@
 			<tr ng-repeat="suborder in suborders">
 				<td>{{ suborder.id || suborder._id }}</td>
 				<td>{{ suborder.order.serial }}</td>
+				<td>{{ suborder.scene === 'poi' ? '门店自提' : '物流配送' }}</td>
 				<td>
 					<span> {{ suborder.name || suborder.consignee }}</span><br />
 					<span>{{ suborder.telephone}}</span><br />

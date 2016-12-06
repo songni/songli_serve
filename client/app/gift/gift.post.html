@@ -2,7 +2,7 @@
 
 <form name="giftForm" ng-submit="post()" class="form-horizontal form-post" novalidate>
   	<!--礼物标题-->
-  	<div class="row form-group gift-title" 
+  	<div class="row form-group gift-common" 
   		 ng-class="{ 'has-success': giftForm['gift.name'].$valid && submitted,
                     'has-error' : giftForm['gift.name'].$invalid && submitted }">
     	<div class="col-xs-1">
@@ -10,27 +10,23 @@
     	</div>
 	    <div class="col-xs-11">
 	      <input type="text" name="gift.name" ng-model="gift.info.name" class="form-control"  ng-maxlength="500" required>
-	      <p ng-show="giftForm['gift.name'].$error.required && submitted" class="help-block">
-	      	礼物标题必须填写.
-	      </p>
+	      <p ng-show="giftForm['gift.name'].$error.required && submitted" class="help-block">礼物标题必须填写. </p>
 	      <p ng-show="giftForm['gift.name'].$error.maxlength" class="help-block">最多15个字.</p>
 	    </div>
   </div>
   <!--副标题-->
-  <div class="form-group row gift-title" ng-class="{ 'has-success': giftForm['gift.lead'].$valid && submitted,
+  <div class="form-group row gift-common" ng-class="{ 'has-success': giftForm['gift.lead'].$valid && submitted,
                                       'has-error' : giftForm['gift.lead'].$invalid && submitted }">
 	  <div class="col-xs-1">
-			<label for="gift.lead" class="control-label  label-f control-label-cust">副标题 ：</label>
+			<label for="gift.lead" class="control-label  control-label-cust">副标题 ：</label>
 	  </div>
     <div class="col-xs-11">
       <textarea name="gift.lead" ng-model="gift.info.lead" class="form-control" rows="5" placeholder="更多礼物描述"></textarea>
-      <p ng-show="giftForm['gift.lead'].$error.required && submitted" class="help-block">
-      	礼物副标题必须填写.
-      </p>
+      <p ng-show="giftForm['gift.lead'].$error.required && submitted" class="help-block">礼物副标题必须填写. </p>
     </div>
   </div>
   <!--礼物单价-->
-  <div class="form-group row gift-title" ng-class="{ 'has-success': giftForm['gift.price'].$valid && submitted,
+  <div class="form-group row gift-common" ng-class="{ 'has-success': giftForm['gift.price'].$valid && submitted,
                                       'has-error' : giftForm['gift.price'].$invalid && submitted }">
 		<div class="col-xs-1">
     	<label for="gift.price" class="control-label control-label-cust">商品价格：</label>
@@ -40,16 +36,14 @@
         <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
         <input type="text" name="gift.price" ng-model="gift.info.price" class="form-control"  required>
       </div>
-      <p ng-show="giftForm['gift.price'].$error.required && submitted" class="help-block">
-      	礼物价格必须填写.
-      </p>
+      <p ng-show="giftForm['gift.price'].$error.required && submitted" class="help-block">礼物价格必须填写. </p>
     </div>
   </div>
   <!--库存-->
-  <div class="form-group row gift-title" ng-class="{ 'has-success': giftForm['gift.num.stock'].$valid && submitted,
+  <div class="form-group row gift-common" ng-class="{ 'has-success': giftForm['gift.num.stock'].$valid && submitted,
                                       'has-error' : giftForm['gift.num.stock'].$invalid && submitted }">
 		<div class="col-xs-1">
-    	<label for="gift.num.stock" class="control-label label-k control-label-cust">库存：</label>
+    	<label for="gift.num.stock" class="control-label control-label-cust">库存：</label>
 		</div>
     <div class="col-xs-3">
       <div class="input-group">
@@ -59,33 +53,29 @@
         <span class="input-group-addon">件</span>
       </div>
       <p class="noteStock">库存数字默认为0，代表无库存限制</p>
-      <p ng-show="giftForm['gift.num.stock'].$error.min && submitted" class="help-block">
-      	库存必须大于0
-      </p>
-      <p ng-show="giftForm['gift.num.stock'].$error.max && submitted" class="help-block">
-      	库存必须小于9999999
-      </p>
+      <p ng-show="giftForm['gift.num.stock'].$error.min && submitted" class="help-block">库存必须大于0 </p>
+      <p ng-show="giftForm['gift.num.stock'].$error.max && submitted" class="help-block">库存必须小于9999999</p>
     </div>
   </div>
   <!--轮播图-->
   <ng-form name="giftCoverForm">
-  <div class="form-group row gift-title" ng-class="{ 'has-success': uploadFile && submitted,
-                                      'has-error' : !uploadFile && submitted }">
-		<div class="col-xs-1">
-    	<label for="gift.cover" class="control-label label-f control-label-cust">轮播图：</label>
-		</div>
-    <div class="col-xs-3">
-      <div class="pull-left preview-image">
-        <img ng-src="{{previewImage}}" ng-if="previewImage"  width="80px" height="80px">
-        <img ng-src="{{'http://' + config.uriPht + gift.info.cover}}" ng-if="gift.info.cover&&!previewImage" width="80px" height="80px">
-        <img holder="holder.js/100px80?text=暂无封面&bg=b5b6b6&fg=ffffff" class="img-responsive center-block" ng-if="!gift.info.cover && !previewImage" width="80px" height="80px">
+    <div class="form-group row gift-common" ng-class="{ 'has-success': uploadFile && submitted,
+                                        'has-error' : !uploadFile && submitted }">
+  		<div class="col-xs-1">
+      	<label for="gift.cover" class="control-label  control-label-cust">轮播图：</label>
+  		</div>
+      <div class="col-xs-3">
+        <div class="pull-left preview-image">
+          <img ng-src="{{previewImage}}" ng-if="previewImage"  width="80px" height="80px">
+          <img ng-src="{{config.uriPht + gift.info.cover}}" ng-if="gift.info.cover && !previewImage" width="80px" height="80px">
+          <img holder="holder.js/100px80?text=暂无封面&bg=b5b6b6&fg=ffffff" class="img-responsive center-block" ng-if="!gift.info.cover && !previewImage" width="80px" height="80px">
+        </div>
+        <div class="upload-file">
+          <file-field class="btn btn-primary" ng-model="uploadFile" preview="previewImage">选择图片</file-field>
+        </div>
+        <p class="img-ratio">建议长宽比例1:1 </p>
       </div>
-      <div class="upload-file">
-        <file-field class="btn btn-primary" ng-model="uploadFile" preview="previewImage">选择图片</file-field>
-      </div>
-      <p class="lunjy">建议长宽比例1:1 </p>
     </div>
-  </div>
   </ng-form>
   <!--
   <div class="form-group" ng-class="{ 'has-success': giftForm['gift.poetry'].$valid && submitted,
@@ -100,7 +90,7 @@
   </div>
   -->
   <!--礼物详情-->
-  <div class="form-group row gift-title gift-details"  
+  <div class="form-group row gift-common gift-details"  
   		 ng-class="{'has-success': giftForm['gift.detail'].$valid && submitted,
                                       'has-error' : giftForm['gift.detail'].$invalid && submitted }">
     <div class="col-xs-1">
@@ -114,9 +104,230 @@
       <p ng-show="giftForm['gift.detail'].$error.required && submitted" class="help-block">礼物详情必须填写.</p>
     </div>
   </div>
-  <div class="form-group row gift-title" style="background-color:transparent;">
+
+  <!--消费方式-->
+  <div class="form-group row gift-common gift-consum">
+    <div class="col-xs-1">
+    	<label for="gift.detail" class="hidden-xs control-label control-label-cust">消费方式：</label>
+    </div>
+    <div class="col-xs-11">
+      <div ng-show="false">
+        <div class="col-xs-1">商品类型：</div>
+        <div class="col-xs-11">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="radio-inline">
+                <label for="consumeType4">
+                  <input type="radio" ng-model="gift.status.type"
+                    value="1"
+                    name="gift.status.type"
+                    id="consumeType4">实物商品
+                </label>
+              </div>
+              <div class="radio-inline">
+                <label for="consumeType3">
+                  <input type="radio" ng-model="gift.status.type"
+                    value="2"
+                    name="gift.status.type"
+                    id="consumeType3">虚拟商品
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--实物商品-->
+      <div ng-if="gift.status.type == 1">
+        <!--物流发货-->
+        <div class="row">
+          <div class="col-xs-1">
+          <label class="store store-logistics">
+            <input type="radio"
+              ng-model="consumeType.type"
+              ng-value="'logistics'"
+              name="gift.status.poi_logistics">物流发货
+          </label>
+        </div>
+        <!--门店自提-->
+        <div class="col-xs-2">
+          <label class="store">
+            <input type="radio"
+              ng-model="consumeType.type"
+              ng-value="'poi'"
+              name="gift.status.poi_logistics">门店自提
+          </label>
+        </div>
+        </div>
+
+        <div class="row gift-poi" ng-if="gift.status.poi">
+          <div class="form-group col-xs-7" ng-class="{ 'has-error' : giftForm['gift.poitag'].$invalid && submitted}">
+          	<div class="triangle"></div>
+          	<div class="poiSelect">
+          	  <div class="col-xs-2">参与门店：</div>
+              <div class="col-xs-6">
+                <ui-select name="gift.poitag"
+                  ng-model="gift.poitag"
+                  on-select="selPoiTagCB($item, $model)"
+                  ng-required="gift.status.poi">
+                  <ui-select-match placeholder="选择该拼团参与的门店">
+                      <span ng-bind="$select.selected.name + '(' + $select.selected.num + '家)'"></span>
+                  </ui-select-match>
+                  <ui-select-choices
+                    repeat="poitag in (poitags | filter: $select.search) track by $index"
+                    group-by="'group'">
+                      <span ng-bind="poitag.name + (poitag.id === '574e8ee63027e17c4b56c0bd' ? '' : '(' + poitag.num + '家)')"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+              <div class="col-xs-4">
+                <p class="form-control-static">
+                  <a href="#" ng-click="modalPoiTag()">新建门店分组</a>
+                </p>
+              </div>
+          	</div>
+          </div>
+          <!--扫码设备-->
+          <!--<div class="form-group form-scanner">
+          	<div class="col-xs-1">扫码设备： 	</div>
+          	<div class="col-xs-11">
+          		<div ng-include src="'/scanner.html'"></div>
+          	</div>
+          </div>-->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--分享页祝福语模板-->
+  <div class="form-group row gift-common editGreeting" >
+    <div class="col-xs-1">
+      <label for="gift.detail" class="hidden-xs control-label control-label-cust">其他设置：</label>
+      <span class="choise">(选填)</span>
+    </div>
+    <div class="col-xs-11 showHide"><span>祝福引导语设置</span><span ng-click="hide_detail=!hide_detail">{{hide_detail ? '收起' : '展开'}} <span class="btn-tigger" ng-class="{up_img : hide_detail, down_img : !hide_detail}"></span></span></div>
+    <div class="col-xs-11 edit" ng-hide="!hide_detail">
+      <div class="col-xs-5 edit-img">
+        <span>商家可以自定义左图中的祝福语，默认如左图显示：</span>
+        <img src="https://img.91pintuan.com/songli/client/guide-img.png" alt="" />
+      </div>
+      <div class="col-xs-6 edit-main">
+        <div class="col-xs-12 guide">
+          <span>商家可以自定义左图中的祝福语，默认如左图显示：</span><br />
+          <span>已有346人通过这个礼物说了谢谢   其中6为当前人数</span>
+        </div>
+        <!--标题-->
+        <div class="row edit-title" 
+          ng-class="{ 'has-success': giftForm['gift.info.benedictory.title'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.title'].$invalid && submitted }">
+          <label class="label-left col-xs-3" for="gift.info.benedictory.title">祝福语标题：</label>
+          <input type="text" name="gift.info.benedictory.title"
+             ng-model="gift.info.benedictory.title" 
+             ng-maxlength="40"
+             class="col-xs-9"
+             ng-pattern="/^[^\{NUM\}]*\{NUM\}[^\{NUM\}]*$/">
+          <p class="col-xs-12 note">说明: {NUM} 为占位符</p>
+          <p class="col-xs-12 note">例如: 已有{NUM}个人通过这个礼物说了谢谢</p>
+          <p ng-show="giftForm['gift.info.benedictory.title'].$error.maxlength && submitted" class="help-block col-xs-12">最多15个字</p>
+          <p ng-show="giftForm['gift.info.benedictory.title'].$error.pattern && submitted" class="help-block col-xs-12">{NUM}只能出现一次且必须出现一次</p>
+        </div> 
+        <!--祝福语-->
+        <div class="row edit-title">
+          <!--单人-->
+          <div class="col-xs-12"
+            ng-class="{ 'has-success': giftForm['gift.info.benedictory.one2one'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.one2one'].$invalid && submitted }">
+            <label class="label-left col-xs-3" for="gift.info.benedictory.one2one">送单人祝福语：</label>
+            <input type="text" name="gift.info.benedictory.one2one"
+               ng-model="gift.info.benedictory.one2one"
+               class="col-xs-9"
+               ng-maxlength="30"
+               ng-pattern="/^[^\{SENDER\}|\{RECEIVER\}]*\{SENDER\}(.*)\{RECEIVER\}[^\{SENDER\}|\{RECEIVER\}]*$/"
+            >
+            <p class="col-xs-12 note">说明: {SENDER} {RECEIVER} 为占位符</p>
+            <p class="col-xs-12 note">例如: {SENDER} 谢谢 {RECEIVER} ...</p>
+            <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.maxlength && submitted" class="help-block col-xs-12">最多10个字</p>
+            <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.pattern && submitted" class="help-block col-xs-12">{SENDER}和{RECEIVER}只能出现一次且必须出现一次</p>
+          </div>
+          <!--多人-->
+          <div class="col-xs-12" 
+            ng-class="{ 'has-success': giftForm['gift.info.benedictory.one2many'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.one2many'].$invalid && submitted }">
+            <label class="label-left col-xs-3 " for="gift.info.benedictory.one2many">送多人祝福语：</label>
+            <input type="text" name="gift.info.benedictory.one2many"
+               ng-model="gift.info.benedictory.one2many"
+               class="col-xs-9"
+               ng-maxlength="30"
+               ng-pattern="/^[^\{SENDER\}]*\{SENDER\}[^\{SENDER\}]*$/"
+            >
+            <p class="col-xs-12 note">说明: {SENDER} 为占位符</p>
+            <p class="col-xs-12 note">例如: {SENDER} 谢谢 TA的朋友们</p>
+            <p class="help-block col-xs-12" ng-show="giftForm['gift.info.benedictory.one2many'].$error.maxlength && submitted">最多十个字</p>
+            <p class="help-block col-xs-12" ng-show="giftForm['gift.info.benedictory.one2many'].$error.pattern && submitted">
+              {SENDER}只能出现一次且必须出现一次
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--<div class="form-group row"
+    ng-class="{ 'has-success': giftForm['gift.info.benedictory.title'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.title'].$invalid && submitted }"
+  >
     <div class="col-xs-3 form-foot">
-      <button type="submit" class="btn btn-primary btn-block btn-ground">上架</button>
+       <label for="gift.info.benedictory.title">祝福语标题</label>
+       <input type="text" name="gift.info.benedictory.title"
+          ng-model="gift.info.benedictory.title" 
+          ng-maxlength="40"
+          ng-pattern="/^[^\{NUM\}]*\{NUM\}[^\{NUM\}]*$/"
+       >
+       <p>说明: {NUM} 为占位符</p>
+       <p>例如: 已有{NUM} 用这个礼物送出了祝福</p>
+       <p ng-show="giftForm['gift.info.benedictory.title'].$error.maxlength && submitted" class="help-block">
+          最多15个字
+       </p>
+       <p ng-show="giftForm['gift.info.benedictory.title'].$error.pattern && submitted" class="help-block">
+          {NUM}只能出现一次且必须出现一次
+       </p>
+    </div> 
+  </div>-->
+
+  <!--<div class="form-group row" 
+    ng-class="{ 'has-success': giftForm['gift.info.benedictory.one2one'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.one2one'].$invalid && submitted }">
+    <div class="col-xs-3 form-foot">
+       <label for="gift.info.benedictory.one2one">送单人:祝福语</label>
+       <input type="text" name="gift.info.benedictory.one2one"
+          ng-model="gift.info.benedictory.one2one"
+          ng-maxlength="30"
+          ng-pattern="/^[^\{SENDER\}|\{RECEIVER\}]*\{SENDER\}(.*)\{RECEIVER\}[^\{SENDER\}|\{RECEIVER\}]*$/"
+       >
+       <p>说明: {SENDER} {RECEIVER} 为占位符</p>
+       <p>例如: {SENDER} 祝福 {RECEIVER} ...</p>
+       <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.maxlength && submitted" class="help-block">最多10个字</p>
+       <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.pattern && submitted" class="help-block">
+         {SENDER}和{RECEIVER}只能出现一次且必须出现一次
+       </p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-3 form-foot">
+       <label for="gift.info.benedictory.one2many">送多人:祝福语</label>
+       <input type="text" name="gift.info.benedictory.one2many"
+          ng-model="gift.info.benedictory.one2many"
+          ng-maxlength="30"
+          ng-pattern="/^[^\{SENDER\}]*\{SENDER\}[^\{SENDER\}]*$/"
+       >
+       <p>说明: {SENDER} 为占位符</p>
+       <p>例如: {SENDER} 祝福 TA的朋友们</p>
+       <p ng-show="giftForm['gift.info.benedictory.one2many'].$error.maxlength && submitted">最多十个字</p>
+       <p ng-show="giftForm['gift.info.benedictory.one2many'].$error.pattern && submitted">
+         {SENDER}只能出现一次且必须出现一次
+       </p>
+    </div>
+  </div>-->
+
+  <!--上架-->
+  <div class="form-group row form-submit">
+    <div class="col-xs-3 form-foot">
+      <button type="submit" class="btn btn-primary btn-block btn-ground" ng-bind="gift.id ? '更 新' :  '上 架'"></button>
     </div>
   </div>
 </form>

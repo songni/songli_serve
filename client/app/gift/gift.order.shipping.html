@@ -1,29 +1,114 @@
-<div class="modal-header">
+<!--<div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
   <h4 class="modal-title">{{order.status.shipping?'修改快递单号':'发货确认'}}</h4>
 </div>
 <div class="modal-body">
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label class="col-xs-3 control-label">快递公司</label>
-      <div class="col-xs-8">
-        <select class="form-control" ng-model="exp.company" ng-options="com.name for com in express.companies">
-          <option value="">请选择</option>
-        </select>
+  <form class="form-horizontal" name="giftOrderShippingForm">
+    <div ng-if="receiver.scene === 'logistics'">
+      <div class="form-group">
+        <label class="col-xs-3 control-label">快递公司</label>
+        <div class="col-xs-8">
+          <select name="exp.company" class="form-control" ng-model="exp.company" ng-options="com.name for com in express.companies" required>
+            <option value="">请选择</option>
+          </select>
+        </div>
+        <p ng-show="giftOrderShippingForm['exp.company'].$error.required && submitted" class="help-block">
+        商家名称必须填写.
+        </p>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-3 control-label">快递单号</label>
+        <div class="col-xs-8">
+          <input name="exp.no" type="text" class="form-control" ng-model="exp.no" placeholder="请输入快递单号" required>
+        </div>
+        <p ng-show="giftOrderShippingForm['exp.no'].$error.required && submitted" class="help-block">
+        商家名称必须填写.
+        </p>
+      </div>
+      <div class="form-group has-warning">
+          <p class="help-block text-center">填写完整的快递信息后,点击<kbd>发货</kbd>将会通过您的微信公众号给客户发送一条通知</p>
       </div>
     </div>
-    <div class="form-group">
-      <label class="col-xs-3 control-label">快递单号</label>
-      <div class="col-xs-8">
-        <input type="text" class="form-control" ng-model="exp.no" placeholder="请输入快递单号">
-      </div>
-    </div>
-    <div class="form-group has-warning">
-        <p class="help-block text-center">填写完整的快递信息后,点击<kbd>发货</kbd>将会通过您的微信公众号给客户发送一条通知</p>
+
+    <div ng-if="receiver.scene === 'poi'">
+        <div class="form-group has-warning">
+          <p class="help-block text-center">确定发货？点击<kbd>发货</kbd>将会通过您的微信公众号给客户发送一条通知</p>
+        </div>
     </div>
   </form>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
   <button type="button" class="btn btn-primary" ng-click="shipping()">发货</button>
+</div>-->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">{{order.status.shipping?'修改快递单号':'发货确认'}}</h4>
+</div>
+<div class="modal-body">
+  <!--物流发货-->
+  <div ng-show="receiver.scene === 'logistics'">
+    <div class="radio-exp">
+      <div class="col-xs-2">配送方式</div>
+      <div class="col-xs-10">
+        <label class="radio-inline">
+          <input type="radio"
+            ng-model="exp.type"
+            value="0" name="exp.type">快递配送
+        </label>
+        <label class="radio-inline">
+          <input type="radio"
+            ng-model="exp.type"
+            value="1" name="exp.type">自主配送
+        </label>
+      </div>
+    </div>
+    <!--快递配送-->
+    <form class="form-horizontal form-exp" name="giftOrderShippingForm" ng-if="exp.type == 0" >
+      <div class="form-group">
+        <label class="col-xs-2 control-label">快递公司</label>
+        <div class="col-xs-10">
+          <select 
+            name="exp.company" 
+            class="form-control" 
+            ng-model="$parent.exp.company" 
+            ng-options="com.name for com in express.companies" 
+            required>
+            <option value="">请选择</option>
+          </select>
+          <p ng-show="giftOrderShippingForm['exp.company'].$error.required && submitted" class="help-block">快递公司必须填写.</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-2 control-label">快递单号</label>
+        <div class="col-xs-10">
+          <input 
+            name="exp.no" 
+            type="text" 
+            class="form-control" 
+            ng-model="$parent.exp.no" 
+            placeholder="请输入快递单号" 
+            required>
+          <p ng-show="giftOrderShippingForm['exp.no'].$error.required && submitted" class="help-block">快递单号必须填写.</p>
+        </div>
+      </div>
+      <div class="form-group has-warning">
+        <p class="help-block text-exp col-xs-12">填写完整的快递信息，点击［确定发货］完成发货。发货后，系统将会通过商家公号派发给消费者一条发货通知，以告知消费者已发货以及快递单号等物流信息。</p>
+      </div>
+    </form>
+    <!--自主配送-->
+    <div ng-show="exp.type == 1" class="div-self">
+      <p class="col-xs-12 help-block" >自主配送方式适用于有自主配送团队的商家发货使用。发货时无需填写快递单号等物流信息，点击［确定发货］即可完成发货。</p>
+    </div>
+  </div>
+  <!--门店发货-->
+  <div ng-if="receiver.scene === 'poi'">
+    <div class="form-group has-warning">
+      <p class="help-block text-center">确定发货？点击<kbd>发货</kbd>将会通过您的微信公众号给客户发送一条通知</p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer form-btn">
+  <button type="button" class="btn btn-com btn-sure_exp" ng-click="shipping()">发货</button>
+  <button type="button" class="btn btn-com btn-cancel_exp" ng-click="cancel()">取消</button>
 </div>

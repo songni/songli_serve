@@ -107,21 +107,32 @@ app['www.dev.songni.cc'] = {
   name: '91送礼开发版',
   wechat: '91送礼',
   telephone: '010-84988362',
-  icp: '京ICP证060911'
+  icp: '京ICP证060911',
+  suffix: '.def'
 };
 app['www.91songli.cc'] = {
   api: 'http://api.91songli.cc',
   name: '91送礼',
   wechat: '91送礼',
   telephone: '010-84988362',
-  icp: '京ICP证060911'
+  icp: '京ICP证060911',
+  suffix: '.def'
+};
+app['www.91songli.com'] = {
+  api: 'http://api.91songli.com',
+  name: '91送礼',
+  wechat: '91送礼',
+  telephone: '010-84988362',
+  icp: '京ICP证060911',
+  suffix: '.def'
 };
 app['www.dalibao.com'] = {
   api: 'http://api.dalibao.com',
   name: '大礼包',
   wechat: '村村乐',
   telephone: '010-51692648',
-  icp: '京公网安备11010102001340号'
+  icp: '京公网安备11010102001340号',
+  suffix: '.cuncunle'
 };
 
 exports = module.exports = {

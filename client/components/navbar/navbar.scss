@@ -50,7 +50,6 @@
 	font-size: 12px;
 }
 
-
 .nav-logout {
 	border-left:1px solid #9d9d9d;
 	text-align: center;
@@ -69,3 +68,42 @@
   padding:60px 30px;
   background-color:transparent;
 }
+// menu.html 左侧菜单栏
+.gift-menu{
+  padding-top: 42px;
+  .mLeft{margin-left: 39px;}
+  .head-li{padding: 18px 0 18px 60px;}
+  .menu-icon{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    vertical-align: 0;
+    margin-right: 15px;
+    img{
+      width: 100%;
+      height: 100%;
+      vertical-align: -4px;
+    }
+  }
+  ul{
+    padding: 0;
+    li{
+      a{
+        display: block;
+        padding: 18px 0 18px 60px;
+        color: #000000;
+      }
+      .menu-icon-green{display: none;}
+//    .green-box{display: inline-block;width: 5px;height: 30px;background: #FF0000;margin-left: -60px;margin-right: 50px;}
+    }
+    li:hover,
+    li.active{
+      background: #EFF1F3;
+      cursor: pointer;
+      .menu-icon-green{display: inline-block !important}
+      .menu-icon-gray{display: none !important;}
+      a{color: #9FCB41;}
+    }
+  }
+}
+
