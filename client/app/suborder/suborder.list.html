@@ -103,7 +103,7 @@
 				<td>
 					<span> {{ suborder.name || suborder.consignee }}</span><br />
 					<span>{{ suborder.telephone}}</span><br />
-					<span>{{ suborder.address }}</span><br />
+					<span>{{ suborder.scene === 'poi' ? suborder.poi.base_info.business_name : suborder.address }}</span><br />
 				</td>
 				<td>{{ suborder.order.gift.info.name }}</td>
 				<td>

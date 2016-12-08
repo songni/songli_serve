@@ -174,6 +174,7 @@ angular.module('serveApp')
           pay: newVal[7]
         }).then(function(result){
           $scope.suborders = result.suborders;
+          console.warn($scope.suborders[0]);
           $scope.pagi.totalItems = result.count;
         });
     });

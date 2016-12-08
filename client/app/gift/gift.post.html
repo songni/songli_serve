@@ -21,7 +21,7 @@
 			<label for="gift.lead" class="control-label  control-label-cust">副标题 ：</label>
 	  </div>
     <div class="col-xs-11">
-      <textarea name="gift.lead" ng-model="gift.info.lead" class="form-control" rows="5" placeholder="更多礼物描述"></textarea>
+      <textarea name="gift.lead" ng-model="gift.info.lead" class="form-control" rows="5" placeholder="引导消费者送礼的营销文案，如：“送一杯咖啡，对ta说谢谢...” "></textarea>
       <p ng-show="giftForm['gift.lead'].$error.required && submitted" class="help-block">礼物副标题必须填写. </p>
     </div>
   </div>
@@ -213,7 +213,7 @@
       <div class="col-xs-6 edit-main">
         <div class="col-xs-12 guide">
           <span>商家可以自定义左图中的祝福语，默认如左图显示：</span><br />
-          <span>已有346人通过这个礼物说了谢谢   其中6为当前人数</span>
+          <span>已有346人用这个礼物说谢谢   其中346为当前人数</span>
         </div>
         <!--标题-->
         <div class="row edit-title" 
@@ -225,7 +225,7 @@
              class="col-xs-9"
              ng-pattern="/^[^\{NUM\}]*\{NUM\}[^\{NUM\}]*$/">
           <p class="col-xs-12 note">说明: {NUM} 为占位符</p>
-          <p class="col-xs-12 note">例如: 已有{NUM}个人通过这个礼物说了谢谢</p>
+          <p class="col-xs-12 note">例如: 已有{NUM}人用这个礼物说谢谢</p>
           <p ng-show="giftForm['gift.info.benedictory.title'].$error.maxlength && submitted" class="help-block col-xs-12">最多15个字</p>
           <p ng-show="giftForm['gift.info.benedictory.title'].$error.pattern && submitted" class="help-block col-xs-12">{NUM}只能出现一次且必须出现一次</p>
         </div> 
@@ -268,62 +268,6 @@
     </div>
   </div>
   
-  <!--<div class="form-group row"
-    ng-class="{ 'has-success': giftForm['gift.info.benedictory.title'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.title'].$invalid && submitted }"
-  >
-    <div class="col-xs-3 form-foot">
-       <label for="gift.info.benedictory.title">祝福语标题</label>
-       <input type="text" name="gift.info.benedictory.title"
-          ng-model="gift.info.benedictory.title" 
-          ng-maxlength="40"
-          ng-pattern="/^[^\{NUM\}]*\{NUM\}[^\{NUM\}]*$/"
-       >
-       <p>说明: {NUM} 为占位符</p>
-       <p>例如: 已有{NUM} 用这个礼物送出了祝福</p>
-       <p ng-show="giftForm['gift.info.benedictory.title'].$error.maxlength && submitted" class="help-block">
-          最多15个字
-       </p>
-       <p ng-show="giftForm['gift.info.benedictory.title'].$error.pattern && submitted" class="help-block">
-          {NUM}只能出现一次且必须出现一次
-       </p>
-    </div> 
-  </div>-->
-
-  <!--<div class="form-group row" 
-    ng-class="{ 'has-success': giftForm['gift.info.benedictory.one2one'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.one2one'].$invalid && submitted }">
-    <div class="col-xs-3 form-foot">
-       <label for="gift.info.benedictory.one2one">送单人:祝福语</label>
-       <input type="text" name="gift.info.benedictory.one2one"
-          ng-model="gift.info.benedictory.one2one"
-          ng-maxlength="30"
-          ng-pattern="/^[^\{SENDER\}|\{RECEIVER\}]*\{SENDER\}(.*)\{RECEIVER\}[^\{SENDER\}|\{RECEIVER\}]*$/"
-       >
-       <p>说明: {SENDER} {RECEIVER} 为占位符</p>
-       <p>例如: {SENDER} 祝福 {RECEIVER} ...</p>
-       <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.maxlength && submitted" class="help-block">最多10个字</p>
-       <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.pattern && submitted" class="help-block">
-         {SENDER}和{RECEIVER}只能出现一次且必须出现一次
-       </p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-xs-3 form-foot">
-       <label for="gift.info.benedictory.one2many">送多人:祝福语</label>
-       <input type="text" name="gift.info.benedictory.one2many"
-          ng-model="gift.info.benedictory.one2many"
-          ng-maxlength="30"
-          ng-pattern="/^[^\{SENDER\}]*\{SENDER\}[^\{SENDER\}]*$/"
-       >
-       <p>说明: {SENDER} 为占位符</p>
-       <p>例如: {SENDER} 祝福 TA的朋友们</p>
-       <p ng-show="giftForm['gift.info.benedictory.one2many'].$error.maxlength && submitted">最多十个字</p>
-       <p ng-show="giftForm['gift.info.benedictory.one2many'].$error.pattern && submitted">
-         {SENDER}只能出现一次且必须出现一次
-       </p>
-    </div>
-  </div>-->
-
   <!--上架-->
   <div class="form-group row form-submit">
     <div class="col-xs-3 form-foot">
