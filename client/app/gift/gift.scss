@@ -272,16 +272,17 @@ textarea{resize: none;}
   .edit{
     background: #FFFFFF;
     border: 1px solid #CCCCCC;
-    padding-top: 15px;
+    padding-top: 30px;
     padding-bottom: 20px;
     margin-top: 10px;
   }
   .edit-img{
     span{padding-left: 15px;padding-bottom: 10px;display: block;}
-    img{width: 60%;padding-left: 15px;}
+    img{width: 60%;padding-left: 15px;margin-left: 35px;}
   }
   .edit-main{
     background: #FFFFFF;
+    margin-left: -50px;
     .edit-title{
       .label-left{
         padding-left: 0;
@@ -292,14 +293,16 @@ textarea{resize: none;}
         height: 30px;
         padding-right: 35px;
         border: 1px solid #CCCCCC;
+        padding-left: 5px;
       }
       .note{
         font-size: 12px;
         color: #B9B9BA;
+        padding-left: 25%;
       }
     }
     .guide{
-      margin-bottom: 10px;
+      margin-bottom: 35px;
     }
   }
   

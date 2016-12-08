@@ -204,10 +204,10 @@
       <label for="gift.detail" class="hidden-xs control-label control-label-cust">其他设置：</label>
       <span class="choise">(选填)</span>
     </div>
-    <div class="col-xs-11 showHide"><span>祝福引导语设置</span><span ng-click="hide_detail=!hide_detail">{{hide_detail ? '收起' : '展开'}} <span class="btn-tigger" ng-class="{up_img : hide_detail, down_img : !hide_detail}"></span></span></div>
-    <div class="col-xs-11 edit" ng-hide="!hide_detail">
+    <div class="col-xs-11 showHide"><span>祝福引导语设置</span><span ng-click="hide_detail=!hide_detail">{{hide_detail ? '展开' : '收起'}} <span class="btn-tigger" ng-class="{up_img : hide_detail, down_img : !hide_detail}"></span></span></div>
+    <div class="col-xs-11 edit" ng-hide="hide_detail">
       <div class="col-xs-5 edit-img">
-        <span>商家可以自定义左图中的祝福语，默认如左图显示：</span>
+        <!--<span>商家可以自定义左图中的祝福语，默认如左图显示：</span>-->
         <img src="https://img.91pintuan.com/songli/client/guide-img.png" alt="" />
       </div>
       <div class="col-xs-6 edit-main">
@@ -220,12 +220,13 @@
           ng-class="{ 'has-success': giftForm['gift.info.benedictory.title'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.title'].$invalid && submitted }">
           <label class="label-left col-xs-3" for="gift.info.benedictory.title">祝福语标题：</label>
           <input type="text" name="gift.info.benedictory.title"
+             placeholder="默认：已有{NUM}人用这个礼物说谢谢 "
              ng-model="gift.info.benedictory.title" 
              ng-maxlength="40"
              class="col-xs-9"
              ng-pattern="/^[^\{NUM\}]*\{NUM\}[^\{NUM\}]*$/">
           <p class="col-xs-12 note">说明: {NUM} 为占位符</p>
-          <p class="col-xs-12 note">例如: 已有{NUM}人用这个礼物说谢谢</p>
+          <!--<p class="col-xs-12 note">例如: 已有{NUM}人用这个礼物说谢谢</p>-->
           <p ng-show="giftForm['gift.info.benedictory.title'].$error.maxlength && submitted" class="help-block col-xs-12">最多15个字</p>
           <p ng-show="giftForm['gift.info.benedictory.title'].$error.pattern && submitted" class="help-block col-xs-12">{NUM}只能出现一次且必须出现一次</p>
         </div> 
@@ -236,13 +237,14 @@
             ng-class="{ 'has-success': giftForm['gift.info.benedictory.one2one'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.one2one'].$invalid && submitted }">
             <label class="label-left col-xs-3" for="gift.info.benedictory.one2one">送单人祝福语：</label>
             <input type="text" name="gift.info.benedictory.one2one"
+               placeholder="默认：{SENDER} 谢谢 {RECEIVER} ..."
                ng-model="gift.info.benedictory.one2one"
                class="col-xs-9"
                ng-maxlength="30"
                ng-pattern="/^[^\{SENDER\}|\{RECEIVER\}]*\{SENDER\}(.*)\{RECEIVER\}[^\{SENDER\}|\{RECEIVER\}]*$/"
             >
             <p class="col-xs-12 note">说明: {SENDER} {RECEIVER} 为占位符</p>
-            <p class="col-xs-12 note">例如: {SENDER} 谢谢 {RECEIVER} ...</p>
+            <!--<p class="col-xs-12 note">例如: {SENDER} 谢谢 {RECEIVER} ...</p>-->
             <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.maxlength && submitted" class="help-block col-xs-12">最多10个字</p>
             <p ng-show="giftForm['gift.info.benedictory.one2one'].$error.pattern && submitted" class="help-block col-xs-12">{SENDER}和{RECEIVER}只能出现一次且必须出现一次</p>
           </div>
@@ -251,13 +253,14 @@
             ng-class="{ 'has-success': giftForm['gift.info.benedictory.one2many'].$valid && submitted,'has-error' : giftForm['gift.info.benedictory.one2many'].$invalid && submitted }">
             <label class="label-left col-xs-3 " for="gift.info.benedictory.one2many">送多人祝福语：</label>
             <input type="text" name="gift.info.benedictory.one2many"
+               placeholder="默认：{SENDER} 谢谢 TA的朋友们"
                ng-model="gift.info.benedictory.one2many"
                class="col-xs-9"
                ng-maxlength="30"
                ng-pattern="/^[^\{SENDER\}]*\{SENDER\}[^\{SENDER\}]*$/"
             >
             <p class="col-xs-12 note">说明: {SENDER} 为占位符</p>
-            <p class="col-xs-12 note">例如: {SENDER} 谢谢 TA的朋友们</p>
+            <!--<p class="col-xs-12 note">例如: {SENDER} 谢谢 TA的朋友们</p>-->
             <p class="help-block col-xs-12" ng-show="giftForm['gift.info.benedictory.one2many'].$error.maxlength && submitted">最多十个字</p>
             <p class="help-block col-xs-12" ng-show="giftForm['gift.info.benedictory.one2many'].$error.pattern && submitted">
               {SENDER}只能出现一次且必须出现一次
@@ -271,7 +274,7 @@
   <!--上架-->
   <div class="form-group row form-submit">
     <div class="col-xs-3 form-foot">
-      <button type="submit" class="btn btn-primary btn-block btn-ground" ng-bind="gift.id ? '更 新' :  '上 架'"></button>
+      <button type="submit" class="btn btn-primary btn-block btn-ground" ng-bind="gift.id ? '更 新' :  '发 布'"></button>
     </div>
   </div>
 </form>
