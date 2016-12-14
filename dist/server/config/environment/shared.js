@@ -71,10 +71,11 @@ var tinymceOptions = {
   'content_css': uriImg + '/serve/tinymce.css',
   'plugins': ['textcolor link image insertdatetime paste code emoticons preview autoresize'], //media
   'toolbar_items_size': 'small',
-  'toolbar': ' bold italic underline | bullist numlist | forecolor backcolor' + ' | image emoticons insertdatetime | removeformat undo redo | code preview', //media
+  'toolbar': ' bold italic underline | bullist numlist | alignleft aligncenter alignright alignjustify | forecolor backcolor' + ' fontsizeselect | link image emoticons insertdatetime | removeformat undo redo | code preview', //media
+  'fontsize_formats': '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt',
   'statusbar': false,
   'resize': true,
-  'width': 541,
+  'width': '100%',
   'autoresize_min_height': 394,
   'autoresize_max_height': 1000,
   'insertdatetime_formats': ['%Y年%m月%d号', '%H点%M分'],
