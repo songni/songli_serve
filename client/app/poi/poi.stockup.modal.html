@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()"><span>&times;</span></button>
+  <h3 class="modal-title">门店[{{poi.base_info.business_name+(poi.base_info.branch_name?'('+poi.base_info.branch_name+')':'')}}]备货</h3>
+</div>
+<div class="modal-body">
+  <table class="table table-striped">
+    <tr>
+      <th>商品</th>
+      <th>待发货</th>
+    </tr>
+    <tr ng-repeat="comm in comms">
+      <td>{{comm._id.info.name}}</td>
+      <td>{{comm.count}}</td>
+    </tr>
+  </table>
+</div>

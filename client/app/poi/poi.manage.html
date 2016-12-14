@@ -100,10 +100,10 @@
             <p ng-bind="poi.base_info.telephone"></p>
           </td>
           <td>
-            <a href="#" ng-bind="poi.num.commodity" style="color: #3796F9;" ng-click="stockup()"></a>
+            <a href="#" ng-bind="poi.num.commodity" style="color: #3796F9;" ng-click="stockup(poi)"></a>
           </td>
           <td>
-            <a ui-sref="order.list({poi:poi.id})" ng-bind="poi.num.gift_suborder" style="color: #3796F9;"></a>
+            <a ui-sref="suborder.list({poi: poi.id})" ng-bind="poi.num.gift_suborder" style="color: #3796F9;"></a>
           </td>
           <td ng-bind="poi.num.amount | currency"></td>
           <td class="word-break">

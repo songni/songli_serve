@@ -13,7 +13,7 @@ angular.module('serveApp')
         }
       })
       .state('suborder.list', {
-        url: '/list',
+        url: '/list?poi',
         templateUrl: 'app/suborder/suborder.list.html',
         controller: 'SubOrderListCtrl',
         ncyBreadcrumb: {

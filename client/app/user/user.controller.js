@@ -18,6 +18,7 @@ angular.module('serveApp')
       var params = {category:newVal[0],page:newVal[1],limit:newVal[2]};
       if($stateParams.poi) {params.poi = $stateParams.poi;}
       RestUser.getList(params).then(function(users){
+        console.warn(users.plain());
         $scope.users = users;
       });
       RestUser.one('count').get(params).then(function(data){

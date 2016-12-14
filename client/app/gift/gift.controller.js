@@ -4,7 +4,7 @@ angular.module('serveApp')
     .controller('GiftCtrl', function($scope, $rootScope) {
         $rootScope.title = '礼物管理';
     })
-    .controller('GiftPostCtrl', function($scope, $rootScope, $state, $stateParams, $uibModal, RestGift, RestAlbum, RestCate, Alert, gift) {
+    .controller('GiftPostCtrl', function($scope, $rootScope, $state, $stateParams, $uibModal, appConfig, RestGift, RestAlbum, RestCate, Alert, gift) {
         var pubPoiNo  = $scope.wxUser ? $scope.wxUser.num.poi : 0;
         var allPoiObj = {id: '574e8ee63027e17c4b56c0bc', name: '全部门店', num: pubPoiNo}; 
         $rootScope.title = '发布礼物';
@@ -34,73 +34,75 @@ angular.module('serveApp')
         })
         $scope.submitted = false;
         $scope.config = config;
-        $scope.tinymceOptions = {
-            'language': 'zh_CN',
-            'language_url': '/assets/i18n/tinymce.zh_CN.js',
-            'skin_url': '/bower_components/tinymce-dist/skins/lightgray',
-            'convert_urls': false,
-            'menubar': false,
-            'content_css': '/assets/css/tinymce.css',
-            'plugins': ['textcolor link image insertdatetime paste code emoticons preview autoresize'],
-            'toolbar_items_size': 'small',
-            'toolbar': ' bold italic underline | bullist numlist | forecolor backcolor' +
-                ' | image emoticons insertdatetime | removeformat undo redo | code preview',
-            'statusbar': false,
-            'resize': true,
-            //'width' : 100%,
-            'autoresize_min_height': 250,
-            'autoresize_max_height': 1000,
-            'insertdatetime_formats': ['%Y年%m月%d号', '%H点%M分'],
-            'object_resizing': false,
-            'image_description': false,
-            'image_dimensions': false,
-            'image_class_list': [{
-                title: '默认',
-                value: 'img-responsive'
-            }, {
-                title: '圆角',
-                value: 'img-rounded'
-            }, {
-                title: '圆形',
-                value: 'img-circle'
-            }, {
-                title: '边框',
-                value: 'img-thumbnail'
-            }],
-            'file_picker_types': 'image',
-            'file_picker_callback': function(callback, value, meta) {
-                if (meta.filetype === 'image') {
-                    $('<input />')
-                        .attr({
-                            type: 'file',
-                            name: 'file'
-                        })
-                        .trigger('click')
-                        .change(function() {
-                            var fd = new FormData();
-                            var file = $(this)[0].files[0];
-                            fd.append('file', file);
-                            callback('上传中，请稍后...', {
-                                alt: '上传中'
-                            });
-                            RestAlbum.one('up')
-                                .withHttpConfig({
-                                    transformRequest: angular.identity
-                                })
-                                .customPOST(fd, undefined, undefined, {
-                                    'Content-Type': undefined
-                                })
-                                .then(function(data) {
-                                    if (data.link) {
-                                        callback(data.link, {
-                                            alt: data.name
-                                        });
-                                    }
-                                });
-                        });
-                }
-            }
-        };
+        $scope.tinymceOptions = appConfig.tinymceOptions;
+        // $scope.tinymceOptions = {
+        //     'language': 'zh_CN',
+        //     'language_url': '/assets/i18n/tinymce.zh_CN.js',
+        //     'skin_url': '/bower_components/tinymce-dist/skins/lightgray',
+        //     'convert_urls': false,
+        //     'menubar': false,
+        //     'content_css': '/assets/css/tinymce.css',
+        //     'plugins': ['textcolor link image insertdatetime paste code emoticons preview autoresize'],
+        //     'toolbar_items_size': 'small',
+        //     'toolbar': ' bold italic underline | bullist numlist | forecolor backcolor' +
+        //         ' fontsizeselect | image emoticons insertdatetime | removeformat undo redo | code preview',
+        //     'fontsize_formats': '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt',
+        //     'statusbar': false,
+        //     'resize': true,
+        //     //'width' : 100%,
+        //     'autoresize_min_height': 250,
+        //     'autoresize_max_height': 1000,
+        //     'insertdatetime_formats': ['%Y年%m月%d号', '%H点%M分'],
+        //     'object_resizing': false,
+        //     'image_description': false,
+        //     'image_dimensions': false,
+        //     'image_class_list': [{
+        //         title: '默认',
+        //         value: 'img-responsive'
+        //     }, {
+        //         title: '圆角',
+        //         value: 'img-rounded'
+        //     }, {
+        //         title: '圆形',
+        //         value: 'img-circle'
+        //     }, {
+        //         title: '边框',
+        //         value: 'img-thumbnail'
+        //     }],
+        //     'file_picker_types': 'image',
+        //     'file_picker_callback': function(callback, value, meta) {
+        //         if (meta.filetype === 'image') {
+        //             $('<input />')
+        //                 .attr({
+        //                     type: 'file',
+        //                     name: 'file'
+        //                 })
+        //                 .trigger('click')
+        //                 .change(function() {
+        //                     var fd = new FormData();
+        //                     var file = $(this)[0].files[0];
+        //                     fd.append('file', file);
+        //                     callback('上传中，请稍后...', {
+        //                         alt: '上传中'
+        //                     });
+        //                     RestAlbum.one('up')
+        //                         .withHttpConfig({
+        //                             transformRequest: angular.identity
+        //                         })
+        //                         .customPOST(fd, undefined, undefined, {
+        //                             'Content-Type': undefined
+        //                         })
+        //                         .then(function(data) {
+        //                             if (data.link) {
+        //                                 callback(data.link, {
+        //                                     alt: data.name
+        //                                 });
+        //                             }
+        //                         });
+        //                 });
+        //         }
+        //     }
+        // };
         $scope.post = function() {
             $scope.submitted = true;
             if ($scope.giftForm.$invalid) return false;

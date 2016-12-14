@@ -1,13 +1,16 @@
 'use strict';
 
 angular.module('serveApp')
-  .controller('SubOrderListCtrl', function ($scope, $rootScope, $interval, $log, $uibModal, Alert, RestGift, RestExp, RestOrderGift, RestSuborder) {
+  .controller('SubOrderListCtrl', function (
+    $scope, $rootScope, $interval, $log, $uibModal, $stateParams, 
+    Alert, RestGift, RestExp, RestOrderGift, RestSuborder
+  ) {
     $rootScope.title = '发货管理';
     $scope.suborders = [];
     $scope.forms = {};
     $scope.filter = {
-			delivery: 'all'
-		}
+        delivery: 'all'
+    }
     $scope.clientUri = config.clientUri;
 
     $scope.status = {
@@ -163,7 +166,8 @@ angular.module('serveApp')
     
     $scope.$watchCollection('[pagi.currentPage,pagi.itemsPerPage,pagi.startTime,pagi.endTime,pagi.order,pagi.serial,status.shipping,status.pay,status.refresh]', function(newVal) {
         $scope.suborders = [];
-        RestGift.one('suborder').get({
+
+        let params = {
           page: newVal[0],
           limit: newVal[1],
           startTime: newVal[2],
@@ -172,9 +176,14 @@ angular.module('serveApp')
           serial: newVal[5],
           shipping: newVal[6],
           pay: newVal[7]
-        }).then(function(result){
+        }
+
+        if ($stateParams.poi) {
+            params.poi = $stateParams.poi
+        }
+
+        RestGift.one('suborder').get(params).then(function(result){
           $scope.suborders = result.suborders;
-          console.warn($scope.suborders[0]);
           $scope.pagi.totalItems = result.count;
         });
     });

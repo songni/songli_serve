@@ -243,8 +243,7 @@ angular.module('serveApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-    $scope.stockup = () => {
-      var poi = this.poi;
+    $scope.stockup = poi => {
       var modalInstance = $uibModal.open({
         templateUrl: 'app/poi/poi.stockup.modal.html',
         controller: 'PoiStockupModalCtrl',
@@ -292,9 +291,9 @@ angular.module('serveApp')
         $uibModalInstance.close(rnd);
       };
   })
-  .controller('PoiStockupModalCtrl',function($scope,$uibModalInstance,RestComm,poi){
+  .controller('PoiStockupModalCtrl',function($scope,$uibModalInstance,RestGift,poi){
       $scope.poi = poi;
-      RestComm.one('poi').get({poi:poi.id}).then(function (comms) {
+      RestGift.one('poi').get({poi: poi.id}).then(function (comms) {
         $scope.comms = comms;
       });
   })
