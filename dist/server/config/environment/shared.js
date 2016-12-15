@@ -65,7 +65,7 @@ var tinymceOptions = {
   'language': 'zh_CN',
   'baseURL': uriImg + '/bower_components/tinymce',
   'language_url': uriImg + '/serve/tinymce.zh_CN.js',
-  //'skin_url':'/assets/js/tinymce/skins/lightgray',
+  // 'skin_url': uriImg+'/bower_components/tinymce-dist/skins/lightgray',
   'convert_urls': false,
   'menubar': false,
   'content_css': uriImg + '/serve/tinymce.css',
