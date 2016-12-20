@@ -254,6 +254,8 @@ textarea{resize: none;}
   .row{margin-left: 0;}
   .col-xs-5,
   .col-xs-6,
+  .col-xs-4,
+  .col-xs-7,
   .col-xs-12{
     padding-left: 0;
     padding-right: 0;
@@ -278,7 +280,7 @@ textarea{resize: none;}
   }
   .edit-img{
     span{padding-left: 15px;padding-bottom: 10px;display: block;}
-    img{width: 60%;padding-left: 15px;margin-left: 35px;}
+    img{width: 80%;padding-left: 15px;margin-left: 35px;}
   }
   .edit-main{
     background: #FFFFFF;
@@ -288,6 +290,8 @@ textarea{resize: none;}
         padding-left: 0;
         height: 30px;
         line-height: 30px;
+        text-align: right;
+        padding-right: 15px;
       }
       input{
         height: 30px;
