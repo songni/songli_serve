@@ -9,7 +9,7 @@
     		<label for="gift.name" class="control-label control-label-cust">礼物标题：</label>
     	</div>
 	    <div class="col-xs-11">
-	      <input type="text" name="gift.name" ng-model="gift.info.name" class="form-control"  ng-maxlength="500" required>
+	      <input type="text" name="gift.name" ng-model="gift.info.name" ng-disabled="isAllowUpdate" class="form-control"  ng-maxlength="500" required>
 	      <p ng-show="giftForm['gift.name'].$error.required && submitted" class="help-block">礼物标题必须填写. </p>
 	      <p ng-show="giftForm['gift.name'].$error.maxlength" class="help-block">最多15个字.</p>
 	    </div>
@@ -21,7 +21,7 @@
 			<label for="gift.lead" class="control-label  control-label-cust">副标题 ：</label>
 	  </div>
     <div class="col-xs-11">
-      <textarea name="gift.lead" ng-model="gift.info.lead" class="form-control" rows="5" placeholder="引导消费者送礼的营销文案，如：“送一杯咖啡，对ta说谢谢...” "></textarea>
+      <textarea name="gift.lead" ng-model="gift.info.lead" ng-disabled="isAllowUpdate" class="form-control" rows="5" placeholder="引导消费者送礼的营销文案，如：“送一杯咖啡，对ta说谢谢...” "></textarea>
       <p ng-show="giftForm['gift.lead'].$error.required && submitted" class="help-block">礼物副标题必须填写. </p>
     </div>
   </div>
@@ -34,27 +34,33 @@
     <div class="col-xs-3">
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-        <input type="text" name="gift.price" ng-model="gift.info.price" class="form-control"  required>
+        <input type="text" name="gift.price" ng-model="gift.info.price" ng-disabled="isAllowUpdate" class="form-control"  required>
       </div>
       <p ng-show="giftForm['gift.price'].$error.required && submitted" class="help-block">礼物价格必须填写. </p>
     </div>
   </div>
   <!--库存-->
-  <div class="form-group row gift-common" ng-class="{ 'has-success': giftForm['gift.num.stock'].$valid && submitted,
-                                      'has-error' : giftForm['gift.num.stock'].$invalid && submitted }">
+  <div class="form-group row gift-common" ng-class="{ 'has-success': giftForm['gift.num.stock'].$valid && submitted, 'has-error' : giftForm['gift.num.stock'].$invalid && submitted }">
 		<div class="col-xs-1">
     	<label for="gift.num.stock" class="control-label control-label-cust">库存：</label>
 		</div>
     <div class="col-xs-3">
       <div class="input-group">
-        <input type="number" ng-min="0" ng-max="9999999" 
-        			 name="gift.num.stock" ng-model="gift.num.stock" 
-        			 class="form-control" placeholder="0">
+        <input type="number" stock-validate="{{gift}}"
+          name="gift.num.stock" ng-model="gift.num.stock" 
+          class="form-control" placeholder="0">
         <span class="input-group-addon">件</span>
       </div>
       <p class="noteStock">库存数字默认为0，代表无库存限制</p>
-      <p ng-show="giftForm['gift.num.stock'].$error.min && submitted" class="help-block">库存必须大于0 </p>
-      <p ng-show="giftForm['gift.num.stock'].$error.max && submitted" class="help-block">库存必须小于9999999</p>
+      <p ng-show="giftForm['gift.num.stock'].$error.smin && submitted" class="help-block">
+        <span ng-if="isAllowUpdate">
+          库存必须大于出货量{{ gift.num.subpay || gift.num.receivers }}
+        </span>
+        <span ng-if="!isAllowUpdate">
+          库存必须大于0 
+        </span>
+      </p>
+      <p ng-show="giftForm['gift.num.stock'].$error.smax && submitted" class="help-block">库存必须小于9999999</p>
     </div>
   </div>
   <!--轮播图-->
@@ -67,11 +73,11 @@
       <div class="col-xs-3">
         <div class="pull-left preview-image">
           <img ng-src="{{previewImage}}" ng-if="previewImage"  width="80px" height="80px">
-          <img ng-src="{{config.uriPht + gift.info.cover}}" ng-if="gift.info.cover && !previewImage" width="80px" height="80px">
+          <img ng-src="{{config.uriPht + gift.info.cover}}" ng-disabled="isAllowUpdate" ng-if="gift.info.cover && !previewImage" width="80px" height="80px">
           <img holder="holder.js/100px80?text=暂无封面&bg=b5b6b6&fg=ffffff" class="img-responsive center-block" ng-if="!gift.info.cover && !previewImage" width="80px" height="80px">
         </div>
         <div class="upload-file">
-          <file-field class="btn btn-primary" ng-model="uploadFile" preview="previewImage">选择图片</file-field>
+          <file-field class="btn btn-primary" ng-disabled="isAllowUpdate" ng-model="uploadFile" preview="previewImage">选择图片</file-field>
         </div>
         <p class="img-ratio">建议长宽比例1:1 </p>
       </div>
@@ -90,20 +96,22 @@
   </div>
   -->
   <!--礼物详情-->
-  <div class="form-group row gift-common gift-details"  
-  		 ng-class="{'has-success': giftForm['gift.detail'].$valid && submitted,
-                                      'has-error' : giftForm['gift.detail'].$invalid && submitted }">
+  <div class="form-group row gift-common gift-details"
+    ng-class="{'has-success': giftForm['gift.detail'].$valid && submitted,'has-error' : giftForm['gift.detail'].$invalid && submitted }">
     <div class="col-xs-1">
-    	<label for="gift.detail" class="hidden-xs control-label control-label-cust">礼物详情：</label>
+    	<label for="gift.detail"  class="hidden-xs control-label control-label-cust">礼物详情：</label>
     </div>
-    <div class="col-xs-11">
+    <div class="col-xs-11 tinymceEdit">
       <textarea type="text" name="gift.detail" class="form-control" placeholder="输入礼物详情"
             ng-model="gift.info.detail"
             ui-tinymce="tinymceOptions" 
             required></textarea>
       <p ng-show="giftForm['gift.detail'].$error.required && submitted" class="help-block">礼物详情必须填写.</p>
+      <!--禁止编辑详情时出现遮层-->
+      <div ng-show="isAllowUpdate" class="disabled-shade"></div>
     </div>
   </div>
+  
 
   <!--消费方式-->
   <div class="form-group row gift-common gift-consum">
@@ -119,6 +127,7 @@
               <div class="radio-inline">
                 <label for="consumeType4">
                   <input type="radio" ng-model="gift.status.type"
+                    ng-disabled="isAllowUpdate"
                     value="1"
                     name="gift.status.type"
                     id="consumeType4">实物商品
@@ -127,6 +136,7 @@
               <div class="radio-inline">
                 <label for="consumeType3">
                   <input type="radio" ng-model="gift.status.type"
+                    ng-disabled="isAllowUpdate"
                     value="2"
                     name="gift.status.type"
                     id="consumeType3">虚拟商品
@@ -143,6 +153,7 @@
           <div class="col-xs-1">
           <label class="store store-logistics">
             <input type="radio"
+              ng-disabled="isAllowUpdate"
               ng-model="consumeType.type"
               ng-value="'logistics'"
               name="gift.status.poi_logistics">物流发货
@@ -152,6 +163,7 @@
         <div class="col-xs-2">
           <label class="store">
             <input type="radio"
+              ng-disabled="isAllowUpdate"
               ng-model="consumeType.type"
               ng-value="'poi'"
               name="gift.status.poi_logistics">门店自提
@@ -168,6 +180,7 @@
                 <ui-select name="gift.poitag"
                   ng-model="gift.poitag"
                   on-select="selPoiTagCB($item, $model)"
+                  ng-disabled="isAllowUpdate"
                   ng-required="gift.status.poi">
                   <ui-select-match placeholder="选择该拼团参与的门店">
                       <span ng-bind="$select.selected.name + '(' + $select.selected.num + '家)'"></span>
@@ -181,7 +194,7 @@
               </div>
               <div class="col-xs-4">
                 <p class="form-control-static">
-                  <a href="#" ng-click="modalPoiTag()">新建门店分组</a>
+                  <button class="new-poi" href="#" ng-disabled="isAllowUpdate" ng-click="modalPoiTag()">新建门店分组</button>
                 </p>
               </div>
           	</div>
@@ -213,7 +226,7 @@
       <div class="col-xs-5 edit-main">
         <div class="col-xs-12 guide">
           <span>商家可以自定义左图中的祝福文字，默认文字如左图：</span><br />
-          <span>已有346人收到了礼物   其中346为当前人数</span>
+          <span>已有8人收到了礼物   其中8为当前人数</span>
         </div>
         <!--标题-->
         <div class="row edit-title" 
@@ -222,6 +235,7 @@
           <input type="text" name="gift.info.benedictory.title"
              placeholder="默认：已有{NUM}人收到了礼物 "
              ng-model="gift.info.benedictory.title" 
+             ng-disabled="isAllowUpdate"
              ng-maxlength="40"
              class="col-xs-9"
              ng-pattern="/^[^\{NUM\}]*\{NUM\}[^\{NUM\}]*$/">
@@ -237,6 +251,7 @@
             <input type="text" name="gift.info.benedictory.content"
                placeholder="默认：{RECEIVER}收到了礼物"
                ng-model="gift.info.benedictory.content"
+               ng-disabled="isAllowUpdate"
                class="col-xs-9"
                ng-maxlength="30"
                ng-pattern="/^[^\{RECEIVER\}]*\{RECEIVER\}[^\{RECEIVER\}]*$/">

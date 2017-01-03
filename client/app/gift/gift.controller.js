@@ -1,6 +1,53 @@
 'use strict';
 
 angular.module('serveApp')
+    .directive('stockValidate', function (){ 
+        return {
+            require: 'ngModel',
+            link: function(scope, elem, attr, ngModel) {
+                let gift = JSON.parse(attr.stockValidate)
+                let isNew = !(!!gift.id)
+                const TOP_LIMIT = 999999
+                let valid = false;
+                // //For DOM -> model validation
+                ngModel.$parsers.unshift(value => {
+                    let valid = obtainValidation(value)
+                    return valid ? value : undefined;
+                })
+
+                // //For model -> DOM validation
+                ngModel.$formatters.unshift(value => {
+                    value && obtainValidation(value);
+                    return value;
+                });
+
+                function obtainValidation(value) {
+                    if (isNew) {
+                        let bottomLimit = 0;
+                        let topLimit = TOP_LIMIT;
+                        bottomLimit && ngModel.$setValidity('smin', value >= bottomLimit);
+                        topLimit && ngModel.$setValidity('smax', value <= topLimit);
+                        valid = value >= bottomLimit && value <= topLimit;
+                        return valid;
+                    } else {
+                        if (value == 0) {
+                            ngModel.$setValidity('smin', true);
+                            ngModel.$setValidity('smax', true);
+                            valid = true
+                            return valid;
+                        } else {
+                            let bottomLimit = gift.num.subpay || gift.num.receivers || 0;
+                            let topLimit = TOP_LIMIT
+                            bottomLimit && ngModel.$setValidity('smin', value >= bottomLimit);
+                            topLimit && ngModel.$setValidity('smax', value <= topLimit);
+                            let valid = value >= bottomLimit && value <= topLimit;
+                            return valid;
+                        }
+                    }
+                }
+            }
+        };
+    })
     .controller('GiftCtrl', function($scope, $rootScope) {
         $rootScope.title = '礼物管理';
     })
@@ -9,6 +56,7 @@ angular.module('serveApp')
         var allPoiObj = {id: '574e8ee63027e17c4b56c0bc', name: '全部门店', num: pubPoiNo}; 
         $rootScope.title = '发布礼物';
         if ($stateParams.id) $scope.gift = gift;
+
         if(!$scope.gift){
             //new gift
             $scope.gift = {
@@ -19,11 +67,26 @@ angular.module('serveApp')
                 }
             }
         }
+
+        let originStock = gift && gift.num && gift.num.stock
+        let isAppend = () => {
+            if ($scope.gift.id && $scope.gift.num.pay > 0) {
+                if ($scope.gift.num.stock > originStock) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         if(!$scope.gift.poitag){
             $scope.gift.poitag = allPoiObj;
         }
         $scope.gift.status.poi && ($scope.consumeType = {type: 'poi'});
         $scope.gift.status.logistics && ($scope.consumeType = {type: 'logistics'});
+        
+        if ($scope.gift.id && $scope.gift.num.pay > 0) {
+            $scope.isAllowUpdate = true
+        }
 
         $scope.$watch('consumeType.type', type => {
             let types = ['poi', 'logistics'];
@@ -35,8 +98,12 @@ angular.module('serveApp')
         $scope.submitted = false;
         $scope.config = config;
         $scope.tinymceOptions = {};
+
         _.assign(
             $scope.tinymceOptions, 
+            {
+              contenteditable: false
+            },
             _.omit(appConfig.tinymceOptions, 'baseURL'), 
             {
                 language_url: '/assets/i18n/tinymce.zh_CN.js',
@@ -94,7 +161,8 @@ angular.module('serveApp')
             fd.append('poitag', $scope.gift.poitag ? JSON.stringify($scope.gift.poitag) : '');
             fd.append('status', $scope.gift.status ? JSON.stringify($scope.gift.status) : '');
             fd.append('logistics', $scope.gift.logistics);
-            
+            fd.append('append', isAppend() ? true : '');
+
             if($scope.gift.info.benedictory
             ){
                 fd.append('benedictory', JSON.stringify($scope.gift.info.benedictory));

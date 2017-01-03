@@ -75,7 +75,7 @@ angular.module('serveApp')
             },
             authenticate: true,
             ncyBreadcrumb: {
-                label: '送你详情'
+                label: '商品详情'
             }
         })
 
@@ -95,7 +95,7 @@ angular.module('serveApp')
             controller: 'GiftQrcodeCtrl',
             authenticate: true,
             ncyBreadcrumb: {
-                label: '送你链接二维码'
+                label: '商品链接二维码'
             }
         });
     });

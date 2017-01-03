@@ -1,3 +1,19 @@
+// 修改商品库存时，禁止编写详情遮罩
+.tinymce-edit{
+  position: relative;
+}
+.disabled-shade{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 427px;
+  background: rgba(238,238,238, .6);
+}
+.new-poi{
+  border: 0;
+  background: #FFFFFF;
+  cursor: pointer;
+}
 textarea{resize: none;}
 .panel-body {
   padding: 10px 0;
