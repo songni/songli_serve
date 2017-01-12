@@ -238,10 +238,6 @@ angular.module('serveApp')
 						Alert.add('success', data);
 						$scope.submitted = false;
 						$state.go('bigpack.list');
-					}, 
-					data => {
-						Alert.add('danger', data);
-						$scope.submitted = false;
 					})
 			})
 		}
@@ -257,7 +253,7 @@ angular.module('serveApp')
 		};
 
 		$scope.status = {
-			online: '',
+			online: true,
 			name: null
 		};
 
