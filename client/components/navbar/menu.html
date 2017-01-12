@@ -1,21 +1,23 @@
 <li ng-repeat="menu in menus" ui-sref-active="active"
 		ng-class="{'nav-divider':menu.divider, 'nav-header head-li':menu.header }">
   <span ng-if="menu.header">
-  	<span class="menu-icon">
-  	  <img src="https://img.91pintuan.com/songli/server/menu-icon/menu-{{menu.icon}}.png" alt="" />
+  	<span class="menu-icon menu-icon-gray">
+  	  <img src="https://img.91pintuan.com/songli/server/menu-icon-new/menu-{{menu.icon}}.png" alt="" />
   	</span>
+  	<span class="menu-icon menu-icon-green">
+      <img class="redImg" src="https://img.91pintuan.com/songli/server/menu-icon-new/menu-{{menu.iconSelected}}.png" alt="" />
+    </span>
   	<span>{{menu.title}}</span>
   </span>
   <a  ui-sref="{{menu.link}}"
   		ui-sref-opts="{{menu.opts}}"
   		ng-if="menu.link&&menu.menu">
-  	<!--<span ng-if="menu.icon" class="green-box"></span>-->
-  	<!--左侧按钮-->
+  	<!--左侧图标-->
   	<span class="menu-icon menu-icon-gray" ng-if="menu.icon">
-  	  <img src="https://img.91pintuan.com/songli/server/menu-icon/menu-{{menu.icon}}.png" alt="" />
+  	  <img src="https://img.91pintuan.com/songli/server/menu-icon-new/menu-{{menu.icon}}.png" alt="" />
   	</span>
   	<span class="menu-icon menu-icon-green" ng-if="menu.icon">
-  	  <img src="https://img.91pintuan.com/songli/server/menu-icon/menu-{{menu.icon}}{{$index+1}}.png" alt="" />
+  	  <img class="redImg" src="https://img.91pintuan.com/songli/server/menu-icon-new/menu-{{menu.iconSelected}}.png" alt="" />
   	</span>
     <span class="link-title" ng-class="{'mLeft': !menu.icon}">{{menu.title}} </span>
     <span class="fa arrow" ng-show="menu.submenus"></span>

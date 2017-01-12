@@ -5,6 +5,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 body {
   background: #f7f7f7;
   color: #595757;
+  overflow-x: hidden;
   font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Sans GB', 'PingHei', 'PingFang SC', 'STHeitiSC-Light', 'Microsoft YaHei', 'Lantinghei SC', 'Arial', sans-serif;
 }
 
@@ -52,13 +53,31 @@ body {
   border-color: transparent;
   .container-fluid{padding-right: 0;}
 }
-.gift-navbar .navbar-nav li a {
-  padding: 7px;
+.gift-navbar .navbar-nav{
+  display: -webkit-flex;
+  display: flex;
 }
-.gift-navbar .navbar-nav li a {color: #898989;}
+.gift-navbar .navbar-nav li:nth-child(1){
+  a{
+    float: left;
+    color: #f04f43
+  }
+  span{
+    float: left;
+    padding-top: 7px;
+  }
+}
+.gift-navbar .navbar-nav li:nth-child(2),
+.gift-navbar .navbar-nav li:nth-child(3){
+  order: -1;
+}
+.gift-navbar .navbar-nav li a {
+  padding: 7px 15px;
+  color: #898989;
+}
 .navbar-default .navbar-nav li a:hover, 
 .navbar-default .navbar-nav li a:focus{
-  color: #8FC31F
+  color: #f04f43
 }
 //------------
 .breadcrumb {
@@ -145,6 +164,7 @@ thead {background: #f7f7f7;}
 
 // Component styles are injected through grunt
 /* inject:scss */
+@import 'bigpack/bigpack';
 @import 'gift/gift';
 @import 'main/main.cuncunle';
 @import 'main/main';

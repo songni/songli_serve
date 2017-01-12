@@ -1,0 +1,31 @@
+<div class="bigpack_add">
+  	<form name="bigpackOrderAddForm" ng-submit="post()" novalidate>
+  		<div class="row bigpack_order">
+  			<label class="col-xs-2 bigpack_label">选择商品</label>
+  			<div class="col-xs-10 bigpack_comm">
+  			  <span>从在架商品中选择一种商品</span>
+				<input name="order.gift.id"  type="hidden" ng-model="order.gift.id" required>
+				<span class="gift_name">{{ order.gift.info.name }}</span>
+				<input type="button" value="选择商品" class="commodity" ng-click="modalCommodity()">
+				<p class="help-block" ng-show="bigpackOrderAddForm['order.gift.id'].$error.required && submitted">请选择商品</p>
+  			</div>
+  		</div>
+  		<div class="row bigpack_order">
+  			<label class="col-xs-2 bigpack_label">设置数量</label>
+  			<div class="col-xs-10 bigpack_comm">
+  			  <span>设置该大客户礼包的礼物数量，不能超出该商品剩余库存</span>
+        <input required name="order.capacity" type="text" ng-model="order.capacity" class="num"><span class="nums">份</span>
+        <p class="help-block clear" ng-show="bigpackOrderAddForm['order.capacity'].$error.required && submitted">请填写商品数量</p>
+        <p class="help-block clear" ng-show="stockError && submitted">库存不足</p>
+  			</div>
+  		</div>
+  		<div class="row bigpack_order padbot">
+  		  <div class="col-xs-2"></div>
+  		  <div class="col-xs-10 bigpack_comm">
+  		    <span>确认创建后系统将生成礼包订单，同时扣减该商品库存</span>
+        <input type="submit" value="确认创建" class="btn_sure">
+  		  </div>
+  		</div>
+  	</form>
+  	<div class="blank_box"></div>
+</div>

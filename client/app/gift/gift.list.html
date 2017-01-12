@@ -36,6 +36,7 @@
 	      <th width="30%">商品名称</th>
 	      <th width="15%">单价</th>
 	      <th width="15%">发布时间</th>
+	      <th width="10%">库存</th>
 	      <th width="15%">订单数</th>
 	      <th width="15%">发货数</th>
 	      <th></th>
@@ -48,6 +49,7 @@
 	      <td class="word-break">{{gift.info.name}}</td>
 	      <td>{{gift.info.price | currency}}</td>
 	      <td>{{gift.time.add | date : 'yyyy.MM.dd hh:mm'}}</td>
+	      <td>{{gift.num.stock}}</td>
 	      <td>{{gift.num.pay}}</td>
 	      <td>{{gift.num.delivery}}</td>
 	      <td align="center" class="vcode">

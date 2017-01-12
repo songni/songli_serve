@@ -1,4 +1,4 @@
-<div class="container" ng-controller="MainCtrl">
+<div class="container" ng-controller="NavbarCtrl">
   <div class="row">
     <div class="col-xs-4">
       <img src="https://img.91pintuan.com/songli/server/logo/logo{{app.suffix}}.png" class="img-responsive">
@@ -17,10 +17,11 @@
           <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
               <li ng-if="wxUser">
-                <a ui-sref="main">{{wxUser.nick_name}}商家中心</a>
+                <a ui-sref="main">{{wxUser.nick_name}} 商家中心</a>
+                <span>|</span>
               </li>
               <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}" ng-show="item.show">
-                  <a ui-sref="{{item.link}}">{{item.title}}</a>
+                <a ui-sref="{{item.link}}">{{item.title}}</a>
               </li>
               <li ng-if="!wxUser">
                 <img src="assets/images/icon24_wx_button.png" class="img-responsive center-block wx-tp-lg-btn" ng-click="wechat()">

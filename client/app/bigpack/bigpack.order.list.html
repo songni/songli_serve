@@ -1,0 +1,83 @@
+<div ui-view class="panel panel-default gift-order bigpack-order">
+	<div class="row introduce">
+		<div class="col-xs-2">
+		  <img ng-src="https://img.91pintuan.com/songli/server/images/bigpack_icon.png" alt="" />
+		</div>
+		<div class="col-xs-10">
+		  <span>功能介绍</span>
+		  <span>对于购买商品总额超出微信单笔支付上限的大客户，和需对公结算的客户，商家可直接创建大客户礼包，另行结算；</span>
+		  <span>商家也可通过创建大客户礼包，发放给合作自媒体意见领袖等，建立流量合作关系；</span>
+		  <span><em>1</em>新建大客户礼包 <em>2</em>把链接通过微信发给合作渠道 <em>3</em>渠道手机端录音 <em>4</em>完成，开始送礼</span>
+		</div>
+	</div>
+	
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-3">
+        <input type="text" class="form-control form-number" ng-model="status.nickname" placeholder="按客户姓名搜索">
+        <span ng-click="findByNickame()" class="btn btn-primary btn-outline  btn-sub"><i class="fa fa-search"></i></span>
+      </div>
+      <div class="col-xs-9 new_pack">
+        <a ui-sref="bigpack.add" type="button" class="btn"><span>+</span>新建礼包</a>
+      </div>  
+    </div>
+    <div class="row pag" style="float: left;">
+      <nosy-pagi pagi="pagi"></nosy-pagi>
+    </div>
+  </div>
+
+  <table class="table table-condensed gift-orderlist table_bigpack" id="exportable">
+    <thead>
+      <tr>
+        <th width="15%">礼包订单号</th>
+        <th width="8%">客户姓名</th>
+        <th width="20%">所购商品</th>
+        <th width="12%">创建时间</th>
+        <th width="8%">礼物单价</th>
+        <th width="8%">礼物数量</th>
+        <th width="14%">发货状态</th>
+        <th class="hidden-print" width="15%">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="order in orders" ng-init="giftorders[$index]={
+          serial:'['+order.serial+']',
+          time:(order.time.add | date : 'yyyy-MM-dd  hh:mm'),
+          nickname:order.sender.info.nickname,
+          name:order.receiver.consignee,
+          address:order.receiver.address,
+          telephone:order.receiver.telephone,
+          gift:order.gift.info.name
+        };">
+        <td>
+          <a class="blankfont"  ui-sref="gift.order.detail({id:order.id})">{{order.serial}} </a>
+        </td>
+        <td align="center" ng-class="{'blankfont' : order.sender.info.nickname}" class="redfont">{{order.sender.info.nickname ? order.sender.info.nickname : '未使用'}}</td>
+        <td>
+          <a class="grayfont shopname"  ui-sref="gift.detail.qrcode({id:order.gift.id})">{{order.gift.info.name}}</a>
+        </td>
+        <td class="grayfont">{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</td>
+        <td class="grayfont" align="center">{{order.gift.info.price * order.capacity | currency}}</td>
+        <td align="center" class="blankfont">{{order.capacity}}</td>
+        <!--发货状态-->
+        <td align="center" ng-if="!order.sender.info.nickname">
+          <span class="redfont">- -</span>
+        </td>
+        <td align="center" class="redfont" ng-if="order.sender.info.nickname">
+          <div>已发货 ({{countShipping(order)}})</div>
+          <div class="waitting" ng-if="order.receivers.length-countShipping(order) === 0">待发货 (0)</div>
+          <button class="waitting" ng-if="order.receivers.length-countShipping(order) != 0" ui-sref="bigpack.detail({id:order.id})">待发货 ({{order.receivers.length-countShipping(order)}})</button>
+        </td>
+        <td ng-if="false" class="hidden-print"><span ng-class="{'bg-danger':order.status.pay}">{{order.status.pay?'已付':'未付'}}</span></td>
+        <!--操作-->
+        <td align="center" class="hidden-print">
+          <button ng-click="modalBigpackLink(order)" class="btn btn-default btn-xs btn-xq blankfont btn_link">礼包链接</button>
+					<button class="btn btn-default btn-xs btn-xq blankfont" ui-sref="bigpack.detail({id:order.id})">子订单详情</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="panel-body text-right">
+    <pagination boundary-links="true" total-items="pagi.totalItems" ng-model="pagi.currentPage" items-per-page="pagi.itemsPerPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+  </div>
+</div>

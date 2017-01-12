@@ -392,24 +392,26 @@ angular.module('serveApp')
                 endTime: newVal[5],
                 order: newVal[6],
                 finish: newVal[7],
-                serial: newVal[8]
+                serial: newVal[8],
+                'status.bigpack': false
             }).then(function(count) {
                 $scope.pagi.totalItems = count;
             });
             RestOrderGift.getList({
-                    shipping: newVal[0],
-                    pay: newVal[1],
-                    page: newVal[2],
-                    limit: newVal[3],
-                    startTime: newVal[4],
-                    endTime: newVal[5],
-                    order: newVal[6],
-                    finish: newVal[7],
-                    serial: newVal[8]
-                })
-                .then(function(orders) {
-                    $scope.orders = orders;
-                });
+                shipping: newVal[0],
+                pay: newVal[1],
+                page: newVal[2],
+                limit: newVal[3],
+                startTime: newVal[4],
+                endTime: newVal[5],
+                order: newVal[6],
+                finish: newVal[7],
+                serial: newVal[8],
+                'status.bigpack': false
+            })
+            .then(function(orders) {
+                $scope.orders = orders;
+            });
         });
         $scope.qrcodeModel = function() {
             var orderId = this.order.id;
@@ -535,10 +537,10 @@ angular.module('serveApp')
         $scope.order = order;
         $scope.order.shipping = 0;
         order.receivers.forEach(function(item) {
-                if (item.status.shipping) $scope.order.shipping++;
-            })
-            // TODO https://github.com/arrking/songni/issues/104
-            // TypeError: Cannot read property 'appid' of undefined
+            if (item.status.shipping) $scope.order.shipping++;
+        })
+        // TODO https://github.com/arrking/songni/issues/104
+        // TypeError: Cannot read property 'appid' of undefined
         $scope.config = config;
         $scope.order.url = 'http://' + $rootScope.wxUser.appid + '.' + config.clientUri + '/gift/listen/' + order.id;
 

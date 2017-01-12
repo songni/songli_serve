@@ -255,7 +255,7 @@ textarea{resize: none;}
     .btn-ground{
       padding: 20px 0;
       line-height: 0;
-      background: #516CFD;
+      background: #f05b47;
       margin-top: 10px;
       margin-bottom: 20px;
       font-size: 16px;
@@ -748,28 +748,28 @@ textarea{resize: none;}
     width: 200px;
     height: 68px;
 }
-.gift-info .table-head tbody .info-name a{color: #617AFD;}
+.gift-info .table-head tbody .info-name a{color: #231815;}
 .gift-info .table-head tbody .downcode{text-align: center;}
 .gift-info .table-head tbody .downcode .btn-code{
     background: #FFFFFF;
     border: 1px solid #E2E3E3;
-    color: #5E77FD;
+    color: #f89775;
     padding: 11px 19px;
     max-height: 42px !important;
     border-radius: 4px !important;
 }
 .gift-info .table-head tbody .center{text-align: center;font-size: 16px;line-height: 30px;}
-.gift-info .table-head tbody .center .shipping{color: #F39800;}
+.gift-info .table-head tbody .center .shipping{color: #f89775;}
 
 .table-condensed > thead > tr > th{font-weight: normal;}
     //商品详情页面[发货]，[下载]按钮
 .btn-ship{
     color: #FFFFFF !important;
-    background: #F39800 !important;
-    border: 1px solid #F39800 !important;
+    background: #f89775 !important;
+    border: 1px solid #f89775 !important;
 }
 .btn-ship:hover{
-    background: rgba(243,152,0,.7) !important;
+    background: #f05b47 !important;
 }
 .btn-ship-down{
     border: 1px solid #E6E7E7 !important;

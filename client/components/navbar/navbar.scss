@@ -84,6 +84,10 @@
       height: 100%;
       vertical-align: -4px;
     }
+    .redImg{
+      width: 19px;
+      height: 19px;
+    }
   }
   ul{
     padding: 0;
@@ -94,7 +98,6 @@
         color: #000000;
       }
       .menu-icon-green{display: none;}
-//    .green-box{display: inline-block;width: 5px;height: 30px;background: #FF0000;margin-left: -60px;margin-right: 50px;}
     }
     li:hover,
     li.active{
@@ -102,7 +105,7 @@
       cursor: pointer;
       .menu-icon-green{display: inline-block !important}
       .menu-icon-gray{display: none !important;}
-      a{color: #9FCB41;}
+      a{color: #f04f43;}
     }
   }
 }

@@ -13,4 +13,4 @@
 .DS_Store?
 .DS_Store
 /client/bower_components
-gulpfile.babel.js
+/gulpfile.babel.js
