@@ -24,7 +24,8 @@ angular.module('serveApp')
 		$scope.$watchCollection('[status.online,pagi.currentPage,pagi.itemsPerPage,pagi.nickname]', function(newVal) {
       RestOrderGift.one('count').get({
         online: newVal[0],
-        nickname: newVal[3]
+        nickname: newVal[3],
+				'status.bigpack': 'true'
       }).then(function(count) {
         $scope.pagi.totalItems = count;
       });
@@ -32,16 +33,14 @@ angular.module('serveApp')
         online: newVal[0],
         page: newVal[1],
         limit: newVal[2],
-        nickname: newVal[3]
+        nickname: newVal[3],
+				'status.bigpack': 'true'
       })
       .then(function(orders) {
         $scope.orders = orders;
       });
     });
 		
-		RestOrderGift.getList({ 'status.bigpack': 'true' }).then(orders => {
-			$scope.orders = orders
-		})
 		$scope.modalBigpackLink = order => {
 			var modalInstance = $uibModal.open({
 				templateUrl: 'app/bigpack/bigpack.order.link.modal.html',
