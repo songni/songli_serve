@@ -57,7 +57,7 @@
           <a class="grayfont shopname"  ui-sref="gift.detail.qrcode({id:order.gift.id})">{{order.gift.info.name}}</a>
         </td>
         <td class="grayfont">{{order.time.add | date : 'yyyy.MM.dd hh:mm'}}</td>
-        <td class="grayfont" align="center">{{order.gift.info.price * order.capacity | currency}}</td>
+        <td class="grayfont" align="center">{{order.gift.info.price | currency}}</td>
         <td align="center" class="blankfont">{{order.capacity}}</td>
         <!--发货状态-->
         <td align="center" ng-if="!order.sender.info.nickname">
@@ -71,8 +71,8 @@
         <td ng-if="false" class="hidden-print"><span ng-class="{'bg-danger':order.status.pay}">{{order.status.pay?'已付':'未付'}}</span></td>
         <!--操作-->
         <td align="center" class="hidden-print">
-          <button ng-click="modalBigpackLink(order)" class="btn btn-default btn-xs btn-xq blankfont btn_link">礼包链接</button>
-					<button class="btn btn-default btn-xs btn-xq blankfont" ui-sref="bigpack.detail({id:order.id})">子订单详情</button>
+          <button ng-click="modalBigpackLink(order)" class="btn btn-default btn-xs btn-xq blankfont btn_link">获取礼包链接</button>
+					<button class="btn btn-default btn-xs btn-xq blankfont" ui-sref="bigpack.detail({id:order.id})">查看订单详情</button>
         </td>
       </tr>
     </tbody>

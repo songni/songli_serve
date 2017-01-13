@@ -1,6 +1,6 @@
 <div class="link_modal">
 	<div class="modal_title">
-	  <span>大客户礼包链接</span>
+	  <span>获取大礼包链接</span>
 	  <span ng-click="$dismiss()">X</span>
 	</div>
 	<div class="modal_cont">
@@ -16,18 +16,18 @@
     <div class="row clear">
       <label class="col-xs-3">礼包链接：</label>
       <div class="col-xs-9 cont_right">
-        <span>请将礼包链接发放给客户</span>
+        <span>请复制该大礼包链接，并发放给客户使用</span>
         <input type="text" class="link_cont" name="url" ng-disabled="true" ng-model="url"/>
         <button type="button" class="link_btn" clip-copy="getTextToCopy()" clip-click="doSomething()">复制</button>
       </div>
     </div>
-    <div class="row clear">
-      <label class="col-xs-3">二维码：</label>
+    <!--<div class="row clear">
+      <label class="col-xs-3">二维码链接：</label>
       <div class="col-xs-9 cont_right qrcode">
         <span>扫码获取大礼包链接</span>
         <qrcode version="8" error-correction-level="H" size="200" data="{{text}}"></qrcode>
       </div>
-    </div>
+    </div>-->
 	</div>
 	<!--<div class="modal_foot">
 		<input type="button" value="取消" ng-click="$dismiss()"/>
