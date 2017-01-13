@@ -17,8 +17,7 @@ var config = require('./environment');
 
 module.exports = function(app) {
     var env = app.get('env');
-
-    app.set('views', config.root + '/server/views');
+    app.set('views', config.root + '/client');
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
     app.use(compression());
@@ -34,7 +33,6 @@ module.exports = function(app) {
 
     if ('production' === env) {
         app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
-        app.use(express.static(path.join(config.root, 'client')));
         app.set('appPath', config.root + '/client');
         app.use(morgan('dev'));
     }
@@ -45,11 +43,10 @@ module.exports = function(app) {
                 port: 35711
             }));
         }
-
-        app.use(express.static(path.join(config.root, '.tmp')));
-        app.use(express.static(path.join(config.root, 'client')));
+        app.use(express.static(path.join(config.root, '.tmp'), {index: false}));
         app.set('appPath', 'client');
         app.use(morgan('dev'));
         app.use(errorHandler()); // Error handler - has to be last
     }
+    app.use(express.static(app.get('appPath'), {index: false}))
 };
