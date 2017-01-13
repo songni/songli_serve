@@ -34,7 +34,7 @@ angular.module('serveApp', [
   uiSelectConfig.appendToBody = true;
 
   tinyMCE.baseURL = '/bower_components/tinymce-dist';
-  ngClipProvider.setPath('https://img.91pintuan.com/bower_components/zeroclipboard/dist/ZeroClipboard.swf');
+  ngClipProvider.setPath('/bower_components/zeroclipboard/dist/ZeroClipboard.swf');
   
 }).run(function(appConfig, $rootScope, $location, $cookieStore, $log, $state, $window, Restangular, RestWecom, Alert, $uibModal) {
   $rootScope.appConfig = window.config = appConfig;
