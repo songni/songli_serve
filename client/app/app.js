@@ -19,7 +19,7 @@ angular.module('serveApp', [
   'ngHolder',
   'monospaced.elastic',
   'checklist-model'
-]).config(function(appConfig, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $logProvider, RestangularProvider, $breadcrumbProvider, uiSelectConfig) {
+]).config(function(appConfig, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $logProvider, RestangularProvider, $breadcrumbProvider, ngClipProvider, uiSelectConfig) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
 
@@ -34,6 +34,8 @@ angular.module('serveApp', [
   uiSelectConfig.appendToBody = true;
 
   tinyMCE.baseURL = '/bower_components/tinymce-dist';
+  ngClipProvider.setPath('/bower_components/zeroclipboard/dist/ZeroClipboard.swf');
+  
 }).run(function(appConfig, $rootScope, $location, $cookieStore, $log, $state, $window, Restangular, RestWecom, Alert, $uibModal) {
   $rootScope.appConfig = window.config = appConfig;
   appConfig.clientUri = $location.host().replace('www.dev.', '').replace('www.', '');
