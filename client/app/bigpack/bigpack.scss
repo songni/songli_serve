@@ -242,6 +242,10 @@
       .link_cont::-webkit-input-placeholder{
         color: #231815 !important;
       }
+      input:focus {
+//      border: 1px solid #09c !important;
+//      box-shadow: none;
+      }
       .link_btn{
         float: left;
         width: 40px;
