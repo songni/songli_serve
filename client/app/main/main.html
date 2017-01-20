@@ -1,4 +1,5 @@
-<!--<div ng-if="!wxUser" style="background: #FFFFFF;" ng-include="'app/main/main.home.html'"></div>-->
-<div ng-if="!wxUser" style="background: #FFFFFF;" ng-include="'app/main/main.home' + app.suffix + '.html'"></div>
+<div ng-if="!wxUser && app.suffix === '.def' " class="main_nav" ng-include="'app/main/main.home.navbar.html'"></div>
+<div ng-if="!wxUser" class="main_body" ng-include="'app/main/main.home' + app.suffix + '.html'"></div>
+<div ng-if="!wxUser && app.suffix === '.def' " ng-include="'app/main/main.home.footer.html'"></div>
 
 <div ng-if="wxUser" ng-include="'app/main/main.signin.html'">

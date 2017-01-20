@@ -40,6 +40,14 @@ angular.module('serveApp')
         $scope.orders = orders;
       });
     });
+    
+    // play video 
+		$scope.modalStartVideo = function() {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'app/bigpack/video.html',
+        size: '',
+      });
+    }
 		
 		$scope.modalBigpackLink = order => {
 			var modalInstance = $uibModal.open({

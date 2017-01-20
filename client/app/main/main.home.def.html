@@ -1,47 +1,12 @@
-<!--logo图-->
-<div class="home_head">
-	<div class="row">
-		<div class="col-xs-8">
-			<img src="assets/images/index-logo1.png" class="index-logo" alt="" />
-		</div>
-		<div class="col-xs-4">
-			<button class="wechat btnsj" ng-click="wechat()">商家登录</button>
-			<button class="wechat btnkt" ng-click="wechat()">注册开通</button>
-		</div>
-	</div>
-</div>
-<!--banner图-->
-<div class="home_banner_1">
-  <div class="home_banner home_banner1">
-    <div class="row cont-img">
-      <div class="col-xs-4 hidden-xs ">
-        <img src="assets/images/index-banner.png" class="img-responsive img-responsive1 center-block">
-      </div>
-      <div class="col-xs-8 index-banner2">
-        <img src="assets/images/index-banner2.png" class="img-responsive center-block">
-      </div>
-    </div>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="index">
+    <div class="bg_black" ng-include="'app/main/main.home.index.html'"></div>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="academy">
+    <div class="bg_black" ng-include="'app/main/main.home.academy.html'"></div>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="agent">
+    <div class="bg_black" ng-include="'app/main/main.home.agent.html'"></div>
   </div>
 </div>
-<!--送你功能-->
-<div class="home_banner_2">
-  <div class="home_banner">
-    <img src="assets/images/gnbanner.png" class="img-responsive center-block">
-  </div>
-</div>
-
-
-<!--开通步骤-->
-<div class="home_banner_3">
-  <div class="home_banner">
-    <img src="assets/images/bzbanner.png" class="img-responsive center-block">
-  </div>
-</div>
-<!--版权-->
-<div class="home_banner_4">
-  <div class="home_banner">
-    <a href="#" target="_blank"> <!--http://www.spiderfamily.com-->
-     <img src="assets/images/footLogo.png" class="img-responsive center-block">
-    </a>
-  </div>
-</div>
+ 
