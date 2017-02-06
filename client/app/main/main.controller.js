@@ -61,6 +61,8 @@ angular.module('serveApp')
       //   load_qrcode = false;
       // });
     }, true);
+    
+    $scope.screen = { width:$window.innerWidth, height:$window.innerHeight };
   })
   .controller('NullModalCtrl', function($scope,$state,$uibModalInstance){
     $scope.cancel = function () {
