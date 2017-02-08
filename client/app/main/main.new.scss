@@ -142,7 +142,7 @@
             padding-left: 5px;
             margin-left: 25px;
             cursor: pointer;
-            em{float: right;margin-right: 10px;}
+            em{float: right;margin-right: 10px;font-size: 12px;}
           }
         }
         .bottom{
@@ -178,18 +178,22 @@
 @media screen and (max-width: 1330px) and (min-width: 1240px){
   .ft_left .tb{width: 60% !important;}
   .ft_middle .tb{width: 70% !important;}
+  .btn_two{right: 31.5% !important;}
 }
 @media screen and (max-width: 1240px) and (min-width: 1160px){
   .ft_left .tb{width: 65% !important;}
   .ft_middle .tb{width: 75% !important;}
+  .btn_two{right: 30% !important;}
 }
 @media screen and (max-width: 1240px) and (min-width: 1025px){
   .ft_left .tb{width: 70% !important;}
   .ft_middle .tb{width: 85% !important;}
+  .btn_two{right: 28% !important;}
 }
 @media screen and (max-width: 1025px){
   .ft_left .tb{width: 100% !important;}
   .ft_middle .tb{width: 100% !important;}
+  .btn_two{right: 26% !important;}
 }
 /*91新营销页面样式*/
   /*首图*/
@@ -391,6 +395,7 @@
       width: 5px;
       height: 5px;
       vertical-align: middle;
+      margin-right: 20px;
     }
   }
   .scroll{
@@ -401,7 +406,7 @@
       .img{position: relative;}
       .btn_comm{
         position: absolute;
-        width: 315px;
+        width: 260px;
         min-height: 55px;
         line-height: 55px;
         text-align: center;
@@ -409,7 +414,7 @@
         cursor: pointer;
         span{
           font-size: 17px;
-          em{float: right;margin-right: 20px;}
+          em{float: right;margin-right: 20px;font-size: 12px;} 
         }
       }
     }
@@ -427,7 +432,7 @@
     }
     .scroll_two{
       .btn_two{
-        right: 30%;
+        right: 33.5%;
         bottom: 25%;
         border: 1px solid #ffffff;
         span{color: #ffffff;}
@@ -531,11 +536,12 @@
       width: 250px;
       height: 152px;
       margin-right: 65px;
+      img{width: 100%;}
     } 
     span:last-child{margin-right: 0;}
   }
   .charge_open{
-    width: 312px;
+    width: 260px;
     height: 54px;
     line-height: 54px;
     text-align: center;
@@ -550,6 +556,7 @@
     }
     span:last-child{
       float: right;
+      font-size: 12px;
       margin-right: 35px;
     }
   }
@@ -566,7 +573,6 @@
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  -webkit-
   .step{
     width: 764px;
     height: 268px;
