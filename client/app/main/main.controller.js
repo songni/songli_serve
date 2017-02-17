@@ -33,7 +33,7 @@ var academyList = [
 // 注： type: payLesson 表示收费课程；vcodeImg： 付费课程参团二维码； logoImg: logo2.png 表示有91明星商家logo
 
 angular.module('serveApp')
-  .controller('MainCtrl', function ($scope,$stateParams,$cookieStore,$window,$location,RestWecom,RestWechat) {
+  .controller('MainCtrl', function ($scope,$stateParams,$cookieStore, $cookies, $window,$location,RestWecom,RestWechat) {
     $scope.wechat = function(){
       RestWecom.get()
       .then(function(link) {
@@ -45,6 +45,9 @@ angular.module('serveApp')
         $cookieStore.put('token', data.token);
         $window.location.href = $location.path();
       });
+    }
+    if($stateParams.vecter){
+      $cookies.put('vecter', $stateParams.vecter); 
     }
     if($scope.wxUser){
       // RestWechat.one('qrcode').get({scene_id:1}).then(function(ticket){

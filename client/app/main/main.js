@@ -4,7 +4,7 @@ angular.module('serveApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main', {
-        url: '/?auth_code',
+        url: '/?auth_code&vecter',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
         ncyBreadcrumb: {

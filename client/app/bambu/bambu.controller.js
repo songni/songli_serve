@@ -1,9 +1,17 @@
 'use strict';
 
 angular.module('serveApp')
-  .controller('BambuCtrl',function($scope, $rootScope,　Merchant){
+  .controller('BambuCtrl',function($scope, $rootScope,　$cookies, Merchant){
     $rootScope.title = '自助服务';
+    if($cookies.get('vecter')){
+	  		$scope.merchant = {};
+	  		$scope.merchant = {info:{agent:$cookies.get('vecter')}};
+	  }
     Merchant.get().then(function(merchant){
+      if(!merchant.info) merchant.info = {};
+      if(!merchant.info.agent && $cookies.get('vecter')){
+        merchant.info.agent = $cookies.get('vecter');
+	    }
       $scope.merchant = merchant;
     });
   })
