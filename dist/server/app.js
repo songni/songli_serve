@@ -12,15 +12,15 @@ var express = require('express');
 var config = require('./config/environment');
 // Setup server
 var app = express();
-app.use(function (req, res, next) {
-  var env = app.get('env');
-  if (req.protocol === 'http' && req.hostname === 'www.91songli.com') {
-    var url = 'https://' + req.hostname + req.url;
-    res.redirect(url);
-    return;
-  }
-  next();
-});
+// app.use(function(req, res, next){
+//   var env = app.get('env');
+//  	if(req.protocol === 'http'&&req.hostname === 'www.91songli.com'){
+//  	 	var url = 'https://'+req.hostname+req.url;
+//     res.redirect(url);
+//     return;
+//   }
+//   next();
+// });
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
