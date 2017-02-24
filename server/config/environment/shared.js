@@ -120,7 +120,7 @@ app['www.dev.songni.cc'] = {
   suffix: '.def'
 }
 app['www.91songli.cc'] = {
-  api: 'http://api.91songli.cc',
+  api: 'https://api.91songli.cc',
   name: '91送礼',
   wechat: '91送礼',
   telephone: '010-84988362',
@@ -128,7 +128,7 @@ app['www.91songli.cc'] = {
   suffix: '.def'
 }
 app['www.91songli.com'] = {
-  api: 'http://api.91songli.com',
+  api: 'https://api.91songli.com',
   name: '91送礼',
   wechat: '91送礼',
   telephone: '010-84988362',
