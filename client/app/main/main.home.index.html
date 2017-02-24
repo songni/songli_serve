@@ -104,20 +104,5 @@
 
 <!--手机端的显示-->
 <div class="mobile">
-  <div class="top">
-    <img 
-      style="width: {{screen.width/2.5}}px;"  
-      ng-src="https://img.91pintuan.com/songli/icon-herf/info-title.png"
-    >
-  </div>
-  <div class="bottom">
-    <img 
-      style="width: {{screen.width*0.6}}px"
-      ng-src="https://img.91pintuan.com/songli/icon-herf/info-main_new.png"
-      >
-  </div>
-  <div class="phone">
-    <span>联系电话：18612195232</span>
-    <span>联系微信：18612195232</span>
-  </div>
+  <div ng-include="'app/main/main.mobile.html'"></div>
 </div>

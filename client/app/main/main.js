@@ -10,5 +10,10 @@ angular.module('serveApp')
         ncyBreadcrumb: {
           label: '首页'
         }
+      })
+      .state('/', {
+        url: '/guide',
+        templateUrl: 'app/main/guide.mobile.html',
+        controller: 'SwiperCtrl',
       });
   });

@@ -12,4 +12,7 @@ angular.module('serveApp')
     });
     $scope.cancel = function(){$uibModalInstance.dismiss('cancel');};
   })
+  .service('RestDocument', function (Restangular) {
+    return Restangular.service('document');
+  })
   ;

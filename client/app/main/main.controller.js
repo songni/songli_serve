@@ -89,4 +89,51 @@ angular.module('serveApp')
       line = parseInt(listLength/3) + 1;
     } 
     $scope.line = line;
-  });
+  })
+  .controller('SwiperCtrl',function($scope, $rootScope, $stateParams, $cookies, $uibModal, $http, Merchant, appConfig, RestDocument){
+    $scope.swiper = {};
+    $scope.visualHeight = {height:'' + screen.height + 'px'};
+    $scope.inputWidth = { width:'' + (screen.width - 25) + 'px' };
+    $scope.halfScreen = {
+      width:'' + (screen.width/2) + 'px', 
+      height:'' + (screen.width/2) + 'px', 
+      float: '' + 'left'
+    };
+    
+    RestDocument.one('service_phone').get().then(phone => {
+      $scope.phone = phone.document;
+    })
+    
+    // vecter
+    var vecter = $cookies.get('vecter');
+    $scope.vecter = vecter;
+    
+    $scope.submitted = false;
+    $scope.submit = function() {
+      if ($scope.leadsForm.$invalid) {
+        $scope.submitted = true;
+        return false;
+      }
+      Merchant.one('leads').post(null, {
+        alias: $scope.vecter,
+        pubno: $scope.pubno,
+        linkman: $scope.linkman,
+        telephone: $scope.telephone
+      }).then(data => {
+        $scope.content = data.number;
+        $uibModal.open({
+          templateUrl: 'app/main/main.mobile.success.html',
+          controller: 'SwiperCtrl',
+          size: 'lg'
+        });
+      })
+    }
+    $http({
+      method: "GET",
+      url: appConfig.uri + '/agent/prp/number?alias=' + $scope.vecter
+    }).then(function(response){
+      $scope.data = response.data;
+    })
+   
+  })
+  ;

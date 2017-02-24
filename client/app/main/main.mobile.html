@@ -1,0 +1,41 @@
+<div ng-controller="SwiperCtrl">
+  <ks-swiper-container 
+    swiper="swiper" 
+    slides-per-column="0"
+    space-between="5"
+    direction="vertical" 
+    loop="false"
+    >
+    <ks-swiper-slide class="swiper-slide one_page" ng-style="visualHeight">
+      <div class="top">
+        <img src="https://img.91pintuan.com/songli/server/index/mobile/one_page_top.jpg" alt="" />
+      </div>
+      <div class="bottom">
+        <p>现在开通91送礼</p>
+        <p ng-if="vecter">免费领取<span>{{ data.number }}</span>条使用订单</p>
+        <a href="/guide">立即开通</a>
+      </div>
+    </ks-swiper-slide>
+    <ks-swiper-slide class="swiper-slide two_page" ng-style="visualHeight">
+      <div class="top">
+        <img src="https://img.91pintuan.com/songli/server/index/mobile/two_page_top.jpg" alt="" />
+      </div>
+      <div class="bottom">
+        <img ng-style="halfScreen" src="https://img.91pintuan.com/songli/server/index/mobile/two_1.jpg" alt="" />
+        <img ng-style="halfScreen" src="https://img.91pintuan.com/songli/server/index/mobile/two_2.jpg" alt="" />
+        <img ng-style="halfScreen" src="https://img.91pintuan.com/songli/server/index/mobile/two_3.jpg" alt="" />
+        <img ng-style="halfScreen" src="https://img.91pintuan.com/songli/server/index/mobile/two_4.jpg" alt="" />
+      </div>
+    </ks-swiper-slide>
+    <ks-swiper-slide class="swiper-slide three_page" ng-style="visualHeight">
+      <div class="top">
+        <p>马上开通91送礼</p>
+        <p ng-if="vecter">免费领取<span>{{ data.number }}</span>条使用订单</p>
+        <a href="/guide">立即开通</a>
+      </div>
+      <div class="bottom">
+        <img src="https://img.91pintuan.com/songli/server/index/mobile/three_page.jpg" alt="" />
+      </div>
+    </ks-swiper-slide>
+  </ks-swiper-container>
+</div>

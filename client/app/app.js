@@ -18,7 +18,8 @@ angular.module('serveApp', [
   'bootstrap.fileField',
   'ngHolder',
   'monospaced.elastic',
-  'checklist-model'
+  'checklist-model',
+  'ksSwiper'
 ]).config(function(appConfig, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $logProvider, RestangularProvider, $breadcrumbProvider, ngClipProvider, uiSelectConfig) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);

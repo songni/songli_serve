@@ -1,0 +1,45 @@
+<div ng-show="vecter" class="vecter_container" ng-style="visualHeight">
+  <div class="vecter-logo middle">
+    <img src="https://img.91pintuan.com/songli/server/index/mobile/91songlilogo.png" />
+  </div>
+  <div class="vecter-form">
+    <span>请完善您的商家信息</span>
+    <form name="leadsForm" novalidate>
+      <div class="form-group">
+        <label for="alias" class="hide">服务商编码</label>
+        <input type="hidden" id="alias" name="alias" placeholder="请输入服务商编码" value="{{ vecter }}" readonly >
+      </div>
+      <div class="form-group">
+        <label for="pubno" class="hide">公号名称:</label>
+        <input type="text" id="pubno" name="pubno" placeholder="请输入您企业或个人的公众号名称" ng-value="pubno" ng-style="inputWidth" ng-model="pubno" ng-minlength="1" ng-maxlength="50" required />
+        <p ng-show="leadsForm.pubno.$error.required && submitted" class="help-block">* 公众号名称必须填写.</p>
+        <p ng-show="leadsForm.pubno.$error.minlength && submitted" class="help-block">* 公众号名称字数太少.</p>
+        <p ng-show="leadsForm.pubno.$error.maxlength && submitted" class="help-block">* 公众号名称字数太多.</p>
+      </div>
+      <div class="form-group">
+        <label for="linkman" class="hide">姓名:</label>
+        <input type="text" id="linkman" name="linkman" placeholder="请输入姓名" ng-model="linkman" ng-value="linkman" ng-style="inputWidth" ng-minlength="1" ng-maxlength="10" required />
+        <p ng-show="leadsForm.linkman.$error.required && submitted" class="help-block">* 姓名必须填写.</p>
+        <p ng-show="leadsForm.linkman.$error.minlength && submitted" class="help-block">* 姓名字数太少.</p>
+        <p ng-show="leadsForm.linkman.$error.maxlength && submitted" class="help-block">* 姓名字数太多.</p>
+      </div>
+      <div class="form-group">
+        <label for="telephone" class="hide">手机号:</label>
+        <input type="telephone" id="telephone" name="telephone" ng-value="telephone" ng-model="telephone" ng-style="inputWidth"  placeholder="请输入手机号" phone required />
+        <p ng-show="leadsForm.telephone.$error.required && submitted" class="help-block">* 手机号码必须填写.</p>
+        <p ng-show="leadsForm.telephone.$error.phone && submitted" class="help-block">* 手机号码输入不正确.</p>
+      </div>
+    </form>
+    <button type="submit" class="btn_submit" ng-click="submit()" >提交</button>
+  </div>
+</div>
+
+<div ng-show="!vecter" class="noVecter">
+  <img src="https://img.91pintuan.com/songli/server/index/mobile/91songli_logo.png" >
+  <div class="link">
+    <span>请用电脑登陆91送礼官网</span>
+    <a href="http://www.91songli.com">www.91songli.com</a>
+    <p>{{ (phone).slice(0, 15) }}</p>
+    <p>{{ (phone).slice(16, 50) }}</p>
+  </div>
+</div>
