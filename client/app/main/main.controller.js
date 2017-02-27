@@ -90,7 +90,7 @@ angular.module('serveApp')
     } 
     $scope.line = line;
   })
-  .controller('SwiperCtrl',function($scope, $rootScope, $stateParams, $cookies, $uibModal, $http, Merchant, appConfig, RestDocument){
+  .controller('SwiperCtrl',function($scope, $rootScope, $stateParams, $cookies, Restangular, $uibModal, Merchant, appConfig, RestDocument){
     $scope.swiper = {};
     $scope.visualHeight = {height:'' + screen.height + 'px'};
     $scope.inputWidth = { width:'' + (screen.width - 25) + 'px' };
@@ -128,13 +128,10 @@ angular.module('serveApp')
         });
       })
     }
-    console.log(appConfig.uri)
-    $http({
-      method: "GET",
-      url: appConfig.uri + '/agent/prp/number?alias=' + $scope.vecter
-    }).then(function(response){
-      $scope.data = response.data;
-    })
-   
+
+    Restangular.one('agent').one('prp').customGET("number", {alias: $scope.vecter})
+      .then(res => {
+        $scope.data = res;
+      })
   })
   ;
