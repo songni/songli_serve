@@ -80,6 +80,7 @@
           <file-field class="btn btn-primary" ng-disabled="isAllowUpdate" ng-model="uploadFile" preview="previewImage">选择图片</file-field>
         </div>
         <p class="img-ratio">建议长宽比例1:1 </p>
+        <p class="img-ratio">图片大小不超过1M</p>
       </div>
     </div>
   </ng-form>
@@ -239,7 +240,7 @@
              ng-maxlength="40"
              class="col-xs-9"
              ng-pattern="/^[^\{NUM\}]*\{NUM\}[^\{NUM\}]*$/">
-          <p class="col-xs-12 note">说明: {NUM} 为占位符</p>
+          <p class="col-xs-12 note">说明: {NUM}表示已收到礼品的消费者数量</p>
           <p ng-show="giftForm['gift.info.benedictory.title'].$error.maxlength && submitted" class="help-block col-xs-12">最多15个字</p>
           <p ng-show="giftForm['gift.info.benedictory.title'].$error.pattern && submitted" class="help-block col-xs-12">{NUM}只能出现一次且必须出现一次</p>
         </div> 
@@ -255,7 +256,7 @@
                class="col-xs-9"
                ng-maxlength="30"
                ng-pattern="/^[^\{RECEIVER\}]*\{RECEIVER\}[^\{RECEIVER\}]*$/">
-            <p class="col-xs-12 note">说明: {RECEIVER} 为占位符</p>
+            <p class="col-xs-12 note">说明: {RECEIVER} 表示收到礼物的消费者姓名缩写</p>
             <p class="help-block col-xs-12" ng-show="giftForm['gift.info.benedictory.content'].$error.maxlength && submitted">最多十个字</p>
             <p class="help-block col-xs-12" ng-show="giftForm['gift.info.benedictory.content'].$error.pattern && submitted">
               {RECEIVER}只能出现一次且必须出现一次

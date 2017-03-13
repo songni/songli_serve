@@ -189,6 +189,7 @@ textarea{resize: none;}
     padding-top: 5px;
     font-size: 13px;
     color: #B9B9BA;
+    margin-bottom: 0;
   }
 }
 .gift-details{padding-bottom: 15px;}
@@ -307,8 +308,7 @@ textarea{resize: none;}
         padding-left: 0;
         height: 30px;
         line-height: 30px;
-        text-align: right;
-        padding-right: 15px;
+        text-align: left;
       }
       input{
         height: 30px;

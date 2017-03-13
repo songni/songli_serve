@@ -45,7 +45,7 @@ angular.module('serveApp')
 		$scope.modalStartVideo = function() {
       var modalInstance = $uibModal.open({
         templateUrl: 'app/bigpack/video.html',
-        size: '',
+        size: 'lg',
       });
     }
 		
