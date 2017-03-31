@@ -17,7 +17,7 @@
     <meta name="baidu-site-verification" content="qWoevylhcr" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="app/vendor-5c4f61c71c.css">
-    <link rel="stylesheet" href="app/app-1b9938296c.css">
+    <link rel="stylesheet" href="app/app-697494b7f8.css">
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -26,14 +26,17 @@
       </div>
     <![endif]-->
     
-    <header class="header" ng-include="'components/header.html'" ng-if="wxUser"></header>
-    <div ui-view="" ng-if="!wxUser" class="gift-home"></div>
+    <div ui-view="" ng-if="!wxUser" class="gift-home">
+      <%- include('app/main/main.home.navbar.html') %>
+      <%- include('app/main/main.home.content.html') %>
+      <%- include('app/main/main.home.footer.html') %>
+    </div>
+    
+    <header class="header" ng-if="wxUser" ng-include="'components/header.html'"></header>
     <div class="container gift-container" ng-if="wxUser">
       <div class="row">
-        <!--<div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu" ng-include="'components/sidebar.html'"></div>-->
         <div ng-if="wxUser.pay_config" class="col-xs-2 gift-menu">
           <ul id="menu" ng-controller="MenuCtrl" ng-include="'components/navbar/menu.html'"></ul>
-          <!--<ul id="menu" ng-controller="MenuCtrl" ng-include="'components/sidebar.html'"></ul>-->
         </div>
         <div ng-class="{'col-xs-10': wxUser.pay_config, 'col-xs-12': !wxUser.pay_config}" class="gift-cont">
           <span ng-if="wxUser.pay_config" ncy-breadcrumb></span>
@@ -49,7 +52,7 @@
     <![endif]-->
     <script src="app/vendor-978a4ff714.js"></script>
 
-    <script src="app/app-c4f3836712.js"></script>
+    <script src="app/app-5198b74f57.js"></script>
 <!-- <div style="display:none">
 <script src="http://s11.cnzz.com/stat.php?id=1256263160&web_id=1256263160" language="JavaScript"></script>
 </div> -->

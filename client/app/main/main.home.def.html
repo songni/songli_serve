@@ -1,14 +1,14 @@
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="index">
+  <div id="index" ng-if="$state.current.name === 'main'">
     <div class="bg_black" ng-include="'app/main/main.home.index.html'"></div>
   </div>
-  <div role="tabpanel" class="tab-pane" id="price">
+  <div id="price" ng-if="$state.current.name === 'price'">
     <div class="bg_black" ng-include="'app/main/main.home.price.html'"></div>
   </div>
-  <div role="tabpanel" class="tab-pane" id="academy">
+  <div id="academy" ng-if="$state.current.name === 'academy'">
     <div class="bg_black" ng-include="'app/main/main.home.academy.html'"></div>
   </div>
-  <div role="tabpanel" class="tab-pane" id="agent">
+  <div id="agent" ng-if="$state.current.name === 'agent'">
     <div class="bg_black" ng-include="'app/main/main.home.agent.html'"></div>
   </div>
 </div>

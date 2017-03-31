@@ -11,6 +11,38 @@ angular.module('serveApp')
           label: '首页'
         }
       })
+      .state('index', {
+        url: '/index',
+        // templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl',
+        ncyBreadcrumb: {
+          label: '首页'
+        }
+      })
+      .state('price', {
+        url: '/price',
+        // templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl',
+        ncyBreadcrumb: {
+          label: '首页'
+        }
+      })
+      .state('agent', {
+        url: '/agent',
+        // templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl',
+        ncyBreadcrumb: {
+          label: '首页'
+        }
+      })
+      .state('academy', {
+        url: '/academy',
+        // templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl',
+        ncyBreadcrumb: {
+          label: '首页'
+        }
+      })
       .state('/', {
         url: '/guide',
         templateUrl: 'app/main/guide.mobile.html',

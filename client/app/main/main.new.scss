@@ -41,6 +41,7 @@
     .active{
       a{border-bottom: 3px solid #FF906B;}
     }
+    a:hover,a.active{border-bottom: 3px solid #FF906B;}
   }
   .btn_group{
     width: 25%;
