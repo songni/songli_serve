@@ -1,0 +1,29 @@
+<div class="tab-content">
+  <div id="index">
+    <% if(layout == 'index' || !layout){ %>
+    <%- include('./main.home.index.html') %>
+    <% } else {} %>
+    
+    <!--<div class="bg_black" ng-include="'app/main/main.home.index.html'"></div>-->
+  </div>
+  <div id="price">
+    <% if(layout == 'price'){ %>
+    <%- include('./main.home.price.html') %>
+    <% } else {}%>
+    <!--<div class="bg_black" ng-include="'app/main/main.home.price.html'"></div>-->
+  </div>
+  <div id="academy">
+    <% if(layout == 'academy'){ %>
+    <%- include('./main.home.academy.html') %>
+    <% } else {}%>
+    
+    <!--<div class="bg_black" ng-include="'app/main/main.home.academy.html'"></div>-->
+  </div>
+  <div id="agent">
+    <% if(layout == 'agent'){ %>
+    <%- include('./main.home.agent.html') %>
+    <% } else {}%>
+    <!--<div class="bg_black" ng-include="'app/main/main.home.agent.html'"></div>-->
+  </div>
+</div>
+ 

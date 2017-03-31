@@ -1,0 +1,19 @@
+<div class="index_nav">
+  <div class="logo fl">
+    <img src="https://img.91pintuan.com/songli/server/index/songli-logo.png" alt="" />
+  </div>
+  <ul class="nav_list fl" role="tablist">
+    <li role="presentation" ng-class="{ 'active': ( $state.current.name === 'index' || $state.current.name === 'main' ) }"><a ng-click="routeTo('/index')">首页</a></li>
+    <li role="presentation" ng-class="{ 'active': $state.current.name === 'price' }"><a ng-click="routeTo('/price')">如何收费</a></li>
+    <li role="presentation" ng-class="{ 'active': $state.current.name === 'academy' }"><a ng-click="routeTo('/academy')">91新营销</a></li>
+    <li role="presentation" ng-class="{ 'active': $state.current.name === 'agent' }"><a ng-click="routeTo('/agent')">成为91服务商</a></li>
+  </ul>
+  <div class="btn_group fl">
+		<button class="btn btn_open" ng-click="wechat()">免费开通</button>
+		<button class="btn btn_sing" ng-click="wechat()">商家登录</button>
+  </div>
+</div>
+  
+
+
+

@@ -1,0 +1,112 @@
+<div class="mgtop"></div>
+<div ng-controller="academyController">  
+  <!--首图-->
+  <div class="banner">
+    <div class="img">
+      <a>
+        <img ng-src="{{ ptSrc + '20170115.jpg' }}" alt="" />
+      </a>
+    </div>
+    <div class="logo" ng-hide="true">
+      <img ng-src="{{ ptSrc + 'logo1.png' }}" alt="" /> <!--右上角logo: logo1 正在报名；logo11 报名结束 -->
+    </div>
+    <!--<a ng-hide="false" ng-href="{{ oneUrl + '302965815/86868344.shtml' }}" class="point"></a>-->
+  </div>
+  <div class="course">
+    <!--课程标题-->
+    <div class="c_head">
+      <div class="c_img">
+        <img ng-src="{{ptSrc + 'title-lesson.png' }}" alt="" />
+      </div>
+      <div class="c_bd"></div>
+    </div>
+    <!--课程视频-->
+    <div class="c_body">
+      <ul class="ul-list" style="height: {{line * 370}}px;">
+        <li class="li-list" ng-repeat="item in academy">
+          <!--收费课程-->
+          <div ng-if="item.type" class="top">
+            <a href=""><img ng-src="{{ ptSrc + item.coverImg }}" alt="" /></a>
+            <div class="box-top">
+              <p>该课程为付费课程</p>
+              <p>收看该课程视频，请先参团购买</p>
+              <div class="vcode-lesson"><img ng-src="{{ ptSrc + item.vcodeImg }}" alt="" /></div>
+              <p>请用微信扫码参团</p>
+            </div>
+          </div>
+          <!--免费课程-->
+          <div ng-if="!item.type" class="top">
+            <div ng-if="videoUrl && item.href">
+              <a ng-href="{{ videoUrl + item.href }}"><img ng-src="{{ ptSrc + item.coverImg }}" alt="" /></a>
+              <a ng-href="{{ videoUrl + item.href }}" class="point"></a>
+            </div>
+            <div ng-if="otherUrl && item.otherHref">
+              <a ng-href="{{ otherUrl + item.otherHref }}"><img ng-src="{{ ptSrc + item.coverImg }}" alt="" /></a>
+              <a ng-href="{{ otherUrl + item.otherHref }}" class="point"></a>
+            </div>
+            <div ng-if="oneUrl && item.oneHref">
+              <a ng-href="{{ oneUrl + item.oneHref }}"><img ng-src="{{ ptSrc + item.coverImg }}" alt="" /></a>
+              <a ng-href="{{ oneUrl + item.oneHref }}" class="point"></a>
+            </div>
+          </div>
+          <div class="bottom">
+            <p>{{ item.title }}</p>
+            <p>分享人：{{ item.share }} {{ item.shareName }}</p>
+            <p>时&nbsp;&nbsp;&nbsp;间 ：{{ item.time }} {{ item.num }}</p>
+          </div>
+          <div ng-if="item.logoImg" class="logo">
+            <img ng-src="{{ ptSrc + item.logoImg }}" alt="" />
+          </div>
+        </li>
+      </ul> 
+    </div>
+  </div>
+  <!--专题分享-->
+  <div class="share">
+    <div class="s_head">
+      <div class="s_img">
+        <img ng-src="{{ ptSrc + 'title2.png'}} " alt="" />
+      </div>
+      <div class="s_bd"></div>
+    </div>
+    <div class="s_body">
+      <div class="box1">
+        <a ng-href="{{ videoUrl + 'id_XMTY1OTg3OTc4NA==.html' }}">
+          <img ng-src="{{ ptSrc + 'share1.png' }}" alt="" />
+        </a>
+        <div class="info">
+          <a href="{{ videoUrl + 'id_XMTY1OTg3OTc4NA==.html' }}">水果门店的互联网营销</a>
+        </div>
+      </div>
+      <div class="box2">
+        <a href="{{ videoUrl + 'id_XMTY2MDM3ODk3Mg==.html' }}">
+          <img ng-src="{{ ptSrc + 'share2.png' }}" alt="" />
+        </a>
+        <div class="info">
+          <a href="{{ videoUrl + 'id_XMTY2MDM3ODk3Mg==.html' }}">1天66万公斤车厘子的奇迹</a>
+        </div>
+      </div>
+      <div class="box3">
+        <a href="{{ videoUrl + 'id_XMTY2MDA2NzY0NA==.html' }}">
+          <img ng-src="{{ ptSrc + 'share3.png' }}" alt="" />
+        </a>
+        <div class="info">
+          <a href="{{ videoUrl + 'id_XMTY2MDA2NzY0NA==.html' }}">美妆店用拼团销量翻6倍？</a>
+        </div>
+      </div>
+      <div class="box4">
+        <a href="{{ videoUrl + 'id_XMTY1OTg3ODQ2OA==.html' }}">
+          <img ng-src="{{ ptSrc + 'share4.png' }}" alt="" />
+        </a>
+        <div class="info">
+          <a href="{{ videoUrl + 'id_XMTY1OTg3ODQ2OA==.html' }}">告别团购，引爆社群营销的新武器</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="code">
+    <div class="code_box">
+      <img ng-src="{{ ptSrc + 'academy-code.png' }}" alt="" />
+    </div>
+  </div>
+</div>  
