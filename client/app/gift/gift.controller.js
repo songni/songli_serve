@@ -83,13 +83,14 @@ angular.module('serveApp')
         }
         $scope.gift.status.poi && ($scope.consumeType = {type: 'poi'});
         $scope.gift.status.logistics && ($scope.consumeType = {type: 'logistics'});
+        $scope.gift.status.wb && ($scope.consumeType = {type: 'wb'});
         
         if ($scope.gift.id && $scope.gift.num.pay > 0) {
             $scope.isAllowUpdate = true
         }
 
         $scope.$watch('consumeType.type', type => {
-            let types = ['poi', 'logistics'];
+            let types = ['poi', 'logistics', 'wb'];
             let status = $scope.gift.status;
             types.forEach( t => {
                 status[t] = t === type ? true : false ;

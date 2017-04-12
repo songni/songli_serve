@@ -52,15 +52,21 @@
     <tbody>
       <tr ng-repeat="item in order.receivers">
         <td>{{item.id}}</td>
-        <td><span>{{item.scene === 'poi' ? '门店自提' : '物流配送'}}</span></td>
-        <td ng-if="item.telephone">
-          <span>{{item.consignee || item.name}}</span>
+        <td>
+          <span ng-if=" item.scene !='wb' ">{{item.scene === 'poi' ? '门店自提' : '物流配送'}}</span>
+          <span ng-if=" item.scene ==='wb' ">微商场景</span>
+        </td>
+        <td ng-if="item.scene !='wb' && item.telephone">
+          <span>{{item.consignee || item.name }}</span>
           <span ng-if="item.scene === 'logistics'">{{item.address}}</span>
           <span ng-if="item.scene === 'poi'">{{item.poi.base_info.business_name}}</span>
           <span>{{item.telephone}}</span>
         </td>
-        <td ng-if="!item.telephone">
+        <td ng-if=" item.scene !='wb' && !item.telephone">
           <span style="color: #90c132;">暂未领取</span>
+        </td>
+        <td ng-if=" item.scene ==='wb' && !item.telephone ">
+          <span>{{item.consignee || item.name }}</span>
         </td>
         <td>
 					<p>创建时间－{{ item.fillinDate | date: 'yyyy-MM-dd HH:mm:ss' }}</p>

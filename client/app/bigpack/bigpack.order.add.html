@@ -14,8 +14,9 @@
   			<label class="col-xs-2 bigpack_label">设置数量</label>
   			<div class="col-xs-10 bigpack_comm">
   			  <span>设置该大客户礼包的礼物数量，不能超出该商品剩余库存</span>
-        <input required name="order.capacity" type="text" ng-model="order.capacity" class="num"><span class="nums">份</span>
+        <input required name="order.capacity" type="text" ng-model="order.capacity" ng-maxlength="99999" class="num"><span class="nums">份</span>
         <p class="help-block clear" ng-show="bigpackOrderAddForm['order.capacity'].$error.required && submitted">请填写商品数量</p>
+        <p class="help-block clear" ng-show="bigpackOrderAddForm['order.capacity'].$error.maxlength && submitted">* 商品数量不能超过99999份.</p>
         <p class="help-block clear" ng-show="stockError && submitted">库存不足</p>
   			</div>
   		</div>
