@@ -13,4 +13,7 @@ angular.module('serveApp')
   .service('RestWxReply', function (Restangular) {
     return Restangular.service('wechat/reply');
   })
+  .service('RestPubno', function (Restangular) {
+    return Restangular.service('pubno');
+  })
 ;

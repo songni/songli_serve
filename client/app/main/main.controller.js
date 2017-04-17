@@ -33,7 +33,7 @@ var academyList = [
 // 注： type: payLesson 表示收费课程；vcodeImg： 付费课程参团二维码； logoImg: logo2.png 表示有91明星商家logo
 
 angular.module('serveApp')
-  .controller('MainCtrl', function ($scope,$state,$stateParams,$cookieStore, $cookies, $window,$location,RestWecom,RestWechat) {
+  .controller('MainCtrl', function ($scope,$state,$stateParams,$cookieStore, $cookies, $window,$location,RestWecom,RestWechat,RestPubno,Alert) {
     $scope.routeTo = function(path){
       window.location.href = path
     }
@@ -68,6 +68,15 @@ angular.module('serveApp')
       //   load_qrcode = false;
       // });
     }, true);
+
+    $scope.upgrade2https = function(){
+        var action=confirm('升级后需要修改支付授权目录，确认吗？');
+        if (action === false) {return;}
+        RestPubno.one('upgrade2https').post().then(function(data){
+            Alert.add('success',data.message);
+            $timeout(function(){location.href = '/wechat/pay';},5000);
+        });
+    };
     
     $scope.screen = { width:$window.innerWidth, height:$window.innerHeight };
   })

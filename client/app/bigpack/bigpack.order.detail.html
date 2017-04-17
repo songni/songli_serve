@@ -30,8 +30,7 @@
           </div>
         </td>
         <td width="20%" class="downcode">
-          <!--<qrcode data="{{order.url}}" version="5" error-correction-level="M" size="100" download="来自{{order.sender.name}}的礼物"></qrcode>-->
-          <button ng-click="exportCards()" class="btn btn-code">批量下载语音码</button>
+          <button ng-if=" order.receivers[0].scene != 'wb' " ng-click="exportCards()" class="btn btn-code">批量下载语音码</button>
           <button ng-click="exportSuborders()" class="btn btn-code btn_suborder">批量导出子订单</button>
         </td>
       </tr>
@@ -46,7 +45,7 @@
         <th>收货人信息</th>
         <th>时间</th>
         <th class="text-center" width="90">发货管理</th>
-        <th class="text-center" width="90">语音码</th>
+        <th ng-if=" order.receivers[0].scene != 'wb' " class="text-center" width="90">语音码</th>
       </tr>
     </thead>
     <tbody>
@@ -78,7 +77,7 @@
           <button ng-if="!item.status.shipping && item.telephone" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs btn-ship">发货</button>
           <button ng-if="!item.status.shipping && !item.telephone" ng-disabled="true" ng-click="shippingModel(item)" class="btn btn-primary btn-outline btn-xs">－</button>
         </td>
-        <td align="center">
+        <td align="center" ng-if=" item.scene !='wb' ">
           <button ng-click="exportCard(item)" class="btn btn-primary btn-outline btn-xs btn-ship-down">下载</button>
         </td>
       </tr>

@@ -71,12 +71,23 @@
   
   <div class="row form-group form-bot">
     <div class="col-xs-1">
-    	<label class="control-label">我的礼物</label>
+      	<label class="control-label">我的礼物</label>
     </div>
     <div class="col-xs-11">
       <p class="form-control-static">{{wxUser.uri}}/order/list</p>
     </div>
   </div>
+
+  <div class="row form-group form-bot">
+    <div class="col-xs-1">
+      <label class="control-label">升级安全模式</label>
+    </div>
+    <div class="col-xs-11">
+      <a class="btn btn-default btn-sm" ng-click="upgrade2https()" ng-if="!wxUser.status.https">升级</a>
+      <span ng-if="wxUser.status.https">已经升级为安全模式</span>
+    </div>
+    
+	</div>
   
 
   
