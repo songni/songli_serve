@@ -15,7 +15,7 @@ angular.module('serveApp')
       $scope.merchant = merchant;
     });
   })
-  .controller('BambuContactCtrl', function ($scope, $rootScope, $state,$uibModal, Merchant) {
+  .controller('BambuContactCtrl', function ($scope, $rootScope, $state,$uibModal, Merchant, RestDivision) {
     $rootScope.title = '完善商家信息';
     $scope.aggrement = 'YES';
     $scope.submitted = false;
@@ -49,6 +49,23 @@ angular.module('serveApp')
         });
       }
     };
+    
+    console.warn(RestDivision)
+    RestDivision.getList().then(provinces => {$scope.provinces = provinces;});
+    $scope.getCities = function(item,model){
+      $scope.merchant.city='';
+      $scope.merchant.district='';
+      $scope.cities='';
+      $scope.districts='';
+      RestDivision.getList({province:$scope.merchant.province}).then(cities => {$scope.cities = cities;});
+    };
+    $scope.getDistricts = function(){
+      $scope.merchant.district='';
+      $scope.districts='';
+      RestDivision.getList({city:$scope.merchant.city}).then(districts => {$scope.districts = districts;});
+    };
+    
+    
   })
   .controller('BambuServiceCtrl', function ($scope, $rootScope, $uibModal, $state, Merchant) {
     Merchant.get().then(function(merchant){

@@ -14,12 +14,8 @@
 		            ng-model="merchant.info.name"
 		            required
 		            mongoose-error />
-		      <p ng-show="form['info.name'].$error.required && form['info.name'].$pristine && submitted" class="help-block">
-		    		  商家名称必须填写.
-		      </p>
-		      <p class="help-block" ng-show="form['info.name'].$error.mongoose">
-						{{ errors['info.name'] }}
-		      </p>
+		      <p ng-show="form['info.name'].$error.required && form['info.name'].$pristine && submitted" class="help-block">商家名称必须填写.</p>
+		      <p class="help-block" ng-show="form['info.name'].$error.mongoose">{{ errors['info.name'] }}</p>
 		    </div>
 		  </div>
 		  <!--联系人-->
@@ -34,12 +30,8 @@
 		           placeholder="输入联系人姓名"
 		           ng-model="merchant.info.linkman"
 		           required/>
-		    <p class="help-block" ng-show="form['info.linkman'].$error.required && submitted">
-		      	姓名必须填写
-		    </p>
-		      <p class="help-block" ng-show="form['info.linkman'].$error.mongoose">
-		        {{ errors['info.linkman'] }}
-		      </p>
+		    <p class="help-block" ng-show="form['info.linkman'].$error.required && submitted">姓名必须填写</p>
+		    <p class="help-block" ng-show="form['info.linkman'].$error.mongoose">{{ errors['info.linkman'] }}</p>
 		    </div>
 		  </div>
 		  <!--联系电话-->
@@ -55,15 +47,9 @@
 		           ng-model="merchant.info.telephone"
 		           required
 		           phone/>
-		    <p class="help-block" ng-show="form['info.telephone'].$error.required && submitted">
-		      	联系电话必须填写
-		    </p>
-		    <p class="help-block" ng-show="form['info.telephone'].$error.phone">
-		     	 联系电话格式不正确
-		    </p>
-		    <p class="help-block" ng-show="form['info.telephone'].$error.mongoose">
-		      {{ errors['info.telephone'] }}
-		    </p>
+		    <p class="help-block" ng-show="form['info.telephone'].$error.required && submitted">联系电话必须填写</p>
+		    <p class="help-block" ng-show="form['info.telephone'].$error.phone">联系电话格式不正确</p>
+		    <p class="help-block" ng-show="form['info.telephone'].$error.mongoose">{{ errors['info.telephone'] }}</p>
 		    </div>
 		  </div>
 		  <!--座机号-->
@@ -77,9 +63,7 @@
 		    <input type="text" name="info.phone" class="form-control input-lg test bambu-input"
 		           placeholder="输入商家电话，方便消费者联系"
 		           ng-model="merchant.info.phone"/>
-		      <p class="help-block" ng-show="form['info.phone'].$error.mongoose">
-		        {{ errors['info.linkman'] }}
-		      </p>
+		      <p class="help-block" ng-show="form['info.phone'].$error.mongoose">{{ errors['info.linkman'] }}</p>
 		    </div>
 		  </div>
 		  <!--地址-->
@@ -106,17 +90,52 @@
 		  	   ng-class="{ 'has-success': form['info.agent'].$valid && submitted,
                 'has-error': form['info.agent'].$invalid && submitted }">
 		    <div class="col-xs-2">
-		    	<label for="info.agent" class="mw control-label label-name label-name1">服务商编码(选填)</label>
+		      	<label for="info.agent" class="mw control-label label-name label-name1">
+		      	  <span>服务商编码</span><span>(选填)</span>
+		      	</label>
 		    </div>
 		    <div class="col-xs-10">
-		    <input type="text" name="info.agent" class="form-control input-lg test bambu-input"
-		           placeholder="如果是服务商客户，请输入服务商编码"
-		           ng-model="merchant.info.agent"/>
-		    <p class="help-block" ng-show="form['info.agent'].$error.mongoose">
-        	{{ errors['info.agent'] }}
-      	</p>
+    		    <input type="text" name="info.agent" class="form-control input-lg test bambu-input"
+    		           placeholder="如果是服务商客户，请输入服务商编码"
+    		           ng-model="merchant.info.agent"/>
+    		    <p class="help-block" ng-show="form['info.agent'].$error.mongoose">	{{ errors['info.agent'] }}</p>
 		    </div>
 		  </div>
+		  <div class=" row form-group form_addr">
+        <label for="local" class="col-xs-2 label_title">省市区</label>
+        <div class="col-xs-3">
+          <ui-select ng-model="merchant.province" on-select = "getCities($item, $model)" append-to-body="false">
+            <ui-select-match placeholder="选择省份">
+              <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="province.id as province in (provinces | filter: $select.search) track by province.id">
+              <span ng-bind="province.name"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="col-xs-3">
+          <ui-select ng-model="merchant.city" on-select = "getDistricts($item, $model)" append-to-body="false">
+            <ui-select-match placeholder="选择城市">
+              <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="city.id as city in (cities | filter: $select.search) track by city.id">
+              <span ng-bind="city.name"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="col-xs-3">
+          <ui-select ng-model="merchant.district" append-to-body="false">
+            <ui-select-match placeholder="选择区/县">
+              <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="district.id as district in (districts | filter: $select.search) track by district.id">
+              <span ng-bind="district.name"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+		  
+		  
 		  <!--协议-->
 		  <!--<div class="form-group"
 		  		 ng-class="{ 'has-success': aggrement === 'YES' && submitted,

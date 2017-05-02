@@ -647,6 +647,9 @@ textarea{resize: none;}
 .bambu-group .label-name1{
     padding-top: 0;
 }
+.bambu-group .label-name1 span{
+  display: block
+}
 .bambu-group .bambu-input{
     border-radius: 0;
     border: 1px solid #E8E8E8;
@@ -661,6 +664,24 @@ textarea{resize: none;}
     color: #ffffff;
     background: #8FC31F;
 }
+.form_addr{
+  .col-xs-3{
+    padding-left: 0px;
+  }
+  .label_title{
+    color: #605E5E;
+    font-weight: normal;
+    padding-left: 10px;
+    line-height: 34px;
+  }
+  .form-control{
+    min-height: 34px;
+    background: #ffffff;
+    border: 1px solid #E8E8E8;
+    border-radius: 0;
+  }
+}
+
 //配置公众号样式----------
 .bam-config,.bam-config .row{
     margin-left: 0;
